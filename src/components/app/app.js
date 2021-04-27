@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { Container, Row, Col, Nav, Navbar } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Navbar, Tabs, Tab } from 'react-bootstrap';
 import Details from '../details';
 import ActivitiesResult from '../activities-result';
-import DetailsType from '../details-type';
-import DetailsParticipants from '../details-participants';
-import DetailsBudget from '../details-budget';
+import MyList from '../my-list';
+import SuccessButton from '../success-button';
 
 import './app.css';
 
@@ -17,14 +16,7 @@ export default class App extends Component {
             budget: ''
         }           
     }
-    onUpdateBudget = (budget) => {
-        this.setState({budget: budget});
-        console.log(this.state.budget);
-     }
-    onChangeParticipants = (participants) => {
-        this.setState({participants: participants});
-        console.log(this.state.participants);
-    }
+    
     render() {
         return(            
             <>  
@@ -35,17 +27,31 @@ export default class App extends Component {
                     <Nav.Link href="#home">My List</Nav.Link>     
                     </Nav>        
                 </Navbar>
-                
+
+               {/* <Tabs id="uncontrolled-tab-example" >
+                    <Tab eventKey="activities" title="Activities">
+                        <ActivitiesResult />
+                        <Details />
+                    </Tab>
+                    <Tab eventKey="mylist" title="My List">
+                        <MyList />
+                    </Tab>
+        </Tabs>*/}
+
                 <Container flex justify-center justify-content-around center-block>
                     <Row>  
-                        <Col bg-secondary text-white xs-6 lg-3><ActivitiesResult /></Col>
+                        <Col bg-secondary text-white xs-6 lg-3>
+                            <ActivitiesResult />
+                        </Col>
                         <Col bg-dark text-white xs-6 lg-3>
                             <Details 
-                                 onUpdateBudget={this.onUpdateBudget}
-                                 onChangeParticipants={this.onChangeParticipants}/>
+                                sendForm={this.sendForm} />
                         </Col>
                     </Row>
-                            </Container>   
+                            </Container>  
+                    <Row>
+                         <SuccessButton/>   
+                    </Row> 
                 </Container>
             </>
         )

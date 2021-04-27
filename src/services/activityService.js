@@ -1,3 +1,5 @@
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+
 export default class ActivityService {
     constructor() {
         this._apBase = "http://www.boredapi.com/api/activity";
@@ -17,9 +19,13 @@ export default class ActivityService {
     }
 
     async getPerticipants() {
-        const res = await this.getPerticipants(`?participants=:participants`)
+        const res = await this.getPerticipants(`http://www.boredapi.com/api/activity?participants=:participants`)
     }
     async getBudget() {
         const res = await this.getBudget(`?price=:price`)
     }
+
 }
+const service = new ActivityService;
+service.getPerticipants()
+    then(res => console.log(res));
