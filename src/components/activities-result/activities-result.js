@@ -1,14 +1,17 @@
 import React from 'react';
+import { Button, Container, ListGroup } from 'react-bootstrap';
 
 import './activities-result.css';
 
 const ActivitiesResult = () => {
     return (
-        <div>
-            <p>You should</p>
-            <input />
-            <button>Save for later</button>
-        </div>
+        <Container flex flex-column>
+            <h5>You should</h5>
+            <ListGroup>
+                <ListGroup.Item>Mow your neighbor's lawn</ListGroup.Item>
+            </ListGroup>
+            <Button variant="danger" mb-3>Danger</Button>
+        </Container>
     )
 }
 
