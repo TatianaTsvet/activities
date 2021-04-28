@@ -14,18 +14,12 @@ export default class ActivityService {
         return await res.json();
     }
 
-    async getType() {
-        const res = await this.getResource(`?type=:type`)
+    async getActivity(valueType, participants, budget) {
+        const res = await this.getResource(`?price=${budget}&participants=${participants}&type=${valueType}`);
     }
-
-    async getPerticipants() {
-        const res = await this.getPerticipants(`http://www.boredapi.com/api/activity?participants=:participants`)
-    }
-    async getBudget() {
-        const res = await this.getBudget(`?price=:price`)
-    }
+   
 
 }
-const service = new ActivityService;
-service.getPerticipants()
-    then(res => console.log(res));
+//const service = new ActivityService();
+//service.getActivity('social', 0, 0)
+ //   then(res => console.log(res));

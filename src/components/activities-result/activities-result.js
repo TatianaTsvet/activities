@@ -1,18 +1,33 @@
-import React from 'react';
-import { Button, Container, ListGroup } from 'react-bootstrap';
+import React, {Component} from 'react';
+import { Button, Container, ListGroup, Row } from 'react-bootstrap';
+import ActivityService from '../../services/activityService';
 
 import './activities-result.css';
 
-const ActivitiesResult = () => {
+export default class ActivitiesResult extends Component {
+    
+    state = {
+        valueType: null,
+        participants: null,
+         budget: null        
+    }
+    ActivityService = new ActivityService();
+    
+    
+    
+        render() { 
+       
     return (
-        <Container flex flex-column>
+        <Container className="flex flex-column d-flex pt-3 pb-3 ">
+            <ListGroup className=" float">
             <h5>You should</h5>
-            <ListGroup>
                 <ListGroup.Item>Mow your neighbor's lawn</ListGroup.Item>
             </ListGroup>
-            <Button variant="danger" mb-3>Danger</Button>
+            <Row>
+            <Button variant="danger" className="mx-auto mt-5">Save for you later</Button>
+            </Row>
         </Container>
-    )
+        )
+    }
 }
 
-export default ActivitiesResult;

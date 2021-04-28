@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Container, Row, Col, Nav, Navbar, Tabs, Tab } from 'react-bootstrap';
+import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom" 
 import Details from '../details';
 import ActivitiesResult from '../activities-result';
 import MyList from '../my-list';
@@ -11,48 +12,47 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            valueType: 'Social',
-            participants: 1,
-            budget: ''
+            valueType: '',
+            participants: '',
+            budget: '',
+            access: '',
         }           
     }
     
+    
+    
     render() {
+        
         return(            
             <>  
-            <Container justify-center mt-5 >
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">Activities</Navbar.Brand>
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#home">My List</Nav.Link>     
-                    </Nav>        
-                </Navbar>
-
-               {/* <Tabs id="uncontrolled-tab-example" >
-                    <Tab eventKey="activities" title="Activities">
-                        <ActivitiesResult />
-                        <Details />
+            <Container className="justify-center mt-5" >
+                <Tabs color="grey" id="uncontrolled-tab-example" >
+                    <Tab className="bg-dark text-white"
+                        eventKey="activities" 
+                        title="Activities">
+                        <Container className="flex justify-center justify-content-around center-block">
+                            <Row>  
+                                <Col className="bg-secondary text-white xs-4 lg-2">
+                                    <ActivitiesResult />
+                                </Col>
+                                <Col className="bg-dark text-white xs-6 lg-3">
+                                    <Details 
+                                        dataInfo={this.dataInfo} />
+                                </Col>
+                            </Row>
+                        </Container> 
                     </Tab>
+                    
                     <Tab eventKey="mylist" title="My List">
-                        <MyList />
+                    <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
+                        <MyList/>
+                    </Container> 
                     </Tab>
-        </Tabs>*/}
-
-                <Container flex justify-center justify-content-around center-block>
-                    <Row>  
-                        <Col bg-secondary text-white xs-6 lg-3>
-                            <ActivitiesResult />
-                        </Col>
-                        <Col bg-dark text-white xs-6 lg-3>
-                            <Details 
-                                sendForm={this.sendForm} />
-                        </Col>
-                    </Row>
-                            </Container>  
-                    <Row>
-                         <SuccessButton/>   
-                    </Row> 
-                </Container>
+                </Tabs>
+                <Row className="flex flex-row-reverse mt-6 ">
+                                <SuccessButton/>   
+                            </Row> 
+            </Container>       
             </>
         )
     }
