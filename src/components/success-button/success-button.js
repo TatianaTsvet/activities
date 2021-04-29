@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap'; 
+import {Button, Row} from 'react-bootstrap'; 
 
 
 
@@ -9,8 +9,13 @@ export default class SuccessButton extends Component {
     
         render() {
         return (
-            <>            
-               <Button className="successButton mt-5" variant="success">Activity successfully saved</Button>
+            <> 
+                <Row className="flex flex-row-reverse mt-6 ">
+                    <Button 
+                        className="successButton mt-5" 
+                        variant="success">Activity successfully saved</Button>
+                </Row>            
+               
             </>
         )
     }

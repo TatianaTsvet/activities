@@ -5,26 +5,20 @@ import {Form} from 'react-bootstrap';
 import './details-access.css';
 
 export default class DetailsAccess extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                access: 0
-            }
-            
-        }
+        
         changeAccess = (event) => {
-            this.setState({access: event.target.value});
-            this.props.onUpdateAccess(this.state.access);
+            const access = Number.parseFloat(event.target.value).toFixed(1);
+            this.props.onUpdateAccess(access);
         }
 
         render() {
-            const {access} = this.state;
+            const {value} = this.props;
         return (
             <Form.Group >
             <Form.Label>accessability</Form.Label>
             <Form.Control 
                 type="range"
-                value={access}
+                value={value}
                 min="0"
                 max="1" 
                 step="0.01"

@@ -5,26 +5,20 @@ import {Form} from 'react-bootstrap';
 import './details-budget.css';
 
 export default class DetailsBudget extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                budget: 0
-            }
-            
-        }
+
         changeBudget = (event) => {
-            this.setState({budget: event.target.value});
-            this.props.onUpdateBudget(this.state.budget);
+            const budget = Number.parseFloat(event.target.value).toFixed(1);    
+            this.props.onUpdateBudget(budget);            
         }
 
         render() {
-            const {budget} = this.state;
+            const {value} = this.props;
         return (
             <Form.Group >
             <Form.Label>max.budget</Form.Label>
             <Form.Control 
                 type="range"
-                value={budget}
+                value={value}                
                 min="0"
                 max="1" 
                 step="0.01"

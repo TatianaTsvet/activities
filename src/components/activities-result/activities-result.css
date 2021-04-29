@@ -1,0 +1,9 @@
+.result_window {
+    color: rgb(24, 23, 23);
+}
+.result_window.error {
+    background-color: rgb(252, 7, 7);
+}
+.invisible {
+    visibility: hidden;
+}

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom" 
 import Details from '../details';
 import ActivitiesResult from '../activities-result';
 import MyList from '../my-list';
@@ -12,17 +11,31 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            valueType: '',
-            participants: '',
-            budget: '',
-            access: '',
+            activity: {
+                valueType: null,
+                participants: null,
+                budget: null,
+                access: null,
+                activity: null,
+                error: null
+            },
+            rightActivity: false
         }           
     }
     
-    
-    
-    render() {
+    onActivityFetched = (activity) => {
+        this.setState({ activity: {...activity}});
+        console.log(activity);
         
+    }
+    sendToMyList = (rightActivity) => {
+        this.setState({rightActivity});
+        console.log(this.state.rightActivity)
+    }
+
+    render() {
+        const {activity, rightActivity} = this.state;
+        const successButton = rightActivity ? <SuccessButton /> : null;
         return(            
             <>  
             <Container className="justify-center mt-5" >
@@ -33,11 +46,13 @@ export default class App extends Component {
                         <Container className="flex justify-center justify-content-around center-block">
                             <Row>  
                                 <Col className="bg-secondary text-white xs-4 lg-2">
-                                    <ActivitiesResult />
+                                    <ActivitiesResult 
+                                        activity={activity}
+                                        sendToMyList={this.sendToMyList}/>
                                 </Col>
                                 <Col className="bg-dark text-white xs-6 lg-3">
                                     <Details 
-                                        dataInfo={this.dataInfo} />
+                                        onActivityFetched={this.onActivityFetched} />
                                 </Col>
                             </Row>
                         </Container> 
@@ -49,11 +64,9 @@ export default class App extends Component {
                     </Container> 
                     </Tab>
                 </Tabs>
-                <Row className="flex flex-row-reverse mt-6 ">
-                                <SuccessButton/>   
-                            </Row> 
+                {successButton}
             </Container>       
-            </>
+        </>
         )
     }
 }

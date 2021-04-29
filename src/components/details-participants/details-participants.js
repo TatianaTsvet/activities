@@ -5,25 +5,19 @@ import {Form} from 'react-bootstrap';
 import './details-participants.css';
 
 export default class Details extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                participants: 1
-            }            
-        }
+        
         changeParticipants = (event) => {
-            this.setState({participants: event.target.value});
-            this.props.onChangeParticipants(this.state.participants);        
+            const participants = Number.parseInt(event.target.value);
+            this.props.onChangeParticipants(participants);        
         }        
         render() {
-            const {participants} = this.state;
-            
+            const {value} = this.props;              
         return (
             <Form.Group>
                 <Form.Label>Participants</Form.Label>
                 <Form.Control 
                     type="number"
-                    value={participants}
+                    value={value}
                     onChange={this.changeParticipants}  />
             </Form.Group>
                 

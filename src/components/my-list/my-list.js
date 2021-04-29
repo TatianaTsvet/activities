@@ -6,10 +6,7 @@ import {ListGroup, Badge} from 'react-bootstrap';
 import './my-list.css';
 
 export default class MyList extends Component {
-    constructor(props) {
-           super(props);    
-    }
-    
+   
         render() {
         return (
             <>            
