@@ -8,16 +8,27 @@ import './activities-result.css';
 export default class ActivitiesResult extends Component {
     
     sendToMyList = () => {
-        let rightActivity = true;
-        this.props.sendToMyList(rightActivity);
+        //let rightActivity = true;
+        //this.props.sendToMyList(rightActivity);
+        const {randomActivity} = this.props;
+        
+        this.props.addItem(randomActivity);
+        
+        
     }
-
     render() { 
-        const {activity} = this.props;
-        const windowActivity = activity.activity ? activity.activity : activity.error;
+        const {randomActivity} = this.props;
+        const windowActivity = randomActivity.activity ? randomActivity.activity : randomActivity.error;
         let classNamesList = "result_window";
         let classNameButton = "";
-        if (activity.error) {
+        let invitation = "";
+        if (!randomActivity.error && !randomActivity.activity) {
+            invitation = "Choose any activity";
+            classNamesList = ' invitation';
+            classNameButton += 'invisible';
+        }
+
+        if (randomActivity.error) {
            classNamesList += ' error'; 
            classNameButton += 'invisible';
         }
@@ -25,8 +36,8 @@ export default class ActivitiesResult extends Component {
         <>
         <Container className="flex flex-column d-flex pt-3 pb-3 ">
             <ListGroup className=" float">
-            <h5>You should</h5>
-                <ListGroup.Item className={classNamesList}>{windowActivity}</ListGroup.Item>
+            <h5 className="text-white">You should</h5>
+                <ListGroup.Item className={classNamesList}>{windowActivity} {invitation}</ListGroup.Item>
             </ListGroup>
             <Row className="mx-auto mt-5 ">
             <Button 

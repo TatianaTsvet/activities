@@ -11,35 +11,69 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activity: {
-                valueType: null,
+            activity : [
+                {type: null,
+                participants: null,
+                activity: null,
+                key: 0
+                }
+            ],  
+            randomActivity: {
+                type: null,
                 participants: null,
                 budget: null,
                 access: null,
                 activity: null,
-                error: null
-            },
-            rightActivity: false
+                error: null,
+                key: 0
+            }
         }           
     }
     
-    onActivityFetched = (activity) => {
-        this.setState({ activity: {...activity}});
-        console.log(activity);
-        
-    }
+    onActivityFetched = (activity) => {         
+       this.setState({ randomActivity: {...activity}});        
+    } 
+    
     sendToMyList = (rightActivity) => {
         this.setState({rightActivity});
-        console.log(this.state.rightActivity)
     }
-
+    addItem = (randomActivity) => {
+        const {activity} = this.state;
+             
+        let newItem = {
+            type: randomActivity.type,
+            participants: randomActivity.participants,
+            activity: randomActivity.activity,
+            key: randomActivity.key
+        }
+        const {activity : [{key}]} = this.state;  
+        if (key === 0) {
+          return  this.setState({ activity: [{...newItem}]});  
+        } 
+        if (newItem.key !== key ) {
+            this.setState(({activity}) => {
+                const newAct = [...activity, newItem];
+                
+                return {
+                    activity: newAct
+                }
+            });
+       }
+        
+    }
+    deleteItem = (key) => {
+        this.setState({
+            activity: this.state.activity.filter((item) => item !== item.key)
+        })
+    }
     render() {
-        const {activity, rightActivity} = this.state;
-        const successButton = rightActivity ? <SuccessButton /> : null;
+        const {activity, randomActivity} = this.state;
+       
+       // const successButton = rightActivity ? <SuccessButton /> : null;
         return(            
             <>  
             <Container className="justify-center mt-5" >
-                <Tabs color="grey" id="uncontrolled-tab-example" >
+                <Tabs id="uncontrolled-tab-example" >
                     <Tab className="bg-dark text-white"
                         eventKey="activities" 
                         title="Activities">
@@ -47,12 +81,13 @@ export default class App extends Component {
                             <Row>  
                                 <Col className="bg-secondary text-white xs-4 lg-2">
                                     <ActivitiesResult 
-                                        activity={activity}
-                                        sendToMyList={this.sendToMyList}/>
+                                        randomActivity={randomActivity}
+                                        sendToMyList={this.sendToMyList}
+                                        addItem={this.addItem}/>
                                 </Col>
                                 <Col className="bg-dark text-white xs-6 lg-3">
                                     <Details 
-                                        onActivityFetched={this.onActivityFetched} />
+                                        onActivityFetched={this.onActivityFetched}/>
                                 </Col>
                             </Row>
                         </Container> 
@@ -60,11 +95,13 @@ export default class App extends Component {
                     
                     <Tab eventKey="mylist" title="My List">
                     <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
-                        <MyList/>
+                        <MyList
+                            activity={activity}
+                            deleteItem={this.deleteItem}/>
                     </Container> 
                     </Tab>
                 </Tabs>
-                {successButton}
+              {/*  {successButton}  */}
             </Container>       
         </>
         )

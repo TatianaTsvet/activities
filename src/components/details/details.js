@@ -58,7 +58,7 @@ export default class Details extends Component {
             <Form 
                 className="flex flex-column d-flex pt-3 pb-3" 
                 onSubmit={this.sendForm}>
-                <h5>Activity details</h5>
+                <h5 className="text-white">Activity details</h5>
                 <DetailsType 
                     onChangeType={this.onChangeType}
                     availableTypes={availableTypes}
