@@ -6,17 +6,17 @@ import {ListGroup, Badge, Form} from 'react-bootstrap';
 import './my-list.css';
 
 export default class MyList extends Component {
-        // deleteItem = () => {
-        //     const activity = this.props; 
-        //     this.props.deleteItem(activity.key) 
-        // }
+        deleteItem = () => {
+            const {activity : [{key}]} = this.props;  
+            this.props.deleteItem(key) 
+        }
         render() {
-            const {activity} = this.props;        
+            const {activity} = this.props; 
             const posts = activity.map((item, i) => {
-                if (item.key === 0) {
+                if (item.key === null) {
                     return (
                         <>
-                            <ListGroup>
+                            <ListGroup key={i}>
                             <ListGroup.Item className="flex justify-center mt-3 error">
                                 <p>You have nothing saved yet</p>
                             </ListGroup.Item>
@@ -35,7 +35,7 @@ export default class MyList extends Component {
                                 <p className="success">{item.participants} participants</p>
                                 <Form.Check 
                                     aria-label="option 1"
-                                    //onClick={() => deleteItem(item.key)} 
+                                    onClick={this.deleteItem} 
                                     />
                             </ListGroup.Item>
                         </ListGroup>                         

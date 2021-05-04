@@ -3,7 +3,7 @@ import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import Details from '../details';
 import ActivitiesResult from '../activities-result';
 import MyList from '../my-list';
-import SuccessButton from '../success-button';
+import SuccessToast from '../success-toast';
 
 import './app.css';
 
@@ -26,7 +26,8 @@ export default class App extends Component {
                 activity: null,
                 error: null,
                 key: 0
-            }
+            },
+            success: false
         }           
     }
     
@@ -38,8 +39,6 @@ export default class App extends Component {
         this.setState({rightActivity});
     }
     addItem = (randomActivity) => {
-        const {activity} = this.state;
-             
         let newItem = {
             type: randomActivity.type,
             participants: randomActivity.participants,
@@ -62,14 +61,27 @@ export default class App extends Component {
         
     }
     deleteItem = (key) => {
-        this.setState({
-            activity: this.state.activity.filter((item) => item !== item.key)
+          this.setState({
+            activity: this.state.activity.filter((item) => key !== item.key)
         })
+        // this.setState(({activity}) => {
+        //     const index = activity.findIndex(elem => elem.key === key);
+        //     const newArr = [...activity.slice(0, index), ...activity.slice(index + 1)];
+        //     return {
+        //         activity: newArr
+        //     }
+        // })
+    }
+    setShow = (success) => {
+        this.setState({success})
+    }
+    closeToast = (success) => {
+        this.setState({success})
     }
     render() {
-        const {activity, randomActivity} = this.state;
+        const {activity, randomActivity, success} = this.state;
        
-       // const successButton = rightActivity ? <SuccessButton /> : null;
+       
         return(            
             <>  
             <Container className="justify-center mt-5" >
@@ -83,7 +95,12 @@ export default class App extends Component {
                                     <ActivitiesResult 
                                         randomActivity={randomActivity}
                                         sendToMyList={this.sendToMyList}
-                                        addItem={this.addItem}/>
+                                        addItem={this.addItem}
+                                        setShow={this.setShow}/>  
+                                        
+                                        <SuccessToast 
+                                            success={success}
+                                            closeToast={this.closeToast}/>                                      
                                 </Col>
                                 <Col className="bg-dark text-white xs-6 lg-3">
                                     <Details 
@@ -91,8 +108,7 @@ export default class App extends Component {
                                 </Col>
                             </Row>
                         </Container> 
-                    </Tab>
-                    
+                    </Tab>                    
                     <Tab eventKey="mylist" title="My List">
                     <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
                         <MyList
@@ -101,7 +117,6 @@ export default class App extends Component {
                     </Container> 
                     </Tab>
                 </Tabs>
-              {/*  {successButton}  */}
             </Container>       
         </>
         )

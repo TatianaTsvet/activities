@@ -15,7 +15,8 @@ export default class Details extends Component {
         this.state = {
             valueType: 'Social',
             participants: 1,
-            budget: 0,
+            minBudget: 0,
+            maxBudget: 1,
             access: 0,
             availableTypes: [
                 'Education',
@@ -33,9 +34,9 @@ export default class Details extends Component {
 
     ActivityService = new ActivityService();
 
-    onUpdateBudget = (budget) => {
-        this.setState({budget});               
-     }
+    onUpdateBudget = (minBudget, maxBudget) => {
+        this.setState({minBudget, maxBudget});           
+    }    
     onChangeParticipants = (participants) => {
         this.setState({participants});   
     }
@@ -47,12 +48,12 @@ export default class Details extends Component {
     }
     sendForm = async (event) => {
         event.preventDefault();   
-        const {valueType, participants, budget, access} = this.state;
-        const activity = await this.ActivityService.getActivity(valueType, participants, budget, access);
+        const {valueType, participants, minBudget, maxBudget, access} = this.state;
+        const activity = await this.ActivityService.getActivity(valueType, participants, minBudget, maxBudget, access);
         this.props.onActivityFetched(activity);
     }
         render() {
-            const {valueType, participants, budget, access, availableTypes} = this.state;
+            const {valueType, participants, minBudget, maxBudget, access, availableTypes} = this.state;
         return (
             <>            
             <Form 
@@ -68,11 +69,16 @@ export default class Details extends Component {
                     value={participants}/>
                 <DetailsBudget 
                     onUpdateBudget={this.onUpdateBudget}
-                    value={budget}/>
+                    minValue={minBudget}
+                    maxValue={maxBudget}/>
                 <DetailsAccess 
                     onUpdateAccess={this.onUpdateAccess}
                     value={access}/>
-                <Button type="submit" variant="primary"className="mx-auto">Hit me with the new one</Button>
+                <Button 
+                    type="submit" 
+                    variant="primary"
+                    className="mx-auto mt-2"
+                    >Hit me with the new one</Button>
                 
             </Form>
             </>

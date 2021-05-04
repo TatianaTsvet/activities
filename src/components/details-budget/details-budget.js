@@ -1,29 +1,57 @@
 import React, {Component} from 'react';
 import {Form} from 'react-bootstrap'; 
-
-
 import './details-budget.css';
 
-export default class DetailsBudget extends Component {
+import Slider from "rc-slider";
+import 'rc-slider/assets/index.css';
+const { Range } = Slider;
 
-        changeBudget = (event) => {
-            const budget = Number.parseFloat(event.target.value).toFixed(1);    
-            this.props.onUpdateBudget(budget);            
+const marks = {
+    0: {
+        label: 'cheap',
+        style: {
+            color: "#fff",
+            display: 'block',
+            marginLeft: "0.5em"
         }
-
+    },
+    1: {
+        label: 'expensive',
+        style: {
+            color: "#fff",
+            display: 'block',
+            marginLeft: "-1.5em"
+        }
+    },
+}
+const style = {
+    width: '97%',
+    margin: 'auto',
+    textTransform: "lowercase"
+}
+export default class DetailsBudget extends Component {
+            
+        onChange = (value) => {
+            const [minValue, maxValue] = value;
+            const minBudget = Number.parseFloat(minValue).toFixed(1);
+            const maxBudget = Number.parseFloat(maxValue).toFixed(1);
+            this.props.onUpdateBudget(minBudget, maxBudget);
+          }
+        
         render() {
-            const {value} = this.props;
+            const {minValue, maxValue} = this.props;            
         return (
             <Form.Group >
             <Form.Label>max.budget</Form.Label>
-            <Form.Control 
-                type="range"
-                value={value}                
-                min="0"
-                max="1" 
-                step="0.01"
-                onChange={this.changeBudget} />
-          </Form.Group>
+            <Range
+                style={style}
+                allowCross={false}                 
+                max={1}
+                defaultValue={[minValue, maxValue]} 
+                step="0.01" 
+                marks={marks}
+                onChange={this.onChange} />
+            </Form.Group>
         )
     }
 }

@@ -8,13 +8,9 @@ import './activities-result.css';
 export default class ActivitiesResult extends Component {
     
     sendToMyList = () => {
-        //let rightActivity = true;
-        //this.props.sendToMyList(rightActivity);
-        const {randomActivity} = this.props;
-        
+        const {randomActivity} = this.props;        
         this.props.addItem(randomActivity);
-        
-        
+        this.props.setShow(true);     
     }
     render() { 
         const {randomActivity} = this.props;

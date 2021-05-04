@@ -14,9 +14,10 @@ export default class ActivityService {
         return await res.json();
     }
 
-    async getActivity(valueType, participants, budget, access) {
+    async getActivity(valueType, participants, minBudget, maxBudget, access) {
         const data = new URLSearchParams();
-        data.append('price', budget)
+        data.append('minprice', minBudget)
+        data.append('maxprice', maxBudget)
         data.append('participants', participants)
         data.append('accessibility', access)
         data.append('type', valueType.toLowerCase())

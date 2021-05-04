@@ -14,7 +14,7 @@ export default class DetailsAccess extends Component {
         render() {
             const {value} = this.props;
         return (
-            <Form.Group >
+            <Form.Group className="mt-3">
             <Form.Label>accessability</Form.Label>
             <Form.Control 
                 type="range"
