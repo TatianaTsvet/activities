@@ -86,40 +86,30 @@ export default class App extends Component {
             <Router>  
             <Container className="justify-center mt-5" >
                 <Header />
-                <Tabs id="uncontrolled-tab-example" >
-                    <Tab className="bg-dark text-white"
-                        eventKey="activities" 
-                        title="Activities">
-                        <Container className="flex justify-center justify-content-around center-block">
-                            <Row>  
-                                <Col className="bg-secondary text-white xs-4 lg-2">
-                                    <ActivitiesResult 
-                                        randomActivity={randomActivity}
-                                        sendToMyList={this.sendToMyList}
-                                        addItem={this.addItem}
-                                        setShow={this.setShow}/>  
-                                        
-                                        <SuccessToast 
-                                            success={success}
-                                            closeToast={this.closeToast}/>                                      
-                                </Col>
-                                <Col className="bg-dark text-white xs-6 lg-3">
-                                    <Details 
-                                        onActivityFetched={this.onActivityFetched}/>
-                                </Col>
-                            </Row>
-                        </Container> 
-                    </Tab>                    
-                    <Tab eventKey="mylist" title="My List">
-                    <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
-                        <MyList
-                            activity={activity}
-                            deleteItem={this.deleteItem}/>
-                    </Container> 
-                    </Tab>
-                </Tabs>
-                
-                            </Container>  
+            <Container className="flex justify-center justify-content-around center-block">
+                <Row>  
+                    <Col className="bg-secondary text-white xs-4 lg-2">
+                        <ActivitiesResult 
+                            randomActivity={randomActivity}
+                            sendToMyList={this.sendToMyList}
+                            addItem={this.addItem}
+                            setShow={this.setShow}/>  
+                        <SuccessToast 
+                            success={success}
+                            closeToast={this.closeToast}/>                                      
+                    </Col>
+                        <Col className="bg-dark text-white xs-6 lg-3">
+                            <Details 
+                                onActivityFetched={this.onActivityFetched}/>
+                            </Col>
+                </Row>
+            </Container> 
+            <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
+                <MyList
+                    activity={activity}
+                    deleteItem={this.deleteItem}/>
+            </Container> 
+            </Container>  
 
            
 
