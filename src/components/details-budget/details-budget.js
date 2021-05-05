@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Form} from 'react-bootstrap'; 
-import './details-budget.css';
 
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
+
+import './details-budget.css';
 const { Range } = Slider;
 
 const marks = {
@@ -12,7 +13,7 @@ const marks = {
         style: {
             color: "#fff",
             display: 'block',
-            marginLeft: "0.5em"
+            marginLeft: "0.5em",
         }
     },
     1: {
@@ -25,7 +26,7 @@ const marks = {
     },
 }
 const style = {
-    width: '97%',
+    width: '96%',
     margin: 'auto',
     textTransform: "lowercase"
 }

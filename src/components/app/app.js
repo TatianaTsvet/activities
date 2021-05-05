@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { Container, Row, Col, Tabs, Tab, Nav} from 'react-bootstrap';
 import Details from '../details';
+import Header from '../header'
 import ActivitiesResult from '../activities-result';
 import MyList from '../my-list';
 import SuccessToast from '../success-toast';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './app.css';
 
@@ -31,6 +33,10 @@ export default class App extends Component {
         }           
     }
     
+    /**
+     * 454545454
+     * @param {string} activity 
+     */
     onActivityFetched = (activity) => {         
        this.setState({ randomActivity: {...activity}});        
     } 
@@ -45,11 +51,13 @@ export default class App extends Component {
             activity: randomActivity.activity,
             key: randomActivity.key
         }
-        const {activity : [{key}]} = this.state;  
-        if (key === 0) {
-          return  this.setState({ activity: [{...newItem}]});  
+           
+        const index = this.state.activity.find(item => item.key === 0);   
+        const index2 = this.state.activity.find(item => item.key === newItem.key);
+        if (index) {
+            return  this.setState({ activity: [{...newItem}]});  
         } 
-        if (newItem.key !== key ) {
+        if (!index2) {
             this.setState(({activity}) => {
                 const newAct = [...activity, newItem];
                 
@@ -57,20 +65,12 @@ export default class App extends Component {
                     activity: newAct
                 }
             });
-       }
-        
+        }   
     }
     deleteItem = (key) => {
           this.setState({
             activity: this.state.activity.filter((item) => key !== item.key)
         })
-        // this.setState(({activity}) => {
-        //     const index = activity.findIndex(elem => elem.key === key);
-        //     const newArr = [...activity.slice(0, index), ...activity.slice(index + 1)];
-        //     return {
-        //         activity: newArr
-        //     }
-        // })
     }
     setShow = (success) => {
         this.setState({success})
@@ -83,8 +83,9 @@ export default class App extends Component {
        
        
         return(            
-            <>  
+            <Router>  
             <Container className="justify-center mt-5" >
+                <Header />
                 <Tabs id="uncontrolled-tab-example" >
                     <Tab className="bg-dark text-white"
                         eventKey="activities" 
@@ -117,8 +118,24 @@ export default class App extends Component {
                     </Container> 
                     </Tab>
                 </Tabs>
-            </Container>       
-        </>
+                
+                            </Container>  
+
+           
+
+            <Container>
+                
+                
+                        <Route path='/activities'> 
+                            <ActivitiesResult />
+                        </Route>
+                        <Route path='/mylist' component={MyList}/>
+                        
+                         
+            </Container> 
+            
+           
+        </Router>
         )
     }
 }
