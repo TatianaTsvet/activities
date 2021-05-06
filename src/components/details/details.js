@@ -51,6 +51,9 @@ export default class Details extends Component {
         const {valueType, participants, minBudget, maxBudget, access} = this.state;
         const activity = await this.ActivityService.getActivity(valueType, participants, minBudget, maxBudget, access);
         this.props.onActivityFetched(activity);
+        if(!activity.error) {
+            this.props.changeError(false);
+        } 
     }
         render() {
             const {valueType, participants, minBudget, maxBudget, access, availableTypes} = this.state;

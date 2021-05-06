@@ -17,6 +17,7 @@ export default class Details extends Component {
                 <Form.Label>Participants</Form.Label>
                 <Form.Control 
                     type="number"
+                    min="1"
                     value={value}
                     onChange={this.changeParticipants}  />
             </Form.Group>

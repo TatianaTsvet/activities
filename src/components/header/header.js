@@ -7,12 +7,14 @@ import './header.css';
 const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
-            <LinkContainer to="/activities">
-                <Navbar.Brand>Activities</Navbar.Brand>
-            </LinkContainer>
-            <LinkContainer to="/mylist">
-                <Navbar.Brand>My List</Navbar.Brand>
-            </LinkContainer>     
+            <Nav className="mr-auto">
+                <LinkContainer to="/activities">
+                    <Nav.Link>Activities</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/mylist">
+                    <Nav.Link>My List</Nav.Link>
+                </LinkContainer>   
+            </Nav>  
         </Navbar>
     )
 }
