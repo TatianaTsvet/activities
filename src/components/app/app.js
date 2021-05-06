@@ -20,9 +20,9 @@ export default class App extends Component {
             error: false,
             success: false
         }           
-    }
-
-    componentDidUpdate() {
+   }    
+   
+   componentDidUpdate() {
         const {activity} =this.state;
         localStorage.setItem(storageKey, JSON.stringify(activity));
     }
@@ -97,13 +97,13 @@ export default class App extends Component {
                                         <Details 
                                             onActivityFetched={this.onActivityFetched}
                                             changeError={this.changeError}/>
-                                        </Col>
+                                    </Col>
                             </Row>
                         </Container> 
                     </Route>
                     <Route path="/mylist" exact>
                         <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
-                            <MyList
+                                <MyList
                                 activity={activity}
                                 deleteItem={this.deleteItem}/>
                         </Container> 
