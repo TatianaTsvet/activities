@@ -43,7 +43,7 @@ export default class DetailsBudget extends Component {
             const {minValue, maxValue} = this.props;            
         return (
             <Form.Group >
-            <Form.Label>max.budget</Form.Label>
+            <Form.Label>Max Budget</Form.Label>
             <Range
                 style={style}
                 allowCross={false}                 
