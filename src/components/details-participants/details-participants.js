@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Form} from 'react-bootstrap'; 
+import PropTypes from 'prop-types'
 
 
 import './details-participants.css';
 
-export default class Details extends Component {
+export default class DetailsParticipants extends Component {
         
         changeParticipants = (event) => {
             const participants = Number.parseInt(event.target.value);
@@ -26,3 +27,9 @@ export default class Details extends Component {
     }
 }
 
+DetailsParticipants.defaultProps = {
+    value: 1
+}
+DetailsParticipants.propTypes = {
+    value: PropTypes.number
+}

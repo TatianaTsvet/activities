@@ -1,5 +1,3 @@
-
-
 export default class ActivityService {
     constructor() {
         this._apiBase = "http://www.boredapi.com/api/activity";
@@ -14,23 +12,16 @@ export default class ActivityService {
         return await res.json();
     }
 
-    async getActivity(valueType, participants, minBudget, maxBudget, access) {
-        
-        const data = new URLSearchParams();       
-        data.append('minprice', minBudget)
-        data.append('maxprice', maxBudget)        
-        data.append('participants', participants)
-        data.append('accessibility', access)
-        data.append('type', valueType.toLowerCase())
-        
-        
-        data.forEach(function (value, key) {
-            if (value === "" || value === "0") {
-               data.delete(key) 
-            }
-        });
-        
-       
+    async getActivity(activityData) {
+        const data = new URLSearchParams(); 
+        if (activityData.type === 'Choose any type') {
+            activityData.type = "";
+        }
+        for (let key in activityData) {
+            if (activityData[key] !== '' || activityData[key] !== 0 || activityData[key] !== 1) {
+                data.append(key, activityData[key])
+            }       
+        }
         const newData = await this.getResource(`?${data}`);
         console.log(`?${data}`);
         return newData;

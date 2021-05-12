@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Form} from 'react-bootstrap'; 
+import PropTypes from 'prop-types'
 
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
@@ -34,9 +35,9 @@ export default class DetailsBudget extends Component {
             
         onChange = (value) => {
             const [minValue, maxValue] = value;
-            const minBudget = Number.parseFloat(minValue).toFixed(1);
-            const maxBudget = Number.parseFloat(maxValue).toFixed(1);
-            this.props.onUpdateBudget(minBudget, maxBudget);
+            const minprice = Number.parseFloat(minValue).toFixed(1);
+            const maxprice = Number.parseFloat(maxValue).toFixed(1);
+            this.props.onUpdateBudget(minprice, maxprice);
           }
         
         render() {
@@ -56,4 +57,11 @@ export default class DetailsBudget extends Component {
         )
     }
 }
-
+DetailsBudget.defaultProps = {
+    minValue: 0,
+    maxValue: 1
+}
+DetailsBudget.propTypes = {
+    minValue: PropTypes.number,
+    maxValue: PropTypes.number,
+}

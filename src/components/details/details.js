@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap';
 import DetailsType from '../details-type';
 import DetailsParticipants from '../details-participants';
 import DetailsBudget from '../details-budget';
-import DetailsAccess from '../details-access';
+import DetailsAccessability from '../details-accessability';
 import ActivityService from '../../services/activityService';
 import Spinner from '../spinner';
 
@@ -14,60 +14,40 @@ export default class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            valueType: 'Choose any type',
+            type: 'Choose any type',
             participants: 1,
-            minBudget: 0,
-            maxBudget: 1,
-            access: 0,
-            availableTypes: [
-                'Choose any type',
-                'Education',
-                'Recreational',
-                'Social',
-                'DIY',
-                'Charity',
-                'Cooking',
-                'Relaxation',
-                'Music',
-                'Busy work'
-            ],
+            minprice: 0,
+            maxprice: 1,
+            accessability: 0
         }           
     }
 
     ActivityService = new ActivityService();
 
-    onUpdateBudget = (averageBudget) => {
-        this.setState({averageBudget});    
+    onUpdateBudget = (minprice, maxprice) => {
+        this.setState({minprice, maxprice});    
     }    
     onChangeParticipants = (participants) => {
         this.setState({participants});   
     }
-    onChangeType = (valueType) => {
-        this.setState({valueType}); 
+    onChangeType = (type) => {
+        this.setState({type}); 
     }
-    onUpdateAccess = (access) => {
-        this.setState({access});     
+    onUpdateAccessability = (accessability) => {
+        this.setState({accessability});  
     }
     sendForm = async (event) => {
         event.preventDefault();  
         this.props.switchSpinner(true);
-        let {valueType, participants, minBudget, maxBudget, access} = this.state;
-
-        if (valueType === 'Choose any type') {
-            valueType = "";
-        }
-        if (minBudget === maxBudget || maxBudget === 1) {
-            maxBudget = "";
-        }
-        
-        const activity = await this.ActivityService.getActivity(valueType, participants, minBudget, maxBudget, access);
+               
+        const activity = await this.ActivityService.getActivity(this.state);
         this.props.onActivityFetched(activity);
         if(!activity.error) {
             this.props.changeError(false);
         } 
     }
         render() {
-            const {valueType, participants, minBudget, maxBudget, access, availableTypes} = this.state;
+            const {type, participants, minprice, maxprice, accessability} = this.state;
             const {loading} = this.props;
         return (                      
             <Form 
@@ -76,18 +56,17 @@ export default class Details extends Component {
                 <h5 className="text-white">Activity details</h5>
                 <DetailsType 
                     onChangeType={this.onChangeType}
-                    availableTypes={availableTypes}
-                    value={valueType}/>
+                    type={type}/>
                 <DetailsParticipants  
                     onChangeParticipants={this.onChangeParticipants}
                     value={participants}/>
                 <DetailsBudget 
                     onUpdateBudget={this.onUpdateBudget}
-                    minValue={minBudget}
-                    maxValue={maxBudget}/>
-                <DetailsAccess 
-                    onUpdateAccess={this.onUpdateAccess}
-                    value={access}/>
+                    minValue={minprice}
+                    maxValue={maxprice}/>
+                <DetailsAccessability 
+                    onUpdateAccessability={this.onUpdateAccessability}
+                    value={accessability}/>
                 {loading ? <Spinner /> : <>
                     <Button 
                     type="submit" 
