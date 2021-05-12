@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
-import './details-budget.css';
+import './details-budget.scss';
 const {Range} = Slider;
 
 const marks = {

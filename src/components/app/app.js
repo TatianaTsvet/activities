@@ -7,7 +7,7 @@ import MyList from '../my-list';
 import SuccessToast from '../success-toast';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 
-import './app.css';
+import './app.scss';
 
 const storageKey = 'somekey'
 

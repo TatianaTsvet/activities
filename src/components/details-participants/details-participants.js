@@ -3,7 +3,7 @@ import {Form} from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
 
-import './details-participants.css';
+import './details-participants.scss';
 
 export default class DetailsParticipants extends Component {
         

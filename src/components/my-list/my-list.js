@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ListGroup, Badge, Button} from 'react-bootstrap'; 
 import {LinkContainer} from 'react-router-bootstrap'
 
-import './my-list.css';
+import './my-list.scss';
 
 export default class MyList extends Component {
         

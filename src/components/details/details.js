@@ -7,7 +7,7 @@ import DetailsAccessability from '../details-accessability';
 import ActivityService from '../../services/activityService';
 import Spinner from '../spinner';
 
-import './details.css';
+import './details.scss';
 
 
 export default class Details extends Component {

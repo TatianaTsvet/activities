@@ -3,7 +3,7 @@ import {Toast} from 'react-bootstrap';
 
 
 
-import './success-toast.css';
+import './success-toast.scss';
 
 export default class SuccessToast extends Component {
         closeToast = () => {

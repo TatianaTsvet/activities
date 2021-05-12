@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Form} from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
-import './details-accessability.css';
+import './details-accessability.scss';
 
 export default class DetailsAccessability extends Component {
         
@@ -13,6 +13,7 @@ export default class DetailsAccessability extends Component {
 
         render() {
             const {value} = this.props;
+            console.log(value);
         return (
             <Form.Group className="mt-3">
             <Form.Label>accessability</Form.Label>

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
-import './details-type.css';
+import './details-type.scss';
 
 const availableTypes = [
     'Choose any type',
-    'Education',
-    'Recreational',
-    'Social',
-    'DIY',
-    'Charity',
-    'Cooking',
-    'Relaxation',
-    'Music',
-    'Busy work'
+    'education',
+    'recreational',
+    'social',
+    'diy',
+    'charity',
+    'cooking',
+    'relaxation',
+    'music',
+    'busy work'
 ]
 export default class DetailsType extends Component {
     changeSelect = (event) => {
@@ -43,8 +43,8 @@ export default class DetailsType extends Component {
 }
 
 DetailsType.defaultProps = {
-    value: "Choose any type"
+    type: "Choose any type"
 }
 DetailsType.propTypes = {
-    value: PropTypes.string
+    type: PropTypes.string
 }

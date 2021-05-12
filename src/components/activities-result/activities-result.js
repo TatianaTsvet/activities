@@ -3,7 +3,7 @@ import { Button, Container, ListGroup, Row } from 'react-bootstrap';
 
 
 
-import './activities-result.css';
+import './activities-result.scss';
 
 export default class ActivitiesResult extends Component {
     
