@@ -23,7 +23,7 @@ export default class SuccessToast extends Component {
                         delay={1000} 
                         autohide
                         onClose={this.closeToast}>
-                        <Toast.Body>Activity successfully saved</Toast.Body>
+                        <Toast.Body className="mx-auto">Activity successfully saved</Toast.Body>
                     </Toast>                   
             } else {
                 return null;

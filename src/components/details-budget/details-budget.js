@@ -5,7 +5,7 @@ import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
 import './details-budget.css';
-const { Range } = Slider;
+const {Range} = Slider;
 
 const marks = {
     0: {
@@ -43,7 +43,7 @@ export default class DetailsBudget extends Component {
             const {minValue, maxValue} = this.props;            
         return (
             <Form.Group >
-            <Form.Label>Max Budget</Form.Label>
+            <Form.Label>max budget</Form.Label>
             <Range
                 style={style}
                 allowCross={false}                 

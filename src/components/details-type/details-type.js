@@ -30,3 +30,6 @@ export default class DetailsType extends Component {
     }
 }
 
+DetailsType.defaultProps = {
+    value: ""
+}

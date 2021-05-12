@@ -18,7 +18,8 @@ export default class App extends Component {
             activity : JSON.parse(localStorage.getItem(storageKey) ?? '[]'),
             randomActivity: null,
             error: false,
-            success: false
+            success: false,
+            loading: false
         }           
     }
 
@@ -32,7 +33,10 @@ export default class App extends Component {
        if (data.error) {
            this.setState({error: data.error});
        }  
-       this.setState({randomActivity: {...data}});    
+       this.setState({
+           randomActivity: {...data},
+           loading: false
+        });    
     }     
     sendToMyList = (rightActivity) => {
         this.setState({rightActivity});
@@ -71,9 +75,12 @@ export default class App extends Component {
     changeError = (error) => {
         this.setState({error});
     }
+    switchSpinner = (loading) => {
+        this.setState({loading})
+    } 
     render() {
-        const {activity, randomActivity, success, error} = this.state;
-             
+        const {activity, randomActivity, success, error, loading} = this.state;
+                     
         return(            
             <Router>  
             <Container className="justify-center mt-5" >
@@ -88,17 +95,25 @@ export default class App extends Component {
                                         sendToMyList={this.sendToMyList}
                                         addItem={this.addItem}
                                         setShow={this.setShow}
-                                        error={error}/>
-                                    <SuccessToast 
-                                        success={success}
-                                        closeToast={this.closeToast}/>                                      
+                                        error={error}/>                                   
                                 </Col>
                                     <Col className="bg-dark text-white xs-6 lg-3">
                                         <Details 
                                             onActivityFetched={this.onActivityFetched}
-                                            changeError={this.changeError}/>
+                                            changeError={this.changeError}
+                                            loading={loading}
+                                            switchSpinner={this.switchSpinner}/>
                                         </Col>
                             </Row>
+                            <Container className="flex flex-column d-flex">
+                            <Row className="justify-content-around">
+                                <Col className="mx-auto mt-3">
+                                    <SuccessToast 
+                                        success={success}
+                                        closeToast={this.closeToast}/>   
+                                </Col>
+                            </Row>
+                            </Container>
                         </Container> 
                     </Route>
                     <Route path="/mylist" exact>
