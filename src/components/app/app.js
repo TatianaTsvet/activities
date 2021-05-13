@@ -52,13 +52,8 @@ export default class App extends Component {
         const sameActivity = !!this.state.activity.find(item => item.key === newItem.key);
         
         if (sameActivity) return;
-
-        this.setState(({activity}) => {
-            const newAct = [...activity, newItem];
-            return {
-                activity: newAct
-            }
-        });
+               
+        this.setState({activity: [...this.state.activity, newItem]})
           
     }
     deleteItem = (key) => {
@@ -106,8 +101,8 @@ export default class App extends Component {
                                         </Col>
                             </Row>
                             <Container className="flex flex-column d-flex">
-                            <Row className="justify-content-around">
-                                <Col className="mx-auto mt-3">
+                            <Row>
+                                <Col className="mx-auto mt-3 d-flex flex-row-reverse text-center">
                                     <SuccessToast 
                                         success={success}
                                         closeToast={this.closeToast}/>   

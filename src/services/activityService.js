@@ -16,17 +16,14 @@ export default class ActivityService {
         const data = new URLSearchParams(); 
         if (activityData.type === 'Choose any type') {
             activityData.type = "";
-        } else {
-            activityData.type.toLowerCase();
         }
         
         for (let key in activityData) {
-            if (activityData[key] !== '' || activityData[key] !== 0 || activityData[key] !== 1) {
+            if (activityData[key] !== '' && activityData[key] !== 0 && activityData[key] !== 1) {
                 data.append(key, activityData[key])
             }       
         }
         const newData = await this.getResource(`?${data}`);
-        console.log(`?${data}`);
         return newData;
         
     }

@@ -35,8 +35,8 @@ export default class DetailsBudget extends Component {
             
         onChange = (value) => {
             const [minValue, maxValue] = value;
-            const minprice = Number.parseFloat(minValue).toFixed(1);
-            const maxprice = Number.parseFloat(maxValue).toFixed(1);
+            const minprice = Number.parseFloat(minValue);
+            const maxprice = Number.parseFloat(maxValue);
             this.props.onUpdateBudget(minprice, maxprice);
           }
         
@@ -50,7 +50,7 @@ export default class DetailsBudget extends Component {
                 allowCross={false}                 
                 max={1}
                 defaultValue={[minValue, maxValue]} 
-                step="0.01" 
+                step="0.1" 
                 marks={marks}
                 onChange={this.onChange} />
             </Form.Group>

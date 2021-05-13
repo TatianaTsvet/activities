@@ -7,13 +7,12 @@ import './details-accessability.scss';
 export default class DetailsAccessability extends Component {
         
         changeAccessability = (event) => {
-            const accessability = Number.parseFloat(event.target.value).toFixed(1);
+            const accessability = Number.parseFloat(event.target.value);
             this.props.onUpdateAccessability(accessability);
         }
 
         render() {
             const {value} = this.props;
-            console.log(value);
         return (
             <Form.Group className="mt-3">
             <Form.Label>accessability</Form.Label>
@@ -22,7 +21,7 @@ export default class DetailsAccessability extends Component {
                 value={value}
                 min="0"
                 max="1" 
-                step="0.01"
+                step="0.1"
                 onChange={this.changeAccessability} />
           </Form.Group>
         )

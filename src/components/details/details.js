@@ -39,9 +39,10 @@ export default class Details extends Component {
     sendForm = async (event) => {
         event.preventDefault();  
         this.props.switchSpinner(true);
-               
-        const activity = await this.ActivityService.getActivity(this.state);
+        let activity =  {...this.state}      
+        activity = await this.ActivityService.getActivity(activity);
         this.props.onActivityFetched(activity);
+        
         if(!activity.error) {
             this.props.changeError(false);
         } 
