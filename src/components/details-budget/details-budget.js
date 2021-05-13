@@ -1,59 +1,59 @@
-import React, {Component} from 'react';
-import {Form} from 'react-bootstrap'; 
+import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 
-import Slider from "rc-slider";
+import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 import './details-budget.css';
+
 const { Range } = Slider;
 
 const marks = {
-    0: {
-        label: 'cheap',
-        style: {
-            color: "#fff",
-            display: 'block',
-            marginLeft: "0.5em",
-        }
+  0: {
+    label: 'cheap',
+    style: {
+      color: '#fff',
+      display: 'block',
+      marginLeft: '0.5em',
     },
-    1: {
-        label: 'expensive',
-        style: {
-            color: "#fff",
-            display: 'block',
-            marginLeft: "-1.5em"
-        }
+  },
+  1: {
+    label: 'expensive',
+    style: {
+      color: '#fff',
+      display: 'block',
+      marginLeft: '-1.5em',
     },
-}
+  },
+};
 const style = {
-    width: '96%',
-    margin: 'auto',
-    textTransform: "lowercase"
-}
+  width: '96%',
+  margin: 'auto',
+  textTransform: 'lowercase',
+};
 export default class DetailsBudget extends Component {
-            
         onChange = (value) => {
-            const [minValue, maxValue] = value;
-            const minBudget = Number.parseFloat(minValue).toFixed(1);
-            const maxBudget = Number.parseFloat(maxValue).toFixed(1);
-            this.props.onUpdateBudget(minBudget, maxBudget);
-          }
-        
-        render() {
-            const {minValue, maxValue} = this.props;            
-        return (
-            <Form.Group >
-            <Form.Label>max.budget</Form.Label>
-            <Range
-                style={style}
-                allowCross={false}                 
-                max={1}
-                defaultValue={[minValue, maxValue]} 
-                step="0.01" 
-                marks={marks}
-                onChange={this.onChange} />
-            </Form.Group>
-        )
-    }
-}
+          const [minValue, maxValue] = value;
+          const minBudget = Number.parseFloat(minValue).toFixed(1);
+          const maxBudget = Number.parseFloat(maxValue).toFixed(1);
+          this.props.onUpdateBudget(minBudget, maxBudget);
+        }
 
+        render() {
+          const { minValue, maxValue } = this.props;
+          return (
+            <Form.Group>
+              <Form.Label>max.budget</Form.Label>
+              <Range
+                style={style}
+                allowCross={false}
+                max={1}
+                defaultValue={[minValue, maxValue]}
+                step="0.01"
+                marks={marks}
+                onChange={this.onChange}
+              />
+            </Form.Group>
+          );
+        }
+}

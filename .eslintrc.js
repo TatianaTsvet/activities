@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -10,13 +10,18 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      ecmaFeatures: {
+        experimentalObjectRestSpread: true,
+        modules: true,
+      },
     },
-    ecmaVersion: 12,
+    ecmaVersion: 6,
     sourceType: 'module',
   },
   plugins: [
     'react',
   ],
   rules: {
+    'import/no-named-as-default': 0,
   },
 };
