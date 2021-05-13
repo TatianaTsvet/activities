@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import {
-  BrowserRouter as Router, Redirect, Switch, Route,
-} from 'react-router-dom';
-import Details from '../details';
-import Header from '../header';
-import ActivitiesResult from '../activities-result';
-import MyList from '../my-list';
-import SuccessToast from '../success-toast';
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Details from "../details";
+import Header from "../header";
+import ActivitiesResult from "../activities-result";
+import MyList from "../my-list";
+import SuccessToast from "../success-toast";
 
-import './app.css';
+import "./app.css";
 
-const storageKey = 'somekey';
+const storageKey = "somekey";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activity: JSON.parse(localStorage.getItem(storageKey) ?? '[]'),
+      activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
       randomActivity: null,
       error: false,
       success: false,
@@ -29,104 +32,101 @@ export default class App extends Component {
     localStorage.setItem(storageKey, JSON.stringify(activity));
   }
 
-    onActivityFetched = (data) => {
-      if (data.error) {
-        this.setState({ error: data.error });
-      }
-      this.setState({ randomActivity: { ...data } });
+  onActivityFetched = (data) => {
+    if (data.error) {
+      this.setState({ error: data.error });
     }
+    this.setState({ randomActivity: { ...data } });
+  };
 
-    sendToMyList = (rightActivity) => {
-      this.setState({ rightActivity });
-    }
+  sendToMyList = (rightActivity) => {
+    this.setState({ rightActivity });
+  };
 
-    addItem = (randomActivity) => {
-      const newItem = {
-        type: randomActivity.type,
-        participants: randomActivity.participants,
-        activity: randomActivity.activity,
-        key: randomActivity.key,
+  addItem = (randomActivity) => {
+    const newItem = {
+      type: randomActivity.type,
+      participants: randomActivity.participants,
+      activity: randomActivity.activity,
+      key: randomActivity.key,
+    };
+
+    const sameActivity = !!this.state.activity.find(
+      (item) => item.key === newItem.key
+    );
+
+    if (sameActivity) return;
+
+    this.setState(({ activity }) => {
+      const newAct = [...activity, newItem];
+      return {
+        activity: newAct,
       };
+    });
+  };
 
-      const sameActivity = !!this.state.activity.find((item) => item.key === newItem.key);
+  deleteItem = (key) => {
+    this.setState({
+      activity: this.state.activity.filter((item) => key !== item.key),
+    });
+  };
 
-      if (sameActivity) return;
+  setShow = (success) => {
+    this.setState({ success });
+  };
 
-      this.setState(({ activity }) => {
-        const newAct = [...activity, newItem];
-        return {
-          activity: newAct,
-        };
-      });
-    }
+  closeToast = (success) => {
+    this.setState({ success });
+  };
 
-    deleteItem = (key) => {
-      this.setState({
-        activity: this.state.activity.filter((item) => key !== item.key),
-      });
-    }
+  changeError = (error) => {
+    this.setState({ error });
+  };
 
-    setShow = (success) => {
-      this.setState({ success });
-    }
+  render() {
+    const { activity, randomActivity, success, error } = this.state;
 
-    closeToast = (success) => {
-      this.setState({ success });
-    }
-
-    changeError = (error) => {
-      this.setState({ error });
-    }
-
-    render() {
-      const {
-        activity, randomActivity, success, error,
-      } = this.state;
-
-      return (
-        <Router>
-          <Container className="justify-center mt-5">
-            <Header />
-            <Switch>
-              <Route path="/activities" exact>
-                <Container className="flex justify-center justify-content-around center-block">
-                  <Row>
-                    <Col className="bg-secondary text-white xs-4 lg-2">
-                      <ActivitiesResult
-                        randomActivity={randomActivity}
-                        sendToMyList={this.sendToMyList}
-                        addItem={this.addItem}
-                        setShow={this.setShow}
-                        error={error}
-                      />
-                      <SuccessToast
-                        success={success}
-                        closeToast={this.closeToast}
-                      />
-                    </Col>
-                    <Col className="bg-dark text-white xs-6 lg-3">
-                      <Details
-                        onActivityFetched={this.onActivityFetched}
-                        changeError={this.changeError}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </Route>
-              <Route path="/mylist" exact>
-                <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
-                  <MyList
-                    activity={activity}
-                    deleteItem={this.deleteItem}
-                  />
-                </Container>
-              </Route>
-              <Route path="">
-                <Redirect to="/activities" />
-              </Route>
-            </Switch>
-          </Container>
-        </Router>
-      );
-    }
+    return (
+      <Router>
+        <Container className="justify-center mt-5">
+          <Header />
+          <Switch>
+            <Route path="/activities" exact>
+              <Container className="flex justify-center justify-content-around center-block">
+                <Row>
+                  <Col className="bg-secondary text-white xs-4 lg-2">
+                    <ActivitiesResult
+                      randomActivity={randomActivity}
+                      sendToMyList={this.sendToMyList}
+                      addItem={this.addItem}
+                      setShow={this.setShow}
+                      error={error}
+                    />
+                    <SuccessToast
+                      success={success}
+                      closeToast={this.closeToast}
+                    />
+                  </Col>
+                  <Col className="bg-dark text-white xs-6 lg-3">
+                    <Details
+                      onActivityFetched={this.onActivityFetched}
+                      changeError={this.changeError}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Route>
+            <Route path="/mylist" exact>
+              <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
+                <MyList activity={activity} deleteItem={this.deleteItem} />
+              </Container>
+            </Route>
+            <Route path="">
+              <Redirect to="/activities" />
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
+    );
+  }
 }
