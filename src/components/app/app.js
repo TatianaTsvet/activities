@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import Details from "../details";
 import Header from "../header";
 import ActivitiesResult from "../activities-result";
@@ -11,6 +10,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 import "./app.scss";
 
@@ -83,46 +84,41 @@ export default class App extends Component {
 
     return (
       <Router>
-        <Container className="justify-center mt-5">
+        <Container maxWidth="sm">
           <Header />
           <Switch>
             <Route path="/activities" exact>
-              <Container className="flex justify-center justify-content-around center-block">
-                <Row>
-                  <Col className="bg-secondary text-white xs-4 lg-2">
-                    <ActivitiesResult
-                      randomActivity={randomActivity}
-                      sendToMyList={this.sendToMyList}
-                      addItem={this.addItem}
-                      setShow={this.setShow}
-                      error={error}
-                    />
-                  </Col>
-                  <Col className="bg-dark text-white xs-6 lg-3">
-                    <Details
-                      onActivityFetched={this.onActivityFetched}
-                      changeError={this.changeError}
-                      loading={loading}
-                      switchSpinner={this.switchSpinner}
-                    />
-                  </Col>
-                </Row>
-                <Container className="flex flex-column d-flex">
-                  <Row>
-                    <Col className="mx-auto mt-3 d-flex flex-row-reverse text-center">
-                      <SuccessToast
-                        success={success}
-                        closeToast={this.closeToast}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </Container>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <ActivitiesResult
+                    randomActivity={randomActivity}
+                    sendToMyList={this.sendToMyList}
+                    addItem={this.addItem}
+                    setShow={this.setShow}
+                    error={error}
+                  />
+                </Grid>
+                <Grid item>
+                  <Details
+                    onActivityFetched={this.onActivityFetched}
+                    changeError={this.changeError}
+                    loading={loading}
+                    switchSpinner={this.switchSpinner}
+                  />
+                </Grid>
+
+                <Grid item>
+                  <SuccessToast
+                    success={success}
+                    closeToast={this.closeToast}
+                  />
+                </Grid>
+              </Grid>
             </Route>
             <Route path="/mylist" exact>
-              <Container className="flex justify-center justify-content-around center-block bg-secondary text-white">
+              <Grid container spacing={2} justify="center">
                 <MyList activity={activity} deleteItem={this.deleteItem} />
-              </Container>
+              </Grid>
             </Route>
             <Route path="">
               <Redirect to="/activities" />

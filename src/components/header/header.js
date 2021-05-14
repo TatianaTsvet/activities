@@ -1,19 +1,13 @@
-import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import React from "react";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
 
-import './header.scss';
+import "./header.scss";
 
 const Header = () => (
-  <Navbar bg="dark" variant="dark">
-    <Nav className="mr-auto">
-      <LinkContainer to="/activities">
-        <Nav.Link>Activities</Nav.Link>
-      </LinkContainer>
-      <LinkContainer to="/mylist">
-        <Nav.Link>My List</Nav.Link>
-      </LinkContainer>
-    </Nav>
-  </Navbar>
+  <Typography>
+    <Link href="/activities">Activities</Link>
+    <Link href="/mylist">My List</Link>
+  </Typography>
 );
 export default Header;

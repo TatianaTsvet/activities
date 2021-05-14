@@ -1,46 +1,45 @@
-import React, { Component } from 'react';
-import {
-  Button, Container, ListGroup, Row,
-} from 'react-bootstrap';
+import React, { Component } from "react";
+import { Container, Paper, Button } from "@material-ui/core";
 
-import './activities-result.scss';
+import "./activities-result.scss";
 
 export default class ActivitiesResult extends Component {
-    sendToMyList = () => {
-      const { randomActivity } = this.props;
-      this.props.addItem(randomActivity);
-      this.props.setShow(true);
-    }
+  sendToMyList = () => {
+    const { randomActivity } = this.props;
+    this.props.addItem(randomActivity);
+    this.props.setShow(true);
+  };
 
-    render() {
-      const { randomActivity, error } = this.props;
-      const showButton = !error && randomActivity;
-      const activityComponent = randomActivity
-        ? <ListGroup.Item className="result_window">{randomActivity.activity}</ListGroup.Item>
-        : <ListGroup.Item className="result_window invitation">Choose any activity</ListGroup.Item>;
+  render() {
+    const { randomActivity, error } = this.props;
+    const showButton = !error && randomActivity;
+    const activityComponent = randomActivity ? (
+      <Paper className="result_window">{randomActivity.activity}</Paper>
+    ) : (
+      <Paper className="result_window invitation">Choose any activity</Paper>
+    );
 
-      return (
-        <>
-          <Container className="flex flex-column d-flex pt-3 pb-3 ">
-            <ListGroup className=" float">
-              <h5 className="text-white">You should</h5>
-              {error ? <ListGroup.Item className="result_window error">{error}</ListGroup.Item> : activityComponent}
+    return (
+      <>
+        <Container>
+          <h5 className="text-white">You should</h5>
+          {error ? (
+            <Paper className="result_window error">{error}</Paper>
+          ) : (
+            activityComponent
+          )}
 
-            </ListGroup>
-            <Row className="mx-auto mt-5 ">
-              {showButton && (
-              <Button
-                variant="danger"
-                type="submit"
-                onClick={this.sendToMyList}
-              >
-                Save for you later
-              </Button>
-              )}
-            </Row>
-          </Container>
-
-        </>
-      );
-    }
+          {showButton && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.sendToMyList}
+            >
+              Save for you later
+            </Button>
+          )}
+        </Container>
+      </>
+    );
+  }
 }
