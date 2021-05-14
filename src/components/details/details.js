@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Form, Button} from 'react-bootstrap'; 
+import React, { Component } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import DetailsType from '../details-type';
 import DetailsParticipants from '../details-participants';
 import DetailsBudget from '../details-budget';
@@ -8,7 +8,6 @@ import ActivityService from '../../services/activityService';
 import Spinner from '../spinner';
 
 import './details.scss';
-
 
 export default class Details extends Component {
     constructor(props) {
@@ -28,7 +27,7 @@ export default class Details extends Component {
         this.setState({minprice, maxprice});    
     }    
     onChangeParticipants = (participants) => {
-        this.setState({participants});   
+      this.setState({ participants });
     }
     onChangeType = (type) => {
         this.setState({type}); 
@@ -36,6 +35,7 @@ export default class Details extends Component {
     onUpdateAccessability = (accessability) => {
         this.setState({accessability});  
     }
+
     sendForm = async (event) => {
         event.preventDefault();  
         this.props.switchSpinner(true);
@@ -80,4 +80,3 @@ export default class Details extends Component {
         )
     }
 }
-

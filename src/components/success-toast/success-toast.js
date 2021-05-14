@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {Toast} from 'react-bootstrap'; 
-
-
+import React, { Component } from 'react';
+import { Toast } from 'react-bootstrap';
 
 import './success-toast.scss';
 
 export default class SuccessToast extends Component {
         closeToast = () => {
-            this.props.closeToast(false);
+          this.props.closeToast(false);
         }
+
         render() {
             const {success} = this.props;
             let toast = "";
@@ -33,7 +32,6 @@ export default class SuccessToast extends Component {
                 {toast}
                 
             </>
-        )
-    }
+          );
+        }
 }
-
