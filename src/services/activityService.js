@@ -28,6 +28,8 @@ export default class ActivityService {
       }
     }
     const newData = await this.getResource(`?${data}`);
+    // eslint-disable-next-line
+    console.log(`?${data}`);
     return newData;
   }
 }

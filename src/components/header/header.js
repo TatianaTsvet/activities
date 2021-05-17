@@ -1,13 +1,31 @@
-import React from "react";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
+import React, { Component } from "react";
+import { Typography, Link } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./header.scss";
 
-const Header = () => (
-  <Typography>
-    <Link href="/activities">Activities</Link>
-    <Link href="/mylist">My List</Link>
-  </Typography>
-);
-export default Header;
+const styles = (theme) => ({
+  root: {
+    display: "inline-block",
+    color: "#fff",
+    margin: "0.5em 2em",
+    align: "justify",
+  },
+});
+
+class Header extends Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <Typography variant="h6" gutterBottom>
+        <Link className={classes.root} color="inherit" href="/activities">
+          Activities
+        </Link>
+        <Link className={classes.root} color="inherit" href="/mylist">
+          My List
+        </Link>
+      </Typography>
+    );
+  }
+}
+export default withStyles(styles, { withTheme: true })(Header);

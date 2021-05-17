@@ -5,15 +5,22 @@ import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
 import ActivityService from "../../services/activityService";
 import Spinner from "../spinner";
-import { Button } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./details.scss";
 
-export default class Details extends Component {
+const styles = (theme) => ({
+  root: {
+    padding: "0 1.5em",
+  },
+});
+
+class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "Choose any type",
+      type: "",
       participants: 1,
       minprice: 0,
       maxprice: 1,
@@ -48,20 +55,28 @@ export default class Details extends Component {
     }
   };
   render() {
-    const { type, participants } = this.state;
-    const { loading } = this.props;
+    const { loading, classes } = this.props;
     return (
-      <form onSubmit={this.sendForm}>
-        <h5 className="text-white">Activity details</h5>
-        <DetailsType onChangeType={this.onChangeType} type={type} />
-        <DetailsParticipants
-          onChangeParticipants={this.onChangeParticipants}
-          value={participants}
-        />
-        <DetailsBudget onUpdateBudget={this.onUpdateBudget} />
-        <DetailsAccessability
-          onUpdateAccessability={this.onUpdateAccessability}
-        />
+      <form className={classes.root} onSubmit={this.sendForm}>
+        <Typography variant="h5" gutterBottom>
+          Activity details
+        </Typography>
+        <Grid item>
+          <DetailsType onChangeType={this.onChangeType} />
+        </Grid>
+        <Grid item>
+          <DetailsParticipants
+            onChangeParticipants={this.onChangeParticipants}
+          />
+        </Grid>
+        <Grid item>
+          <DetailsBudget onUpdateBudget={this.onUpdateBudget} />
+        </Grid>
+        <Grid item>
+          <DetailsAccessability
+            onUpdateAccessability={this.onUpdateAccessability}
+          />
+        </Grid>
         {loading ? (
           <Spinner />
         ) : (
@@ -75,3 +90,5 @@ export default class Details extends Component {
     );
   }
 }
+
+export default withStyles(styles, { withTheme: true })(Details);

@@ -10,14 +10,28 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
+import { Container, Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./app.scss";
 
 const storageKey = "somekey";
 
-export default class App extends Component {
+const styles = (theme) => ({
+  root: {
+    background: "#37474f",
+    color: "white",
+    margin: "2em auto",
+  },
+  activity: {
+    background: "#546e7a",
+  },
+  details: {
+    background: "#78909c",
+  },
+});
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,15 +95,20 @@ export default class App extends Component {
   };
   render() {
     const { activity, randomActivity, success, error, loading } = this.state;
-
+    const { classes } = this.props;
     return (
       <Router>
-        <Container maxWidth="sm">
+        <Container
+          justify="center"
+          component="main"
+          maxWidth="md"
+          className={classes.root}
+        >
           <Header />
           <Switch>
             <Route path="/activities" exact>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
+              <Grid container spacing={3} justify="center">
+                <Grid item className={classes.activity} xs={10} sm={6}>
                   <ActivitiesResult
                     randomActivity={randomActivity}
                     sendToMyList={this.sendToMyList}
@@ -98,7 +117,14 @@ export default class App extends Component {
                     error={error}
                   />
                 </Grid>
-                <Grid item>
+                <Grid
+                  item
+                  container
+                  direction="column"
+                  className={classes.details}
+                  xs={10}
+                  sm={6}
+                >
                   <Details
                     onActivityFetched={this.onActivityFetched}
                     changeError={this.changeError}
@@ -129,3 +155,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withStyles(styles, { withTheme: true })(App);

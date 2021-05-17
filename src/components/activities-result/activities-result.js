@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { Container, Paper, Button } from "@material-ui/core";
+import { Container, Paper, Button, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./activities-result.scss";
 
-export default class ActivitiesResult extends Component {
+const styles = (theme) => ({
+  button: {
+    margin: "2em auto",
+  },
+});
+
+class ActivitiesResult extends Component {
   sendToMyList = () => {
     const { randomActivity } = this.props;
     this.props.addItem(randomActivity);
@@ -11,7 +18,7 @@ export default class ActivitiesResult extends Component {
   };
 
   render() {
-    const { randomActivity, error } = this.props;
+    const { randomActivity, error, classes } = this.props;
     const showButton = !error && randomActivity;
     const activityComponent = randomActivity ? (
       <Paper className="result_window">{randomActivity.activity}</Paper>
@@ -22,7 +29,9 @@ export default class ActivitiesResult extends Component {
     return (
       <>
         <Container>
-          <h5 className="text-white">You should</h5>
+          <Typography variant="h5" gutterBottom>
+            You should
+          </Typography>
           {error ? (
             <Paper className="result_window error">{error}</Paper>
           ) : (
@@ -31,9 +40,11 @@ export default class ActivitiesResult extends Component {
 
           {showButton && (
             <Button
+              className={classes.button}
               variant="contained"
-              color="primary"
+              color="secondary"
               onClick={this.sendToMyList}
+              size="medium"
             >
               Save for you later
             </Button>
@@ -43,3 +54,4 @@ export default class ActivitiesResult extends Component {
     );
   }
 }
+export default withStyles(styles, { withTheme: true })(ActivitiesResult);

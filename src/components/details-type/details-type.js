@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { FormControl, InputLabel, Select } from "@material-ui/core";
-import PropTypes from "prop-types";
+import { FormControl, Select } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./details-type.scss";
 
@@ -16,13 +16,24 @@ const availableTypes = [
   "music",
   "busy work",
 ];
-export default class DetailsType extends Component {
+
+const styles = (theme) => ({
+  root: {
+    width: "100%",
+    marginBottom: "1em",
+  },
+  select: {
+    background: "#fff",
+  },
+});
+
+class DetailsType extends Component {
   changeSelect = (event) => {
     this.props.onChangeType(event.target.value);
   };
 
   render() {
-    const { type } = this.props;
+    const { classes } = this.props;
     const types = availableTypes.map((item) => {
       return (
         <option key={item} value={item}>
@@ -31,44 +42,13 @@ export default class DetailsType extends Component {
       );
     });
     return (
-      <>
-        <InputLabel htmlFor="outlined-age-native-simple">
-          Select any type
-        </InputLabel>
-        <Select
-          native
-          onChange={this.changeSelect}
-          label="Age"
-          inputProps={{
-            name: "age",
-            id: "outlined-age-native-simple",
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+      <FormControl className={classes.root} variant="outlined">
+        <Select className={classes.select} native onChange={this.changeSelect}>
+          {types}
         </Select>
-        {/* </FormControl>
-        <Form.Group>
-          <Form.Label>Custom select</Form.Label>
-          <Form.Control
-            as="select"
-            custom
-            value={type}
-            onChange={this.changeSelect}
-          >
-            {types}
-          </Form.Control>
-        </Form.Group> */}
-      </>
+      </FormControl>
     );
   }
 }
 
-DetailsType.defaultProps = {
-  type: "Choose any type",
-};
-DetailsType.propTypes = {
-  type: PropTypes.string,
-};
+export default withStyles(styles, { withTheme: true })(DetailsType);

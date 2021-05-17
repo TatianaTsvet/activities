@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup, Badge, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { ListItemText, Button, ListItem, List, Link } from "@material-ui/core";
 
 import "./my-list.scss";
 
@@ -14,13 +13,11 @@ export default class MyList extends Component {
 
     const posts = activity.map((item) => {
       return (
-        <>
-          <ListGroup.Item
+        <div>
+          <List component="nav">
             key={item.key}
-            className="flex justify-center mt-3 mb-3"
-          >
-            <Badge variant="success">{item.type}</Badge>
-            <h5 className="success">{item.activity}</h5>
+            <ListItem variant="success">{item.type}</ListItem>
+            <ListItemText className="success">{item.activity}</ListItemText>
             <p className="success">{item.participants} participants</p>
             <Button
               variant="outline-success"
@@ -29,30 +26,30 @@ export default class MyList extends Component {
             >
               Done
             </Button>
-          </ListGroup.Item>
-        </>
+          </List>
+        </div>
       );
     });
     return (
-      <ListGroup>
+      <List>
         {activity.length === 0 ? (
           <>
-            <ListGroup.Item
+            <ListItem
               key={activity.key}
               className="flex justify-center mt-3 error"
             >
               <p>You have nothing saved yet</p>
-            </ListGroup.Item>
-            <LinkContainer to="/activities">
+            </ListItem>
+            <Link href="/activities">
               <Button variant="danger" className="mx-auto my-2">
                 Go back to "Activities"!
               </Button>
-            </LinkContainer>
+            </Link>
           </>
         ) : (
           posts
         )}
-      </ListGroup>
+      </List>
     );
   }
 }
