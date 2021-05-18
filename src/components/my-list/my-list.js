@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Button, Link, Card, Chip, Typography } from "@material-ui/core";
+import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import "./my-list.scss";
 
@@ -24,6 +25,9 @@ const styles = (theme) => ({
   },
   doneButton: {
     marginTop: "1em",
+  },
+  link: {
+    textDecoration: "none",
   },
 });
 
@@ -66,7 +70,7 @@ class MyList extends Component {
               You have nothing saved yet
             </Typography>
 
-            <Link underline="none" href="/activities">
+            <Link to="/activities" className={classes.link}>
               <Button
                 variant="contained"
                 color="secondary"

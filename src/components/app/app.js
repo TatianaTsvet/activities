@@ -4,12 +4,8 @@ import Header from "../header";
 import ActivitiesResult from "../activities-result";
 import MyList from "../my-list";
 import SuccessToast from "../success-toast";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Switch,
-  Route,
-} from "react-router-dom";
+
+import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -100,7 +96,7 @@ class App extends Component {
     const { activity, randomActivity, success, error, loading } = this.state;
     const { classes } = this.props;
     return (
-      <Router>
+      <BrowserRouter>
         <Container
           justify="center"
           component="main"
@@ -109,7 +105,7 @@ class App extends Component {
         >
           <Header />
           <Switch>
-            <Route path="/activities" exact>
+            <Route path="/activities/" exact>
               <Grid container spacing={3} justify="center">
                 <Grid item className={classes.activity} xs={10} sm={6}>
                   <ActivitiesResult
@@ -149,7 +145,7 @@ class App extends Component {
                 </Grid>
               </Grid>
             </Route>
-            <Route path="/mylist" exact>
+            <Route path="/mylist/" exact>
               <Grid
                 container
                 direction="column"
@@ -164,7 +160,7 @@ class App extends Component {
             </Route>
           </Switch>
         </Container>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

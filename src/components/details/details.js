@@ -14,6 +14,10 @@ const styles = (theme) => ({
   root: {
     padding: "0 1.5em",
   },
+  button: {
+    display: "flex",
+    justifyContent: "center",
+  },
 });
 
 class Details extends Component {
@@ -78,10 +82,17 @@ class Details extends Component {
           />
         </Grid>
         {loading ? (
-          <Spinner />
+          <Grid item>
+            <Spinner />
+          </Grid>
         ) : (
           <>
-            <Button type="submit" variant="contained" color="primary">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
               Hit me with the new one
             </Button>
           </>

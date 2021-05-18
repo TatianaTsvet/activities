@@ -1,29 +1,20 @@
 import React, { Component } from "react";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { withStyles } from "@material-ui/core/styles";
 
 import "./success-toast.scss";
 
-const styles = (theme) => ({
-  toast: {
-    position: "absolute",
-    top: "15em",
-  },
-});
-
-class SuccessToast extends Component {
+export default class SuccessToast extends Component {
   closeToast = () => {
     this.props.closeToast(false);
   };
 
   render() {
-    const { success, classes } = this.props;
+    const { success } = this.props;
     let toast = "";
     if (success) {
       toast = (
         <Snackbar
-          className={classes.toast}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           autoHideDuration={1000}
           onClose={this.closeToast}
@@ -38,5 +29,3 @@ class SuccessToast extends Component {
     return <>{toast}</>;
   }
 }
-
-export default withStyles(styles, { withTheme: true })(SuccessToast);

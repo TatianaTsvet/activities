@@ -17,7 +17,6 @@ export default class ActivityService {
     if (activityData.type === "Choose any type") {
       activityData.type = "";
     }
-
     for (let key in activityData) {
       if (
         activityData[key] !== "" &&

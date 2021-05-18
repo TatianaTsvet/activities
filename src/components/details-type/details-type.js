@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { FormControl, Select } from "@material-ui/core";
+import { FormControl, Select, MenuItem, InputLabel } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-type.scss";
 
 const availableTypes = [
-  "Choose any type",
   "education",
   "recreational",
   "social",
@@ -20,10 +19,12 @@ const availableTypes = [
 const styles = (theme) => ({
   root: {
     width: "100%",
-    marginBottom: "1em",
   },
   select: {
     background: "#fff",
+  },
+  menuItem: {
+    textTransform: "capitalize",
   },
 });
 
@@ -36,14 +37,30 @@ class DetailsType extends Component {
     const { classes } = this.props;
     const types = availableTypes.map((item) => {
       return (
-        <option key={item} value={item}>
+        <MenuItem
+          className={classes.menuItem}
+          value={item.replace(" ", "")}
+          key={item}
+        >
           {item}
-        </option>
+        </MenuItem>
       );
     });
     return (
       <FormControl className={classes.root} variant="outlined">
-        <Select className={classes.select} native onChange={this.changeSelect}>
+        <InputLabel id="demo-simple-select-outlined-label">
+          Choose any type
+        </InputLabel>
+        <Select
+          className={classes.select}
+          onChange={this.changeSelect}
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          defaultValue=""
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           {types}
         </Select>
       </FormControl>

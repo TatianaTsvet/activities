@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Typography, Link } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./header.scss";
@@ -18,10 +19,10 @@ class Header extends Component {
     const { classes } = this.props;
     return (
       <Typography variant="h6" gutterBottom>
-        <Link className={classes.root} color="inherit" href="/activities">
+        <Link className={classes.root} color="inherit" to="/activities">
           Activities
         </Link>
-        <Link className={classes.root} color="inherit" href="/mylist">
+        <Link className={classes.root} color="inherit" to="/mylist">
           My List
         </Link>
       </Typography>

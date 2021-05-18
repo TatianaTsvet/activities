@@ -7,6 +7,8 @@ import "./activities-result.scss";
 const styles = (theme) => ({
   button: {
     margin: "2em auto",
+    display: "flex",
+    justifyContent: "center",
   },
 });
 
