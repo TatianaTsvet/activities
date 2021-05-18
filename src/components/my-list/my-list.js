@@ -1,55 +1,87 @@
 import React, { Component } from "react";
-import { ListItemText, Button, ListItem, List, Link } from "@material-ui/core";
+import { Button, Link, Card, Chip, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./my-list.scss";
 
-export default class MyList extends Component {
+const styles = (theme) => ({
+  card: {
+    marginBottom: "1em",
+    padding: "1em",
+  },
+  activity: {
+    paddingTop: "1em",
+  },
+  emptyActivity: {
+    padding: "1em 0 0 1em",
+  },
+  emptyActivityButton: {
+    padding: "1em",
+    margin: "1em",
+  },
+  chip: {
+    background: "#2e7d32",
+  },
+  doneButton: {
+    marginTop: "1em",
+  },
+});
+
+class MyList extends Component {
   deleteItem = (key) => {
     this.props.deleteItem(key);
   };
 
   render() {
-    const { activity } = this.props;
+    const { activity, classes } = this.props;
 
     const posts = activity.map((item) => {
       return (
         <div>
-          <List component="nav">
-            key={item.key}
-            <ListItem variant="success">{item.type}</ListItem>
-            <ListItemText className="success">{item.activity}</ListItemText>
-            <p className="success">{item.participants} participants</p>
+          <Card component="nav" className={classes.card} key={item.key}>
+            <Chip color="primary" label={item.type} className={classes.chip} />
+            <Typography variant="h6" className={classes.activity}>
+              {item.activity}
+            </Typography>
+            <Typography className={classes.activity}>
+              {item.participants} participants
+            </Typography>
             <Button
-              variant="outline-success"
-              size="md"
+              className={classes.doneButton}
+              variant="contained"
+              color="primary"
               onClick={() => this.deleteItem(item.key)}
             >
               Done
             </Button>
-          </List>
+          </Card>
         </div>
       );
     });
     return (
-      <List>
+      <>
         {activity.length === 0 ? (
-          <>
-            <ListItem
-              key={activity.key}
-              className="flex justify-center mt-3 error"
-            >
-              <p>You have nothing saved yet</p>
-            </ListItem>
-            <Link href="/activities">
-              <Button variant="danger" className="mx-auto my-2">
+          <Card className={classes.card} key={activity.key}>
+            <Typography variant="h6" className={classes.emptyActivity}>
+              You have nothing saved yet
+            </Typography>
+
+            <Link underline="none" href="/activities">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.emptyActivityButton}
+              >
                 Go back to "Activities"!
               </Button>
             </Link>
-          </>
+          </Card>
         ) : (
           posts
         )}
-      </List>
+      </>
     );
   }
 }
+
+export default withStyles(styles, { withTheme: true })(MyList);

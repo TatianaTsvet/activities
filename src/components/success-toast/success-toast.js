@@ -1,35 +1,42 @@
 import React, { Component } from "react";
+import { Snackbar } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./success-toast.scss";
 
-export default class SuccessToast extends Component {
+const styles = (theme) => ({
+  toast: {
+    position: "absolute",
+    top: "15em",
+  },
+});
+
+class SuccessToast extends Component {
   closeToast = () => {
     this.props.closeToast(false);
   };
 
   render() {
-    const { success } = this.props;
-    // let toast = "";
-    // if (success) {
-    //   toast = (
-    //     <Toast
-    //       style={{
-    //         backgroundColor: "#04a504",
-    //         color: "#fff",
-    //         marginTop: "1em",
-    //       }}
-    //       delay={1000}
-    //       autohide
-    //       onClose={this.closeToast}
-    //     >
-    //       <Toast.Body className="mx-auto">
-    //         Activity successfully saved
-    //       </Toast.Body>
-    //     </Toast>
-    //   );
-    // } else {
-    return null;
-    // }
-    // return <>{toast}</>;
+    const { success, classes } = this.props;
+    let toast = "";
+    if (success) {
+      toast = (
+        <Snackbar
+          className={classes.toast}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          autoHideDuration={1000}
+          onClose={this.closeToast}
+          open={success}
+        >
+          <Alert severity="success">Activity successfully saved</Alert>
+        </Snackbar>
+      );
+    } else {
+      return null;
+    }
+    return <>{toast}</>;
   }
 }
+
+export default withStyles(styles, { withTheme: true })(SuccessToast);

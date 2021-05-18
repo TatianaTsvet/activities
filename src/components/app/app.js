@@ -22,12 +22,15 @@ const styles = (theme) => ({
     background: "#37474f",
     color: "white",
     margin: "2em auto",
+    textTransform: "uppercase",
   },
   activity: {
     background: "#546e7a",
+    marginBottom: "1em",
   },
   details: {
     background: "#78909c",
+    marginBottom: "1em",
   },
 });
 
@@ -133,7 +136,12 @@ class App extends Component {
                   />
                 </Grid>
 
-                <Grid item>
+                <Grid
+                  container
+                  direction="column"
+                  justify="flex-end"
+                  alignItems="flex-end"
+                >
                   <SuccessToast
                     success={success}
                     closeToast={this.closeToast}
@@ -142,7 +150,12 @@ class App extends Component {
               </Grid>
             </Route>
             <Route path="/mylist" exact>
-              <Grid container spacing={2} justify="center">
+              <Grid
+                container
+                direction="column"
+                justify="space-around"
+                alignItems="stretch"
+              >
                 <MyList activity={activity} deleteItem={this.deleteItem} />
               </Grid>
             </Route>
