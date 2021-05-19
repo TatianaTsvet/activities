@@ -7,6 +7,7 @@ import ActivityService from "../../services/activityService";
 import Spinner from "../spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 import "./details.scss";
 
@@ -102,4 +103,18 @@ class Details extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Details);
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    randomActivity: activity,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(Details));

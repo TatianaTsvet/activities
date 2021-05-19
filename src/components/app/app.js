@@ -4,10 +4,10 @@ import Header from "../header";
 import ActivitiesResult from "../activities-result";
 import MyList from "../my-list";
 import SuccessToast from "../success-toast";
-
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 import "./app.scss";
 
@@ -165,4 +165,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(App);
+export default connect()(withStyles(styles, { withTheme: true })(App));
