@@ -11,6 +11,7 @@ const styles = (theme) => ({
     color: "#fff",
     margin: "0.5em 2em",
     align: "justify",
+    textDecoration: "none",
   },
 });
 
