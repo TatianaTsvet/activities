@@ -3,6 +3,7 @@ import { TextField, Typography, FormControl } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-participants.scss";
+import { connect } from "react-redux";
 
 const styles = (theme) => ({
   root: {
@@ -15,8 +16,8 @@ const styles = (theme) => ({
 });
 
 class DetailsParticipants extends Component {
-  changeParticipants = (event) => {
-    this.props.onChangeParticipants(event.target.value);
+  updateParticipants = (event) => {
+    this.props.updateParticipants(event.target.value);
   };
 
   render() {
@@ -33,7 +34,7 @@ class DetailsParticipants extends Component {
           min={1}
           defaultValue={1}
           variant="outlined"
-          onChange={this.changeParticipants}
+          onChange={this.updateParticipants}
         />
       </FormControl>
     );
@@ -44,4 +45,21 @@ DetailsParticipants.defaultProps = {
   value: 1,
 };
 
-export default withStyles(styles, { withTheme: true })(DetailsParticipants);
+const mapStateToProps = (state) => {
+  return {
+    // loading: state.loading,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateParticipants: (participants) =>
+      dispatch({
+        type: "updateDetailsParticipants",
+        payload: { participants },
+      }),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(DetailsParticipants));

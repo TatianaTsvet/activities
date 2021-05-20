@@ -1,58 +1,39 @@
-// onActivityFetched = (data) => {
-//   if (data.error) {
-//     return {
-//       type: "error",
-//       error: data.error,
-//     };
-//   }
-//   return {
-//     type: "randomActivity",
-//     randomActivity: { ...data },
-//     loading: false,
-//   };
-// };
-// export { onActivityFetched };
-
-// sendToMyList = (rightActivity) => {
-//   return {
-//     type: "rightActivity",
-//     activity: rightActivity,
-//   };
-// };
-// export { sendToMyList };
-
-onUpdateBudget = (minprice, maxprice) => {
+export const updateDetailsBudget = (minprice, maxprice) => {
   return {
-    type: "onUpdateBudget",
-    minprice: minprice,
-    maxprice: maxprice,
+    type: "updateDetailsBudget",
+    payload: { minprice, maxprice },
   };
 };
 
-onChangeParticipants = (participants) => {
+export const updateDetailsParticipants = (participants) => {
   return {
-    type: "onChangeParticipants",
-    participants: participants,
+    type: "updateDetailsParticipants",
+    payload: participants,
   };
 };
 
-onChangeType = (type) => {
+export const updateDetailsType = (type) => {
   return {
-    type: "onChangeType",
-    type: type,
+    type: "updateDetailsType",
+    payload: type,
   };
 };
 
-onUpdateAccessability = (accessability) => {
+export const activityFetched = (randomActivity) => {
   return {
-    type: "onUpdateAccessability",
-    accessability: accessability,
+    type: "activityFetched",
+    payload: randomActivity,
   };
 };
-
-export {
-  onUpdateBudget,
-  onChangeType,
-  onChangeParticipants,
-  onUpdateAccessability,
+export const addItemToMyList = (activity) => {
+  return {
+    type: "addItemToMyList",
+    payload: activity,
+  };
+};
+export const deleteActivityItem = (key) => {
+  return {
+    type: "deleteActivityItem",
+    payload: key,
+  };
 };

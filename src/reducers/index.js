@@ -1,58 +1,87 @@
-// const initialState = {
-//   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
-//   randomActivity: null,
-//   error: false,
-//   success: false,
-//   loading: false,
-// };
-
-// const reducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case "error":
-//       return {
-//         error: action.error,
-//       };
-//     case "randomActivity":
-//       return {
-//         activity: action.randomActivity,
-//         loading: action.loading,
-//       };
-//     case "sendToMyList":
-//       return {
-//         activity: action.sendToMyList,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// export default reducer;
-
+const storageKey = "somekey";
 const initialState = {
-  type: "",
-  participants: 1,
-  minprice: 0,
-  maxprice: 1,
-  accessability: 0,
+  details: {
+    type: "",
+    participants: 1,
+    minprice: 0,
+    maxprice: 1,
+    accessability: 0,
+  },
+  activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
+  randomActivity: null,
 };
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "onUpdateBudget":
+    case "updateDetailasAccessability":
       return {
-        minprice: action.minprice,
-        maxprice: action.maxprice,
+        ...state,
+        details: {
+          ...state.details,
+          accessability: action.payload.accessability,
+        },
       };
-    case "onChangeParticipants":
+    case "updateDetailsBudget":
       return {
-        participants: action.participants,
+        ...state,
+        details: {
+          ...state.details,
+          minprice: action.payload.minprice,
+          maxprice: action.payload.maxprice,
+        },
       };
-    case "onChangeType":
+    case "updateDetailsParticipants":
       return {
-        type: action.type,
+        ...state,
+        details: {
+          ...state.details,
+          participants: action.payload.participants,
+        },
       };
-    case "onUpdateAccessability":
+    case "updateDetailsType":
       return {
-        accessability: action.accessability,
+        ...state,
+        details: {
+          ...state.details,
+          type: action.payload.type,
+        },
+      };
+    case "activityFetched":
+      return {
+        ...state,
+        randomActivity: action.payload.randomActivity,
+      };
+    case "addItemToMyList":
+      const { randomActivity } = action.payload;
+      const newItem = {
+        type: randomActivity.type,
+        participants: randomActivity.participants,
+        activity: randomActivity.activity,
+        key: randomActivity.key,
+      };
+      const sameActivity =
+        !!state.randomActivity &&
+        !!state.activity.find((item) => item.key === newItem.key);
+      const newActivity = sameActivity
+        ? state.activity
+        : [...state.activity, newItem];
+      localStorage.setItem(storageKey, JSON.stringify(newActivity));
+
+      return {
+        ...state,
+        activity: newActivity,
+      };
+
+    case "deleteActivityItem":
+      const { key } = action.payload;
+      const nonDeletedActivities = state.activity.filter(
+        (item) => key !== item.key
+      );
+      localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
+
+      return {
+        ...state,
+        activity: nonDeletedActivities,
       };
     default:
       return state;

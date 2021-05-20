@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Slider, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 import "./details-accessability.scss";
 
@@ -13,8 +14,8 @@ const styles = (theme) => ({
 });
 
 class DetailsAccessability extends Component {
-  changeAccessability = (event: any, newValue) => {
-    this.props.onUpdateAccessability(newValue);
+  changeAccessability = (event, newValue) => {
+    this.props.updateAccessability(newValue);
   };
 
   render() {
@@ -42,4 +43,23 @@ DetailsAccessability.propTypes = {
   value: PropTypes.number,
 };
 
-export default withStyles(styles, { withTheme: true })(DetailsAccessability);
+const mapStateProps = (state) => {
+  return {
+    //loading: state.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateAccessability: (accessability) =>
+      dispatch({
+        type: "updateDetailsAccessability",
+        payload: { accessability },
+      }),
+  };
+};
+
+export default connect(
+  mapStateProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(DetailsAccessability));

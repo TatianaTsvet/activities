@@ -59,22 +59,22 @@ class App extends Component {
   sendToMyList = (rightActivity) => {
     this.setState({ rightActivity });
   };
-  addItem = (randomActivity) => {
-    let newItem = {
-      type: randomActivity.type,
-      participants: randomActivity.participants,
-      activity: randomActivity.activity,
-      key: randomActivity.key,
-    };
+  // addItem = (randomActivity) => {
+  //   let newItem = {
+  //     type: randomActivity.type,
+  //     participants: randomActivity.participants,
+  //     activity: randomActivity.activity,
+  //     key: randomActivity.key,
+  //   };
 
-    const sameActivity = !!this.state.activity.find(
-      (item) => item.key === newItem.key
-    );
+  //   const sameActivity = !!this.state.activity.find(
+  //     (item) => item.key === newItem.key
+  //   );
 
-    if (sameActivity) return;
+  //   if (sameActivity) return;
 
-    this.setState({ activity: [...this.state.activity, newItem] });
-  };
+  //   this.setState({ activity: [...this.state.activity, newItem] });
+  // };
   deleteItem = (key) => {
     this.setState({
       activity: this.state.activity.filter((item) => key !== item.key),

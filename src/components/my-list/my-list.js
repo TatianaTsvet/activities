@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./my-list.scss";
 
@@ -33,7 +34,7 @@ const styles = (theme) => ({
 
 class MyList extends Component {
   deleteItem = (key) => {
-    this.props.deleteItem(key);
+    this.props.deleteActivityItem(key);
   };
 
   render() {
@@ -88,4 +89,23 @@ class MyList extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MyList);
+const mapStateToProps = (state) => {
+  return {
+    activity: state.activity,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteActivityItem: (key) =>
+      dispatch({
+        type: "deleteActivityItem",
+        payload: { key },
+      }),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(MyList));

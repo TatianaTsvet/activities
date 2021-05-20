@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FormControl, Select, MenuItem, InputLabel } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 import "./details-type.scss";
 
@@ -30,7 +31,7 @@ const styles = (theme) => ({
 
 class DetailsType extends Component {
   changeSelect = (event) => {
-    this.props.onChangeType(event.target.value);
+    this.props.updateType(event.target.value);
   };
 
   render() {
@@ -68,4 +69,22 @@ class DetailsType extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(DetailsType);
+const mapStateToProps = (state) => {
+  return {
+    // loading: state.loading,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateType: (type) =>
+      dispatch({
+        type: "updateDetailsType",
+        payload: { type },
+      }),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(DetailsType));

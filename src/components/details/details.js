@@ -22,40 +22,18 @@ const styles = (theme) => ({
 });
 
 class Details extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: "",
-      participants: 1,
-      minprice: 0,
-      maxprice: 1,
-      accessability: 0,
-    };
-  }
-
   ActivityService = new ActivityService();
-
-  onUpdateBudget = (minprice, maxprice) => {
-    this.setState({ minprice, maxprice });
-  };
-  onChangeParticipants = (participants) => {
-    this.setState({ participants });
-  };
-  onChangeType = (type) => {
-    this.setState({ type });
-  };
-  onUpdateAccessability = (accessability) => {
-    this.setState({ accessability });
-  };
 
   sendForm = async (event) => {
     event.preventDefault();
-    this.props.switchSpinner(true);
-    let activity = { ...this.state };
-    activity = await this.ActivityService.getActivity(activity);
-    this.props.onActivityFetched(activity);
+    //this.props.switchSpinner(true);
+    const { details } = this.props;
 
-    if (!activity.error) {
+    const randomActivity = await this.ActivityService.getActivity(details);
+
+    this.props.activityFetched(randomActivity);
+
+    if (!randomActivity.error) {
       this.props.changeError(false);
     }
   };
@@ -67,20 +45,16 @@ class Details extends Component {
           Activity details
         </Typography>
         <Grid item>
-          <DetailsType onChangeType={this.onChangeType} />
+          <DetailsType />
         </Grid>
         <Grid item>
-          <DetailsParticipants
-            onChangeParticipants={this.onChangeParticipants}
-          />
+          <DetailsParticipants />
         </Grid>
         <Grid item>
-          <DetailsBudget onUpdateBudget={this.onUpdateBudget} />
+          <DetailsBudget />
         </Grid>
         <Grid item>
-          <DetailsAccessability
-            onUpdateAccessability={this.onUpdateAccessability}
-          />
+          <DetailsAccessability />
         </Grid>
         {loading ? (
           <Grid item>
@@ -105,12 +79,16 @@ class Details extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
+    details: state.details,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    randomActivity: activity,
+    activityFetched: (randomActivity) =>
+      dispatch({
+        type: "activityFetched",
+        payload: { randomActivity },
+      }),
   };
 };
 

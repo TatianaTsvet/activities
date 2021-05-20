@@ -5,6 +5,7 @@ import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-budget.scss";
+import { connect } from "react-redux";
 
 const styles = (theme) => ({
   root: {
@@ -14,11 +15,11 @@ const styles = (theme) => ({
 });
 
 class DetailsBudget extends Component {
-  onChange = (event: any, newValue) => {
+  onChange = (event, newValue) => {
     const [minValue, maxValue] = newValue;
     const minprice = Number.parseFloat(minValue);
     const maxprice = Number.parseFloat(maxValue);
-    this.props.onUpdateBudget(minprice, maxprice);
+    this.props.updateBudget(minprice, maxprice);
   };
 
   render() {
@@ -50,4 +51,21 @@ DetailsBudget.propTypes = {
   maxValue: PropTypes.number,
 };
 
-export default withStyles(styles, { withTheme: true })(DetailsBudget);
+const mapStateProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateBudget: (minprice, maxprice) =>
+      dispatch({
+        type: "updateDetailsBudget",
+        payload: { minprice, maxprice },
+      }),
+  };
+};
+
+export default connect(
+  mapStateProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(DetailsBudget));
