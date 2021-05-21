@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
-import { Slider, Typography } from "@material-ui/core";
+import { Slider, Typography, Grid, Input } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-budget.scss";
 import { connect } from "react-redux";
+import {
+  updateDetailsBudget,
+  changeMinPrice,
+  changeMaxPrice,
+} from "../../actions";
 
 const styles = (theme) => ({
   root: {
@@ -19,25 +24,65 @@ class DetailsBudget extends Component {
     const [minValue, maxValue] = newValue;
     const minprice = Number.parseFloat(minValue);
     const maxprice = Number.parseFloat(maxValue);
-    this.props.updateBudget(minprice, maxprice);
+    this.props.updateDetailsBudget(minprice, maxprice);
+  };
+
+  handleInputLeftChange = (event) => {
+    this.props.changeMinPrice(event.target.value);
+  };
+
+  handleInputRightChange = (event) => {
+    this.props.changeMaxPrice(event.target.value);
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, minprice, maxprice } = this.props;
     return (
       <>
         <Typography id="range-slider" gutterBottom>
           max budget
         </Typography>
-        <Slider
-          className={classes.root}
-          aria-labelledby="range-slider"
-          onChange={this.onChange}
-          min={0}
-          max={1}
-          step={0.1}
-          defaultValue={[0, 1]}
-        />
+        <Grid container justify="space-between" spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <Input
+              className={classes.root}
+              onChange={this.handleInputLeftChange}
+              inputProps={{
+                value: minprice,
+                step: 0.1,
+                min: 0,
+                max: 1,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <Slider
+              className={classes.root}
+              value={[minprice, maxprice]}
+              aria-labelledby="range-slider"
+              onChange={this.onChange}
+              min={0}
+              max={1}
+              step={0.1}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <Input
+              className={classes.root}
+              onChange={this.handleInputRightChange}
+              inputProps={{
+                value: maxprice,
+                step: 0.1,
+                min: 0,
+                max: 1,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+        </Grid>
       </>
     );
   }
@@ -51,21 +96,15 @@ DetailsBudget.propTypes = {
   maxValue: PropTypes.number,
 };
 
-const mapStateProps = (state) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    updateBudget: (minprice, maxprice) =>
-      dispatch({
-        type: "updateDetailsBudget",
-        payload: { minprice, maxprice },
-      }),
+    minprice: state.details.minprice,
+    maxprice: state.details.maxprice,
   };
 };
 
-export default connect(
-  mapStateProps,
-  mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(DetailsBudget));
+export default connect(mapStateToProps, {
+  updateDetailsBudget,
+  changeMinPrice,
+  changeMaxPrice,
+})(withStyles(styles, { withTheme: true })(DetailsBudget));

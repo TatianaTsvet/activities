@@ -1,90 +1,60 @@
 import React, { Component } from "react";
-import { FormControl, Select, MenuItem, InputLabel } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import "./details-type.scss";
+import { updateDetailsType } from "../../actions";
 
 const availableTypes = [
-  "education",
-  "recreational",
-  "social",
-  "diy",
-  "charity",
-  "cooking",
-  "relaxation",
-  "music",
-  "busy work",
+  { title: "education" },
+  { title: "recreational" },
+  { title: "social" },
+  { title: "diy" },
+  { title: "charity" },
+  { title: "cooking" },
+  { title: "relaxation" },
+  { title: "music" },
+  { title: "busy work" },
 ];
 
 const styles = (theme) => ({
   root: {
     width: "100%",
-  },
-  select: {
     background: "#fff",
-  },
-  menuItem: {
     textTransform: "capitalize",
   },
 });
 
 class DetailsType extends Component {
-  changeSelect = (event) => {
-    this.props.updateType(event.target.value);
+  changeType = (event, newValue) => {
+    this.props.updateDetailsType(newValue.title);
   };
 
   render() {
     const { classes } = this.props;
-    const types = availableTypes.map((item) => {
-      return (
-        <MenuItem
-          className={classes.menuItem}
-          value={item.replace(" ", "")}
-          key={item}
-        >
-          {item}
-        </MenuItem>
-      );
-    });
+
     return (
-      <FormControl className={classes.root} variant="outlined">
-        <InputLabel id="demo-simple-select-outlined-label">
-          Choose any type
-        </InputLabel>
-        <Select
-          className={classes.select}
-          onChange={this.changeSelect}
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          defaultValue=""
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {types}
-        </Select>
-      </FormControl>
+      <Autocomplete
+        renderOption={(option) => (
+          <React.Fragment>
+            <span style={{ textTransform: "capitalize" }}>{option.title}</span>
+          </React.Fragment>
+        )}
+        className={classes.root}
+        onChange={this.changeType}
+        id="combo-box-demo"
+        options={availableTypes}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => (
+          <TextField {...params} label="choose any type" variant="outlined" />
+        )}
+      />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    // loading: state.loading,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateType: (type) =>
-      dispatch({
-        type: "updateDetailsType",
-        payload: { type },
-      }),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(DetailsType));
+export default connect(null, { updateDetailsType })(
+  withStyles(styles, { withTheme: true })(DetailsType)
+);

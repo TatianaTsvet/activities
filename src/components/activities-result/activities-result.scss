@@ -3,13 +3,10 @@ $color: rgb(24, 23, 23);
   color: $color;
   padding: 1em;
 }
-.error {
+.result_window.error {
   background-color: rgb(231, 81, 81);
   color: $color;
 }
-.invitation {
+invitation {
   color: $color;
-}
-.invisible {
-  visibility: hidden;
 }

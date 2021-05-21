@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import { connect } from "react-redux";
 
 import "./success-toast.scss";
+import { closeToast } from "../../actions";
 
-export default class SuccessToast extends Component {
+class SuccessToast extends Component {
   closeToast = () => {
     this.props.closeToast(false);
   };
@@ -29,3 +31,11 @@ export default class SuccessToast extends Component {
     return <>{toast}</>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    success: state.success,
+  };
+};
+
+export default connect(mapStateToProps, { closeToast })(SuccessToast);

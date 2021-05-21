@@ -11,8 +11,6 @@ import { connect } from "react-redux";
 
 import "./app.scss";
 
-const storageKey = "somekey";
-
 const styles = (theme) => ({
   root: {
     background: "#37474f",
@@ -31,69 +29,7 @@ const styles = (theme) => ({
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
-      randomActivity: null,
-      error: false,
-      success: false,
-      loading: false,
-    };
-  }
-
-  componentDidUpdate() {
-    const { activity } = this.state;
-    localStorage.setItem(storageKey, JSON.stringify(activity));
-  }
-
-  onActivityFetched = (data) => {
-    if (data.error) {
-      this.setState({ error: data.error });
-    }
-    this.setState({
-      randomActivity: { ...data },
-      loading: false,
-    });
-  };
-  sendToMyList = (rightActivity) => {
-    this.setState({ rightActivity });
-  };
-  // addItem = (randomActivity) => {
-  //   let newItem = {
-  //     type: randomActivity.type,
-  //     participants: randomActivity.participants,
-  //     activity: randomActivity.activity,
-  //     key: randomActivity.key,
-  //   };
-
-  //   const sameActivity = !!this.state.activity.find(
-  //     (item) => item.key === newItem.key
-  //   );
-
-  //   if (sameActivity) return;
-
-  //   this.setState({ activity: [...this.state.activity, newItem] });
-  // };
-  deleteItem = (key) => {
-    this.setState({
-      activity: this.state.activity.filter((item) => key !== item.key),
-    });
-  };
-  setShow = (success) => {
-    this.setState({ success });
-  };
-  closeToast = (success) => {
-    this.setState({ success });
-  };
-  changeError = (error) => {
-    this.setState({ error });
-  };
-  switchSpinner = (loading) => {
-    this.setState({ loading });
-  };
   render() {
-    const { activity, randomActivity, success, error, loading } = this.state;
     const { classes } = this.props;
     return (
       <BrowserRouter>
@@ -108,28 +44,18 @@ class App extends Component {
             <Route path="/activities/" exact>
               <Grid container spacing={3} justify="center">
                 <Grid item className={classes.activity} xs={10} sm={6}>
-                  <ActivitiesResult
-                    randomActivity={randomActivity}
-                    sendToMyList={this.sendToMyList}
-                    addItem={this.addItem}
-                    setShow={this.setShow}
-                    error={error}
-                  />
+                  <ActivitiesResult />
                 </Grid>
                 <Grid
                   item
                   container
                   direction="column"
+                  alignItems="stretch"
                   className={classes.details}
                   xs={10}
                   sm={6}
                 >
-                  <Details
-                    onActivityFetched={this.onActivityFetched}
-                    changeError={this.changeError}
-                    loading={loading}
-                    switchSpinner={this.switchSpinner}
-                  />
+                  <Details />
                 </Grid>
 
                 <Grid
@@ -138,10 +64,7 @@ class App extends Component {
                   justify="flex-end"
                   alignItems="flex-end"
                 >
-                  <SuccessToast
-                    success={success}
-                    closeToast={this.closeToast}
-                  />
+                  <SuccessToast />
                 </Grid>
               </Grid>
             </Route>
@@ -152,7 +75,7 @@ class App extends Component {
                 justify="space-around"
                 alignItems="stretch"
               >
-                <MyList activity={activity} deleteItem={this.deleteItem} />
+                <MyList />
               </Grid>
             </Route>
             <Route path="">

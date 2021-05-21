@@ -9,6 +9,9 @@ const initialState = {
   },
   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: null,
+  error: false,
+  success: false,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,6 +33,22 @@ const reducer = (state = initialState, action) => {
           maxprice: action.payload.maxprice,
         },
       };
+    case "changeMinPrice":
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          minprice: action.payload.minprice,
+        },
+      };
+    case "changeMaxPrice":
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          maxprice: action.payload.maxprice,
+        },
+      };
     case "updateDetailsParticipants":
       return {
         ...state,
@@ -47,9 +66,17 @@ const reducer = (state = initialState, action) => {
         },
       };
     case "activityFetched":
+      if (action.payload.randomActivity.error) {
+        return {
+          ...state,
+          error: action.payload.randomActivity.error,
+          loading: false,
+        };
+      }
       return {
         ...state,
         randomActivity: action.payload.randomActivity,
+        loading: false,
       };
     case "addItemToMyList":
       const { randomActivity } = action.payload;
@@ -82,6 +109,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activity: nonDeletedActivities,
+        success: false,
+      };
+    case "showSuccess":
+      return {
+        ...state,
+        success: action.payload.success,
+      };
+    case "closeToast":
+      return {
+        ...state,
+        success: action.payload.success,
+      };
+    case "changeError":
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    case "switchSpinner":
+      return {
+        ...state,
+        loading: action.payload.loading,
       };
     default:
       return state;

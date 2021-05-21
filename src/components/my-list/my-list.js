@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./my-list.scss";
+import { deleteActivityItem } from "../../actions";
 
 const styles = (theme) => ({
   card: {
@@ -42,8 +43,8 @@ class MyList extends Component {
 
     const posts = activity.map((item) => {
       return (
-        <div>
-          <Card component="nav" className={classes.card} key={item.key}>
+        <div key={item.key}>
+          <Card component="nav" className={classes.card}>
             <Chip color="primary" label={item.type} className={classes.chip} />
             <Typography variant="h6" className={classes.activity}>
               {item.activity}
@@ -95,17 +96,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteActivityItem: (key) =>
-      dispatch({
-        type: "deleteActivityItem",
-        payload: { key },
-      }),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(MyList));
+export default connect(mapStateToProps, { deleteActivityItem })(
+  withStyles(styles, { withTheme: true })(MyList)
+);

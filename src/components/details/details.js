@@ -10,14 +10,11 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
 import "./details.scss";
+import { activityFetched, switchSpinner, changeError } from "../../actions";
 
 const styles = (theme) => ({
   root: {
     padding: "0 1.5em",
-  },
-  button: {
-    display: "flex",
-    justifyContent: "center",
   },
 });
 
@@ -26,11 +23,9 @@ class Details extends Component {
 
   sendForm = async (event) => {
     event.preventDefault();
-    //this.props.switchSpinner(true);
+    this.props.switchSpinner(true);
     const { details } = this.props;
-
     const randomActivity = await this.ActivityService.getActivity(details);
-
     this.props.activityFetched(randomActivity);
 
     if (!randomActivity.error) {
@@ -57,20 +52,20 @@ class Details extends Component {
           <DetailsAccessability />
         </Grid>
         {loading ? (
-          <Grid item>
+          <Grid container direction="column" alignItems="center">
             <Spinner />
           </Grid>
         ) : (
-          <>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
+          <Grid
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+          >
+            <Button type="submit" variant="contained" color="primary">
               Hit me with the new one
             </Button>
-          </>
+          </Grid>
         )}
       </form>
     );
@@ -80,19 +75,12 @@ class Details extends Component {
 const mapStateToProps = (state) => {
   return {
     details: state.details,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    activityFetched: (randomActivity) =>
-      dispatch({
-        type: "activityFetched",
-        payload: { randomActivity },
-      }),
+    loading: state.loading,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(Details));
+export default connect(mapStateToProps, {
+  activityFetched,
+  changeError,
+  switchSpinner,
+})(withStyles(styles, { withTheme: true })(Details));

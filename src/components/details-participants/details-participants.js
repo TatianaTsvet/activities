@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import "./details-participants.scss";
 import { connect } from "react-redux";
+import { updateDetailsParticipants } from "../../actions";
 
 const styles = (theme) => ({
   root: {
@@ -17,7 +18,7 @@ const styles = (theme) => ({
 
 class DetailsParticipants extends Component {
   updateParticipants = (event) => {
-    this.props.updateParticipants(event.target.value);
+    this.props.updateDetailsParticipants(event.target.value);
   };
 
   render() {
@@ -45,21 +46,6 @@ DetailsParticipants.defaultProps = {
   value: 1,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    // loading: state.loading,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateParticipants: (participants) =>
-      dispatch({
-        type: "updateDetailsParticipants",
-        payload: { participants },
-      }),
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(DetailsParticipants));
+export default connect(null, { updateDetailsParticipants })(
+  withStyles(styles, { withTheme: true })(DetailsParticipants)
+);
