@@ -8,28 +8,32 @@ import "./details-type.scss";
 import { updateDetailsType } from "../../actions";
 
 const availableTypes = [
-  { title: "education" },
-  { title: "recreational" },
-  { title: "social" },
-  { title: "diy" },
-  { title: "charity" },
-  { title: "cooking" },
-  { title: "relaxation" },
-  { title: "music" },
-  { title: "busy work" },
+  { title: "Education" },
+  { title: "Recreational" },
+  { title: "Social" },
+  { title: "DIY" },
+  { title: "Charity" },
+  { title: "Cooking" },
+  { title: "Relaxation" },
+  { title: "Music" },
+  { title: "Busy work" },
 ];
 
 const styles = (theme) => ({
   root: {
     width: "100%",
     background: "#fff",
-    textTransform: "capitalize",
+  },
+  wrapper: {
+    color: "red",
+    background: "red,",
   },
 });
 
 class DetailsType extends Component {
   changeType = (event, newValue) => {
-    this.props.updateDetailsType(newValue.title);
+    const detailType = newValue.title.replace(" ", "").toLowerCase();
+    this.props.updateDetailsType(detailType);
   };
 
   render() {
@@ -37,18 +41,17 @@ class DetailsType extends Component {
 
     return (
       <Autocomplete
-        renderOption={(option) => (
-          <React.Fragment>
-            <span style={{ textTransform: "capitalize" }}>{option.title}</span>
-          </React.Fragment>
-        )}
         className={classes.root}
-        onChange={this.changeType}
         id="combo-box-demo"
         options={availableTypes}
         getOptionLabel={(option) => option.title}
+        onChange={this.changeType}
         renderInput={(params) => (
-          <TextField {...params} label="choose any type" variant="outlined" />
+          <TextField
+            className={classes.wrapper}
+            {...params}
+            label="choose any type"
+          />
         )}
       />
     );

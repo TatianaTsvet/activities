@@ -81,9 +81,9 @@ const reducer = (state = initialState, action) => {
     case "addItemToMyList":
       const { randomActivity } = action.payload;
       const newItem = {
-        type: randomActivity.type,
-        participants: randomActivity.participants,
-        activity: randomActivity.activity,
+        // type: randomActivity.type,
+        // participants: randomActivity.participants,
+        // activity: randomActivity.activity,
         key: randomActivity.key,
       };
       const sameActivity =
@@ -92,6 +92,7 @@ const reducer = (state = initialState, action) => {
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, newItem];
+
       localStorage.setItem(storageKey, JSON.stringify(newActivity));
 
       return {

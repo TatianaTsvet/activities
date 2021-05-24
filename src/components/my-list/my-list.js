@@ -3,7 +3,7 @@ import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import ActivityService from "../../services/activityService";
 import "./my-list.scss";
 import { deleteActivityItem } from "../../actions";
 
@@ -34,12 +34,29 @@ const styles = (theme) => ({
 });
 
 class MyList extends Component {
+  ActivityService = new ActivityService();
+
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
 
+  gotActivityById = async (activity) => {
+    const myListActivities = activity.map(async (item) =>
+      await this.ActivityService.getActivity(item)
+    );
+
+    // const myListActivities = Promise.allSettled(
+    //   activity.map(async (item) => {
+    //     await this.ActivityService.getActivity(item);
+    //   })
+    // );
+    const res = await Promise.all(myListActivities);
+    console.log(res);
+    return res;
+  };
   render() {
     const { activity, classes } = this.props;
+    console.log(this.gotActivityById(activity));
 
     const posts = activity.map((item) => {
       return (
@@ -47,7 +64,7 @@ class MyList extends Component {
           <Card component="nav" className={classes.card}>
             <Chip color="primary" label={item.type} className={classes.chip} />
             <Typography variant="h6" className={classes.activity}>
-              {item.activity}
+              {item.key}
             </Typography>
             <Typography className={classes.activity}>
               {item.participants} participants

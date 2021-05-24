@@ -73,6 +73,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "eslint-plugin-testing-library": "^3.9.0",
+    "node-fetch": "^2.6.1",
     "prettier": "^2.3.0"
   },
   "author": "",
