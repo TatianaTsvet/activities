@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ActivityService from "../../services/activityService";
 import "./my-list.scss";
-import { deleteActivityItem } from "../../actions";
+import { deleteActivityItem, activitiesInList } from "../../actions";
 
 const styles = (theme) => ({
   card: {
@@ -40,31 +40,17 @@ class MyList extends Component {
     this.props.deleteActivityItem(key);
   };
 
-  gotActivityById = async (activity) => {
-    const myListActivities = activity.map(async (item) =>
-      await this.ActivityService.getActivity(item)
-    );
-
-    // const myListActivities = Promise.allSettled(
-    //   activity.map(async (item) => {
-    //     await this.ActivityService.getActivity(item);
-    //   })
-    // );
-    const res = await Promise.all(myListActivities);
-    console.log(res);
-    return res;
-  };
   render() {
-    const { activity, classes } = this.props;
-    console.log(this.gotActivityById(activity));
+    const { activity, classes, activitiesInMyList } = this.props;
+    console.log(activitiesInMyList);
 
-    const posts = activity.map((item) => {
+    const posts = activitiesInMyList.map((item) => {
       return (
         <div key={item.key}>
           <Card component="nav" className={classes.card}>
             <Chip color="primary" label={item.type} className={classes.chip} />
             <Typography variant="h6" className={classes.activity}>
-              {item.key}
+              {item.activity}
             </Typography>
             <Typography className={classes.activity}>
               {item.participants} participants
@@ -83,8 +69,8 @@ class MyList extends Component {
     });
     return (
       <>
-        {activity.length === 0 ? (
-          <Card className={classes.card} key={activity.key}>
+        {activitiesInMyList.length === 0 ? (
+          <Card className={classes.card} key={activitiesInMyList.key}>
             <Typography variant="h6" className={classes.emptyActivity}>
               You have nothing saved yet
             </Typography>
@@ -110,9 +96,11 @@ class MyList extends Component {
 const mapStateToProps = (state) => {
   return {
     activity: state.activity,
+    activitiesInMyList: state.activitiesInMyList,
   };
 };
 
-export default connect(mapStateToProps, { deleteActivityItem })(
-  withStyles(styles, { withTheme: true })(MyList)
-);
+export default connect(mapStateToProps, {
+  deleteActivityItem,
+  activitiesInList,
+})(withStyles(styles, { withTheme: true })(MyList));

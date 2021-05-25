@@ -12,6 +12,7 @@ const initialState = {
   error: false,
   success: false,
   loading: false,
+  activitiesInMyList: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -110,6 +111,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activity: nonDeletedActivities,
+        activitiesInMyList: nonDeletedActivities,
         success: false,
       };
     case "showSuccess":
@@ -131,6 +133,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload.loading,
+      };
+    case "activitiesInListSuccess":
+      return {
+        ...state,
+        activitiesInMyList: [...action.payload.activitiesInListSuccess],
       };
     default:
       return state;

@@ -80,3 +80,16 @@ export const switchSpinner = (loading) => {
     payload: { loading },
   };
 };
+
+export const activitiesInList = (activity) => {
+  return {
+    type: "activitiesInList",
+    payload: { activity },
+  };
+};
+export const activitiesInListSuccess = (activitiesInListSuccess) => {
+  return {
+    type: "activitiesInListSuccess",
+    payload: { activitiesInListSuccess },
+  };
+};

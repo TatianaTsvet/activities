@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { activitiesInList } from "../../actions";
 
 import "./header.scss";
 
@@ -30,4 +32,12 @@ class Header extends Component {
     );
   }
 }
-export default withStyles(styles, { withTheme: true })(Header);
+const mapStateToProps = (state) => {
+  return {
+    activity: state.activity,
+  };
+};
+
+export default connect(mapStateToProps, {
+  activitiesInList,
+})(withStyles(styles, { withTheme: true })(Header));
