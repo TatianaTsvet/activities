@@ -12,7 +12,6 @@ const initialState = {
   error: false,
   success: false,
   loading: false,
-  activitiesInMyList: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -82,9 +81,9 @@ const reducer = (state = initialState, action) => {
     case "addItemToMyList":
       const { randomActivity } = action.payload;
       const newItem = {
-        // type: randomActivity.type,
-        // participants: randomActivity.participants,
-        // activity: randomActivity.activity,
+        type: randomActivity.type,
+        participants: randomActivity.participants,
+        activity: randomActivity.activity,
         key: randomActivity.key,
       };
       const sameActivity =
@@ -94,7 +93,10 @@ const reducer = (state = initialState, action) => {
         ? state.activity
         : [...state.activity, newItem];
 
-      localStorage.setItem(storageKey, JSON.stringify(newActivity));
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(newActivity.map((item) => item.key))
+      );
 
       return {
         ...state,
@@ -106,7 +108,10 @@ const reducer = (state = initialState, action) => {
       const nonDeletedActivities = state.activity.filter(
         (item) => key !== item.key
       );
-      localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(nonDeletedActivities.map((item) => item.key))
+      );
 
       return {
         ...state,
@@ -134,10 +139,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: action.payload.loading,
       };
-    case "activitiesInListSuccess":
+    case "activitiesInMyList":
       return {
         ...state,
-        activitiesInMyList: [...action.payload.activitiesInListSuccess],
+        activity: action.payload.activitiesInMyList,
+        loading: false,
       };
     default:
       return state;

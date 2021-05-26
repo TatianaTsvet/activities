@@ -87,9 +87,10 @@ export const activitiesInList = (activity) => {
     payload: { activity },
   };
 };
-export const activitiesInListSuccess = (activitiesInListSuccess) => {
+
+export const activitiesInMyList = (activitiesInMyList) => {
   return {
-    type: "activitiesInListSuccess",
-    payload: { activitiesInListSuccess },
+    type: "activitiesInMyList",
+    payload: { activitiesInMyList },
   };
 };

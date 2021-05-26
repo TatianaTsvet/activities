@@ -1,11 +1,15 @@
+import Spinner from "../spinner";
 import React, { Component } from "react";
-import { Button, Card, Chip, Typography } from "@material-ui/core";
+import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ActivityService from "../../services/activityService";
 import "./my-list.scss";
-import { deleteActivityItem, activitiesInList } from "../../actions";
+import {
+  deleteActivityItem,
+  activitiesInList,
+  switchSpinner,
+} from "../../actions";
 
 const styles = (theme) => ({
   card: {
@@ -34,17 +38,23 @@ const styles = (theme) => ({
 });
 
 class MyList extends Component {
-  ActivityService = new ActivityService();
+  componentDidMount() {
+    const storageKey = "somekey";
+    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+    this.props.activitiesInList(activityKeys);
+    this.props.switchSpinner(true);
+  }
 
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
 
   render() {
-    const { activity, classes, activitiesInMyList } = this.props;
-    console.log(activitiesInMyList);
+    const { activity, classes, loading } = this.props;
 
-    const posts = activitiesInMyList.map((item) => {
+    const posts = activity.map((item) => {
+      if (!item.activity) {
+      }
       return (
         <div key={item.key}>
           <Card component="nav" className={classes.card}>
@@ -67,10 +77,15 @@ class MyList extends Component {
         </div>
       );
     });
-    return (
+
+    return loading ? (
+      <Grid container direction="row" justify="space-around">
+        <Spinner />
+      </Grid>
+    ) : (
       <>
-        {activitiesInMyList.length === 0 ? (
-          <Card className={classes.card} key={activitiesInMyList.key}>
+        {activity.length === 0 ? (
+          <Card className={classes.card} key={activity.key}>
             <Typography variant="h6" className={classes.emptyActivity}>
               You have nothing saved yet
             </Typography>
@@ -95,12 +110,13 @@ class MyList extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    loading: state.loading,
     activity: state.activity,
-    activitiesInMyList: state.activitiesInMyList,
   };
 };
 
 export default connect(mapStateToProps, {
   deleteActivityItem,
   activitiesInList,
+  switchSpinner,
 })(withStyles(styles, { withTheme: true })(MyList));

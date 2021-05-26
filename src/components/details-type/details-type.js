@@ -31,7 +31,11 @@ const styles = (theme) => ({
 });
 
 class DetailsType extends Component {
-  changeType = (event, newValue) => {
+  changeType = (event, newValue, reason) => {
+    if (reason === "clear") {
+      newValue = { title: "" };
+      this.props.updateDetailsType(newValue);
+    }
     const detailType = newValue.title.replace(" ", "").toLowerCase();
     this.props.updateDetailsType(detailType);
   };

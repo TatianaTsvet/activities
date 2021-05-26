@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Paper, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { addItemToMyList, showSuccess, activitiesInList } from "../../actions";
+import { addItemToMyList, showSuccess } from "../../actions";
 
 import "./activities-result.scss";
 
@@ -18,7 +18,6 @@ class ActivitiesResult extends Component {
   sendToMyList = () => {
     const { randomActivity } = this.props;
     this.props.addItemToMyList(randomActivity);
-    this.props.activitiesInList(this.props.activity);
     this.props.showSuccess(true);
   };
 
@@ -71,6 +70,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   addItemToMyList,
-  activitiesInList,
   showSuccess,
 })(withStyles(styles, { withTheme: true })(ActivitiesResult));

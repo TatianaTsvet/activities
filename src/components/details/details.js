@@ -19,6 +19,10 @@ const styles = (theme) => ({
 });
 
 class Details extends Component {
+  componentDidMount() {
+    this.props.switchSpinner(false);
+  }
+
   ActivityService = new ActivityService();
 
   sendForm = async (event) => {
