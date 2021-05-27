@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { activitiesInList } from "../../actions";
+import { activitiesInList } from "../../saga/actions";
 
 import "./header.scss";
 

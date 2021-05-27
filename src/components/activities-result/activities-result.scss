@@ -1,12 +1,12 @@
-$color: rgb(24, 23, 23);
+@import "../../scss/variables";
 .result_window {
-  color: $color;
+  color: $result_window_color;
   padding: 1em;
 }
 .result_window.error {
   background-color: rgb(231, 81, 81);
-  color: $color;
+  color: $result_window_color;
 }
 invitation {
-  color: $color;
+  color: $result_window_color;
 }

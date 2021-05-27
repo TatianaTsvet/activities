@@ -10,7 +10,7 @@ import {
   updateDetailsBudget,
   changeMinPrice,
   changeMaxPrice,
-} from "../../actions";
+} from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -98,8 +98,8 @@ DetailsBudget.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    minprice: state.details.minprice,
-    maxprice: state.details.maxprice,
+    minprice: state.reducerDetails.details.minprice,
+    maxprice: state.reducerDetails.details.maxprice,
   };
 };
 

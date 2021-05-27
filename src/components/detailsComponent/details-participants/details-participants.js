@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import "./details-participants.scss";
 import { connect } from "react-redux";
-import { updateDetailsParticipants } from "../../actions";
+import { updateDetailsParticipants } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {

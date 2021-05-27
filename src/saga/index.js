@@ -1,21 +1,11 @@
+import ActivityService from "../services/activityService";
 import { put, takeEvery, call } from "redux-saga/effects";
-import { activitiesInMyList } from "../actions/";
+import { activitiesInMyList } from "./actions";
 
-const _apiBase = "http://www.boredapi.com/api/activity";
-
-async function getActivity(activityData) {
-  const data = new URLSearchParams();
-  data.append("key", activityData);
-  const res = await fetch(`${_apiBase}?${data}`);
-  if (!res.ok) {
-    throw new Error(`Could not fetch ${res}, received ${res.status}`);
-  }
-  return await res.json();
-}
-
-function* fetchActivityById(activitiesInList) {
+export function* fetchActivityById(activitiesInList) {
+  const ActivityKeyService = new ActivityService();
   const myListActivities = activitiesInList.payload.activity.map((item) =>
-    getActivity(item)
+    ActivityKeyService.getActivityByKey(item)
   );
   const res = yield call(() => Promise.all(myListActivities));
   yield put(activitiesInMyList(res));

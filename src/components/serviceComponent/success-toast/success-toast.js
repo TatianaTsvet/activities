@@ -4,7 +4,7 @@ import Alert from "@material-ui/lab/Alert";
 import { connect } from "react-redux";
 
 import "./success-toast.scss";
-import { closeToast } from "../../actions";
+import { closeToast } from "../../../saga/actions/index";
 
 class SuccessToast extends Component {
   closeToast = () => {

@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
 import "./details-accessability.scss";
-import { updateDetailasAccessability } from "../../actions";
+import { updateDetailasAccessability } from "../../../saga/actions/index";
 
 const styles = (theme) => ({
   root: {
@@ -49,7 +49,6 @@ class DetailsAccessability extends Component {
               onChange={this.handleInputChange}
               inputProps={{
                 value: accessability,
-
                 step: 0.1,
                 min: 0,
                 max: 1,
@@ -70,7 +69,7 @@ DetailsAccessability.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    accessability: state.details.accessability,
+    accessability: state.reducerDetails.details.accessability,
   };
 };
 

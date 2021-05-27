@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import "./details-type.scss";
-import { updateDetailsType } from "../../actions";
+import { updateDetailsType } from "../../../saga/actions";
 
 const availableTypes = [
   { title: "Education" },

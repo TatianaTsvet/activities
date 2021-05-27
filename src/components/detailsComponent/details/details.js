@@ -3,14 +3,18 @@ import DetailsType from "../details-type";
 import DetailsParticipants from "../details-participants";
 import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
-import ActivityService from "../../services/activityService";
-import Spinner from "../spinner";
+import ActivityService from "../../../services/activityService";
+import Spinner from "../../serviceComponent/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
 import "./details.scss";
-import { activityFetched, switchSpinner, changeError } from "../../actions";
+import {
+  activityFetched,
+  switchSpinner,
+  changeError,
+} from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -78,8 +82,8 @@ class Details extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    details: state.details,
-    loading: state.loading,
+    details: state.reducerDetails.details,
+    loading: state.otherReducers.loading,
   };
 };
 

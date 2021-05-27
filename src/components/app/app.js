@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Details from "../details";
+import Details from "../detailsComponent/details";
 import Header from "../header";
 import ActivitiesResult from "../activities-result";
 import MyList from "../my-list";
-import SuccessToast from "../success-toast";
+import SuccessToast from "../serviceComponent/success-toast";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";

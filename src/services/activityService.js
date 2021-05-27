@@ -14,6 +14,7 @@ export default class ActivityService {
 
   async getActivity(activityData) {
     const data = new URLSearchParams();
+
     if (activityData.type === "Choose any type") {
       activityData.type = "";
     }
@@ -29,5 +30,11 @@ export default class ActivityService {
     const newData = await this.getResource(`?${data}`);
 
     return newData;
+  }
+  async getActivityByKey(key) {
+    const data = new URLSearchParams();
+    data.append("key", key);
+    const res = await this.getResource(`?${data}`);
+    return await res;
   }
 }

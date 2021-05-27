@@ -1,4 +1,4 @@
-import Spinner from "../spinner";
+import Spinner from "../serviceComponent/spinner";
 import React, { Component } from "react";
 import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import {
   deleteActivityItem,
   activitiesInList,
   switchSpinner,
-} from "../../actions";
+} from "../../saga/actions";
 
 const styles = (theme) => ({
   card: {
@@ -85,7 +85,7 @@ class MyList extends Component {
     ) : (
       <>
         {activity.length === 0 ? (
-          <Card className={classes.card} key={activity.key}>
+          <Card className={classes.card} key="noActivity">
             <Typography variant="h6" className={classes.emptyActivity}>
               You have nothing saved yet
             </Typography>
@@ -110,8 +110,8 @@ class MyList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
-    activity: state.activity,
+    loading: state.otherReducers.loading,
+    activity: state.otherReducers.activity,
   };
 };
 

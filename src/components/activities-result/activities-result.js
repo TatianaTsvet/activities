@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Paper, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { addItemToMyList, showSuccess } from "../../actions";
+import { addItemToMyList, showSuccess } from "../../saga/actions";
 
 import "./activities-result.scss";
 
@@ -62,9 +62,9 @@ class ActivitiesResult extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    randomActivity: state.randomActivity,
-    error: state.error,
-    activity: state.activity,
+    randomActivity: state.otherReducers.randomActivity,
+    error: state.otherReducers.error,
+    activity: state.otherReducers.activity,
   };
 };
 

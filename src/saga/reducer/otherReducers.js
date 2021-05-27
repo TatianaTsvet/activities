@@ -1,12 +1,5 @@
 const storageKey = "somekey";
 const initialState = {
-  details: {
-    type: "",
-    participants: 1,
-    minprice: 0,
-    maxprice: 1,
-    accessability: 0,
-  },
   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: null,
   error: false,
@@ -14,57 +7,8 @@ const initialState = {
   loading: false,
 };
 
-const reducer = (state = initialState, action) => {
+const otherReducers = (state = initialState, action) => {
   switch (action.type) {
-    case "updateDetailasAccessability":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          accessability: action.payload.accessability,
-        },
-      };
-    case "updateDetailsBudget":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          minprice: action.payload.minprice,
-          maxprice: action.payload.maxprice,
-        },
-      };
-    case "changeMinPrice":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          minprice: action.payload.minprice,
-        },
-      };
-    case "changeMaxPrice":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          maxprice: action.payload.maxprice,
-        },
-      };
-    case "updateDetailsParticipants":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          participants: action.payload.participants,
-        },
-      };
-    case "updateDetailsType":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          type: action.payload.type,
-        },
-      };
     case "activityFetched":
       if (action.payload.randomActivity.error) {
         return {
@@ -92,7 +36,7 @@ const reducer = (state = initialState, action) => {
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, newItem];
-
+      newActivity.filter((item) => item !== null);
       localStorage.setItem(
         storageKey,
         JSON.stringify(newActivity.map((item) => item.key))
@@ -150,4 +94,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default otherReducers;
