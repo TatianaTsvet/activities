@@ -13,11 +13,17 @@ const serviceReducers = (state = initialState, action) => {
           error: action.payload.randomActivity.error,
           loading: false,
         };
+      } else {
+        return {
+          ...state,
+          loading: false,
+        };
       }
+
+    case "deleteActivityItem":
       return {
         ...state,
-        randomActivity: action.payload.randomActivity,
-        loading: false,
+        success: false,
       };
 
     case "showSuccess":
@@ -43,7 +49,6 @@ const serviceReducers = (state = initialState, action) => {
     case "activitiesInMyList":
       return {
         ...state,
-
         loading: false,
       };
     default:

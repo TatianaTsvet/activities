@@ -1,78 +1,70 @@
 import React, { Component } from "react";
-import { Slider, Typography, Grid, Input } from "@material-ui/core";
-import PropTypes from "prop-types";
+import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
 import "./details-accessability.scss";
-import { updateDetailasAccessability } from "../../../saga/actions/index";
+import { updateDetailsAccessability } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
     color: "#fff",
     marginBottom: "1em",
+    textTransform: "lowercase",
   },
 });
 
+const marks = [
+  {
+    value: 0,
+    label: "easy",
+  },
+
+  {
+    value: 1,
+    label: "difficult",
+  },
+];
+
 class DetailsAccessability extends Component {
   changeAccessability = (event, newValue) => {
-    this.props.updateDetailasAccessability(newValue);
-  };
+    const [minValue, maxValue] = newValue;
+    const minaccessibility = Number.parseFloat(minValue);
+    const maxaccessibility = Number.parseFloat(maxValue);
 
-  handleInputChange = (event) => {
-    this.props.updateDetailasAccessability(event.target.value);
+    this.props.updateDetailsAccessability(minaccessibility, maxaccessibility);
   };
 
   render() {
-    const { classes, accessability } = this.props;
+    const { classes } = this.props;
 
     return (
       <>
-        <Typography id="continuous-slider" gutterBottom>
+        <Typography id="range-slider" gutterBottom>
           accessability
         </Typography>
-        <Grid container justify="space-between" spacing={3} alignItems="center">
-          <Grid item xs={9}>
-            <Slider
-              className={classes.root}
-              aria-labelledby="input-slider"
-              value={accessability}
-              min={0}
-              max={1}
-              step={0.1}
-              onChange={this.changeAccessability}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <Input
-              className={classes.root}
-              onChange={this.handleInputChange}
-              inputProps={{
-                value: accessability,
-                step: 0.1,
-                min: 0,
-                max: 1,
-                type: "number",
-                "aria-labelledby": "input-slider",
-              }}
-            />
-          </Grid>
-        </Grid>
+        <Slider
+          className={classes.root}
+          valueLabelDisplay="auto"
+          aria-labelledby="range-slider"
+          onChange={this.changeAccessability}
+          min={0}
+          max={1}
+          scale={(x) => `${x * 100}%`}
+          step={0.1}
+          defaultValue={[0, 1]}
+          marks={marks}
+        />
       </>
     );
   }
 }
 
-DetailsAccessability.propTypes = {
-  value: PropTypes.number,
+DetailsAccessability.defaultProps = {
+  minValue: 0,
+  maxValue: 1,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    accessability: state.reducerDetails.details.accessability,
-  };
-};
-
-export default connect(mapStateToProps, { updateDetailasAccessability })(
+export default connect(null, { updateDetailsAccessability })(
   withStyles(styles, { withTheme: true })(DetailsAccessability)
 );

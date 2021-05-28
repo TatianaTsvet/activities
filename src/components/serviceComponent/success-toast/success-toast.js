@@ -34,7 +34,7 @@ class SuccessToast extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    success: state.success,
+    success: state.serviceReducers.success,
   };
 };
 

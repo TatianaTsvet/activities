@@ -14,9 +14,11 @@ export default class ActivityService {
 
   async getActivity(activityData) {
     const data = new URLSearchParams();
-
-    if (activityData.type === "Choose any type") {
-      activityData.type = "";
+    if (activityData.minprice === activityData.maxprice) {
+      activityData.maxprice = 1;
+    }
+    if (activityData.minaccessability === activityData.maxaccessability) {
+      activityData.maxaccessability = 1;
     }
     for (let key in activityData) {
       if (
@@ -27,14 +29,13 @@ export default class ActivityService {
         data.append(key, activityData[key]);
       }
     }
-    const newData = await this.getResource(`?${data}`);
-
+    const newData = await this.getResource(`?${data}`);    
     return newData;
   }
   async getActivityByKey(key) {
     const data = new URLSearchParams();
     data.append("key", key);
-    const res = await this.getResource(`?${data}`);
+    const res = await this.getResource(`?${data}`);    
     return await res;
   }
 }

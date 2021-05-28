@@ -7,7 +7,6 @@ import SuccessToast from "../serviceComponent/success-toast";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
 
 import "./app.scss";
 
@@ -19,7 +18,7 @@ const styles = (theme) => ({
     textTransform: "uppercase",
   },
   activity: {
-    background: "#546e7a",
+    background: "#546e7a", 
     marginBottom: "1em",
   },
   details: {
@@ -88,4 +87,4 @@ class App extends Component {
   }
 }
 
-export default connect()(withStyles(styles, { withTheme: true })(App));
+export default withStyles(styles, { withTheme: true })(App);

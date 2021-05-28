@@ -1,19 +1,9 @@
+//import updateDetailsBudget from "./actionType";
+
 export const updateDetailsBudget = (minprice, maxprice) => {
   return {
     type: "updateDetailsBudget",
     payload: { minprice, maxprice },
-  };
-};
-export const changeMinPrice = (minprice) => {
-  return {
-    type: "changeMinPrice",
-    payload: { minprice },
-  };
-};
-export const changeMaxPrice = (maxprice) => {
-  return {
-    type: "changeMaxPrice",
-    payload: { maxprice },
   };
 };
 
@@ -23,10 +13,13 @@ export const updateDetailsParticipants = (participants) => {
     payload: { participants },
   };
 };
-export const updateDetailasAccessability = (accessability) => {
+export const updateDetailsAccessability = (
+  minaccessability,
+  maxaccessability
+) => {
   return {
-    type: "updateDetailasAccessability",
-    payload: { accessability },
+    type: "updateDetailsAccessability",
+    payload: { minaccessability, maxaccessability },
   };
 };
 

@@ -110,8 +110,8 @@ class MyList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.otherReducers.loading,
-    activity: state.otherReducers.activity,
+    loading: state.serviceReducers.loading,
+    activity: state.mainReducers.activity,
   };
 };
 

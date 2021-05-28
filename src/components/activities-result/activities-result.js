@@ -62,9 +62,9 @@ class ActivitiesResult extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    randomActivity: state.otherReducers.randomActivity,
-    error: state.otherReducers.error,
-    activity: state.otherReducers.activity,
+    randomActivity: state.mainReducers.randomActivity,
+    error: state.serviceReducers.error,
+    activity: state.mainReducers.activity,
   };
 };
 

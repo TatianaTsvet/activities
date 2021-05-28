@@ -4,17 +4,19 @@ const initialState = {
     participants: 1,
     minprice: 0,
     maxprice: 1,
-    accessability: 0,
+    minaccessability: 0,
+    maxaccessability: 1,
   },
 };
-const reducerDetails = (state = initialState, action) => {
+const detailReducers = (state = initialState, action) => {
   switch (action.type) {
-    case "updateDetailasAccessability":
+    case "updateDetailsAccessability":
       return {
         ...state,
         details: {
           ...state.details,
-          accessability: action.payload.accessability,
+          minaccessability: action.payload.minaccessability,
+          maxaccessability: action.payload.maxaccessability,
         },
       };
     case "updateDetailsBudget":
@@ -63,4 +65,4 @@ const reducerDetails = (state = initialState, action) => {
       return state;
   }
 };
-export default reducerDetails;
+export default detailReducers;

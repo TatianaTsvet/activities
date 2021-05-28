@@ -1,0 +1,13 @@
+export const updateDetailsBudget = "updateDetailsBudget";
+export const updateDetailsParticipants = "updateDetailsParticipants";
+export const updateDetailsAccessability = "updateDetailsAccessability";
+export const updateDetailsType = "updateDetailsType";
+export const activityFetched = "activityFetched";
+export const addItemToMyList = "addItemToMyList";
+export const deleteActivityItem = "deleteActivityItem";
+export const showSuccess = "showSuccess";
+export const closeToast = "closeToast";
+export const changeError = "changeError";
+export const switchSpinner = "switchSpinner";
+export const activitiesInList = "activitiesInList";
+export const activitiesInMyList = "activitiesInMyList";

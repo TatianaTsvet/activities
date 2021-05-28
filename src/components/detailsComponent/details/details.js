@@ -35,7 +35,6 @@ class Details extends Component {
     const { details } = this.props;
     const randomActivity = await this.ActivityService.getActivity(details);
     this.props.activityFetched(randomActivity);
-
     if (!randomActivity.error) {
       this.props.changeError(false);
     }
@@ -82,8 +81,8 @@ class Details extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    details: state.reducerDetails.details,
-    loading: state.otherReducers.loading,
+    details: state.detailReducers.details,
+    loading: state.serviceReducers.loading,
   };
 };
 
