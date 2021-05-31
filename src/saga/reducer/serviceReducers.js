@@ -2,6 +2,7 @@ const initialState = {
   error: false,
   success: false,
   loading: false,
+  repeatedActivity: false,
 };
 
 const serviceReducers = (state = initialState, action) => {
@@ -46,10 +47,21 @@ const serviceReducers = (state = initialState, action) => {
         ...state,
         loading: action.payload.loading,
       };
+
     case "activitiesInMyList":
       return {
         ...state,
         loading: false,
+      };
+    case "closeRepeatedToast":
+      return {
+        ...state,
+        repeatedActivity: action.payload.repeatedActivity,
+      };
+    case "saveAgainActivity":
+      return {
+        ...state,
+        repeatedActivity: action.payload.repeatedActivity,
       };
     default:
       return state;

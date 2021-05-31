@@ -1,8 +1,8 @@
-//import updateDetailsBudget from "./actionType";
+import * as t from "./actionType";
 
 export const updateDetailsBudget = (minprice, maxprice) => {
   return {
-    type: "updateDetailsBudget",
+    type: t.UPDATE_DETAILS_BUDGET,
     payload: { minprice, maxprice },
   };
 };
@@ -85,5 +85,24 @@ export const activitiesInMyList = (activitiesInMyList) => {
   return {
     type: "activitiesInMyList",
     payload: { activitiesInMyList },
+  };
+};
+
+export const resetDetails = (details) => {
+  return {
+    type: "resetDetails",
+    payload: { details },
+  };
+};
+export const closeRepeatedToast = (repeatedActivity) => {
+  return {
+    type: "closeRepeatedToast",
+    payload: { repeatedActivity },
+  };
+};
+export const saveAgainActivity = (repeatedActivity) => {
+  return {
+    type: "saveAgainActivity",
+    payload: { repeatedActivity },
   };
 };

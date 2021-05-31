@@ -1,4 +1,4 @@
-import Spinner from "../serviceComponent/spinner";
+import SkeletonInList from "../serviceComponent/skeleton";
 import React, { Component } from "react";
 import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -39,7 +39,7 @@ const styles = (theme) => ({
 
 class MyList extends Component {
   componentDidMount() {
-    const storageKey = "somekey";
+    const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
     this.props.activitiesInList(activityKeys);
     this.props.switchSpinner(true);
@@ -79,8 +79,8 @@ class MyList extends Component {
     });
 
     return loading ? (
-      <Grid container direction="row" justify="space-around">
-        <Spinner />
+      <Grid container direction="row" justify="start">
+        {<SkeletonInList />}
       </Grid>
     ) : (
       <>

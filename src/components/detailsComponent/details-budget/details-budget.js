@@ -37,7 +37,7 @@ class DetailsBudget extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, minprice, maxprice } = this.props;
     return (
       <>
         <Typography id="range-slider" gutterBottom>
@@ -52,7 +52,7 @@ class DetailsBudget extends Component {
           min={0}
           max={1}
           step={0.1}
-          defaultValue={[0, 1]}
+          value={[minprice, maxprice]}
           marks={marks}
         />
       </>

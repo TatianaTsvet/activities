@@ -9,6 +9,7 @@ import { updateDetailsParticipants } from "../../../saga/actions";
 const styles = (theme) => ({
   root: {
     width: "100%",
+    marginTop: "1em",
   },
   textField: {
     background: "#fff",
@@ -22,18 +23,17 @@ class DetailsParticipants extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, participants } = this.props;
     return (
       <FormControl className={classes.root}>
-        <Typography id="continuous-slider" gutterBottom>
-          Participants
-        </Typography>
+        <Typography gutterBottom>Participants</Typography>
         <TextField
           className={classes.textField}
           id="outlined-basic"
           type="number"
           min={1}
           defaultValue={1}
+          value={participants}
           variant="outlined"
           onChange={this.updateParticipants}
         />
@@ -45,7 +45,12 @@ class DetailsParticipants extends Component {
 DetailsParticipants.defaultProps = {
   value: 1,
 };
+const mapStateToProps = (state) => {
+  return {
+    participants: state.detailReducers.details.participants,
+  };
+};
 
-export default connect(null, { updateDetailsParticipants })(
+export default connect(mapStateToProps, { updateDetailsParticipants })(
   withStyles(styles, { withTheme: true })(DetailsParticipants)
 );

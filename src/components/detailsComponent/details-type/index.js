@@ -1,3 +1,12 @@
 import DetailsType from './details-type';
 
-export default DetailsType;
+const mapStateToProps = (state) => {
+    return {
+      type: state.detailReducers.details.type,
+    };
+  };
+
+export default connect(mapStateToProps, { updateDetailsType })(
+    DetailsType
+  );
+

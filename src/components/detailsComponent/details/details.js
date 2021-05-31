@@ -14,11 +14,15 @@ import {
   activityFetched,
   switchSpinner,
   changeError,
+  resetDetails,
 } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
     padding: "0 1.5em",
+  },
+  buttonReset: {
+    marginTop: "2em",
   },
 });
 
@@ -39,42 +43,58 @@ class Details extends Component {
       this.props.changeError(false);
     }
   };
+
+  resetDetails = () => {
+    const { details } = this.props;
+    this.props.resetDetails(details);
+  };
   render() {
     const { loading, classes } = this.props;
     return (
-      <form className={classes.root} onSubmit={this.sendForm}>
-        <Typography variant="h5" gutterBottom>
-          Activity details
-        </Typography>
-        <Grid item>
-          <DetailsType />
-        </Grid>
-        <Grid item>
-          <DetailsParticipants />
-        </Grid>
-        <Grid item>
-          <DetailsBudget />
-        </Grid>
-        <Grid item>
-          <DetailsAccessability />
-        </Grid>
-        {loading ? (
-          <Grid container direction="column" alignItems="center">
-            <Spinner />
+      <>
+        <form className={classes.root} onSubmit={this.sendForm}>
+          <Typography variant="h5" gutterBottom>
+            Activity details
+          </Typography>
+          <Grid item>
+            <DetailsType />
           </Grid>
-        ) : (
-          <Grid
-            container
-            direction="column"
-            justify="flex-start"
-            alignItems="center"
-          >
-            <Button type="submit" variant="contained" color="primary">
-              Hit me with the new one
-            </Button>
+          <Grid item>
+            <DetailsParticipants />
           </Grid>
-        )}
-      </form>
+          <Grid item>
+            <DetailsBudget />
+          </Grid>
+          <Grid item>
+            <DetailsAccessability />
+          </Grid>
+          {loading ? (
+            <Grid container direction="column" alignItems="center">
+              <Spinner />
+            </Grid>
+          ) : (
+            <Grid
+              container
+              direction="column"
+              justify="flex-start"
+              alignItems="center"
+            >
+              <Button type="submit" variant="contained" color="primary">
+                Hit me with the new one
+              </Button>
+            </Grid>
+          )}
+        </form>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className={classes.buttonReset}
+          onClick={this.resetDetails}
+        >
+          Reset all
+        </Button>
+      </>
     );
   }
 }
@@ -90,4 +110,5 @@ export default connect(mapStateToProps, {
   activityFetched,
   changeError,
   switchSpinner,
+  resetDetails,
 })(withStyles(styles, { withTheme: true })(Details));

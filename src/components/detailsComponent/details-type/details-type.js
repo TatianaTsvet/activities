@@ -61,7 +61,12 @@ class DetailsType extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    type: state.detailReducers.details.type,
+  };
+};
 
-export default connect(null, { updateDetailsType })(
+export default connect(mapStateToProps, { updateDetailsType })(
   withStyles(styles, { withTheme: true })(DetailsType)
 );

@@ -4,6 +4,8 @@ import Header from "../header";
 import ActivitiesResult from "../activities-result";
 import MyList from "../my-list";
 import SuccessToast from "../serviceComponent/success-toast";
+import ErrorComponent from "../serviceComponent/error-component";
+import RepeatedActivityToast from "../serviceComponent/repeated-activity-toast";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -18,7 +20,7 @@ const styles = (theme) => ({
     textTransform: "uppercase",
   },
   activity: {
-    background: "#546e7a", 
+    background: "#546e7a",
     marginBottom: "1em",
   },
   details: {
@@ -38,9 +40,10 @@ class App extends Component {
           maxWidth="md"
           className={classes.root}
         >
-          <Header />
+          {/* <Header /> */}
           <Switch>
             <Route path="/activities/" exact>
+              <Header />
               <Grid container spacing={3} justify="center">
                 <Grid item className={classes.activity} xs={10} sm={6}>
                   <ActivitiesResult />
@@ -64,10 +67,12 @@ class App extends Component {
                   alignItems="flex-end"
                 >
                   <SuccessToast />
+                  <RepeatedActivityToast />
                 </Grid>
               </Grid>
             </Route>
             <Route path="/mylist/" exact>
+              <Header />
               <Grid
                 container
                 direction="column"
@@ -77,9 +82,11 @@ class App extends Component {
                 <MyList />
               </Grid>
             </Route>
-            <Route path="">
+            <Route path="/error" component={ErrorComponent} />
+            <Redirect from="*" to="/error" />
+            {/* <Route path="/">
               <Redirect to="/activities" />
-            </Route>
+            </Route> */}
           </Switch>
         </Container>
       </BrowserRouter>

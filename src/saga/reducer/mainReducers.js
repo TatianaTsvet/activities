@@ -1,4 +1,4 @@
-const storageKey = "somekey";
+const storageKey = "activityKey";
 const initialState = {
   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: null,
@@ -31,7 +31,7 @@ const mainReducers = (state = initialState, action) => {
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, newItem];
-      // newActivity.filter((item) => item !== null);
+     
       localStorage.setItem(
         storageKey,
         JSON.stringify(newActivity.map((item) => item.key))

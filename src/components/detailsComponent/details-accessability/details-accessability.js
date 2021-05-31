@@ -36,7 +36,7 @@ class DetailsAccessability extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, minaccessability, maxaccessability } = this.props;
 
     return (
       <>
@@ -52,7 +52,7 @@ class DetailsAccessability extends Component {
           max={1}
           scale={(x) => `${x * 100}%`}
           step={0.1}
-          defaultValue={[0, 1]}
+          value={[minaccessability, maxaccessability]}
           marks={marks}
         />
       </>
@@ -65,6 +65,13 @@ DetailsAccessability.defaultProps = {
   maxValue: 1,
 };
 
-export default connect(null, { updateDetailsAccessability })(
+const mapStateToProps = (state) => {
+  return {
+    minaccessability: state.detailReducers.details.minaccessability,
+    maxaccessability: state.detailReducers.details.maxaccessability,
+  };
+};
+
+export default connect(mapStateToProps, { updateDetailsAccessability })(
   withStyles(styles, { withTheme: true })(DetailsAccessability)
 );

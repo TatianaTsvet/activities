@@ -1,4 +1,6 @@
+//const detailsKey = "detailsKey";
 const initialState = {
+  //details: JSON.parse(localStorage.getItem(detailsKey) ?? "[]"),
   details: {
     type: "",
     participants: 1,
@@ -8,6 +10,7 @@ const initialState = {
     maxaccessability: 1,
   },
 };
+
 const detailReducers = (state = initialState, action) => {
   switch (action.type) {
     case "updateDetailsAccessability":
@@ -58,6 +61,17 @@ const detailReducers = (state = initialState, action) => {
         details: {
           ...state.details,
           type: action.payload.type,
+        },
+      };
+    case "resetDetails":
+      return {
+        details: {
+          type: "",
+          participants: 1,
+          minprice: 0,
+          maxprice: 1,
+          minaccessability: 0,
+          maxaccessability: 1,
         },
       };
 
