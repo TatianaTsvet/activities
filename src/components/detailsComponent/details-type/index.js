@@ -1,12 +1,11 @@
-import DetailsType from './details-type';
+import DetailsType from "./details-type";
+import { connect } from "react-redux";
+import { updateDetailsType } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
-    return {
-      type: state.detailReducers.details.type,
-    };
+  return {
+    type: state.detailReducers.details.type,
   };
+};
 
-export default connect(mapStateToProps, { updateDetailsType })(
-    DetailsType
-  );
-
+export default connect(mapStateToProps, { updateDetailsType })(DetailsType);

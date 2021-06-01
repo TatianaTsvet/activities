@@ -3,13 +3,7 @@ import React, { Component } from "react";
 import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import "./my-list.scss";
-import {
-  deleteActivityItem,
-  activitiesInList,
-  switchSpinner,
-} from "../../saga/actions";
 
 const styles = (theme) => ({
   card: {
@@ -51,6 +45,24 @@ class MyList extends Component {
 
   render() {
     const { activity, classes, loading } = this.props;
+    const skeleton = activity.map(function (item) {
+      return (
+        <Grid item key={item.key}>
+          <SkeletonInList item key={item.key} />
+        </Grid>
+      );
+    });
+    const skeletonInList = loading ? (
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="stretch"
+        spacing={2}
+      >
+        {skeleton}
+      </Grid>
+    ) : null;
 
     const posts = activity.map((item) => {
       if (!item.activity) {
@@ -78,12 +90,9 @@ class MyList extends Component {
       );
     });
 
-    return loading ? (
-      <Grid container direction="row" justify="start">
-        {<SkeletonInList />}
-      </Grid>
-    ) : (
+    return (
       <>
+        {skeletonInList}
         {activity.length === 0 ? (
           <Card className={classes.card} key="noActivity">
             <Typography variant="h6" className={classes.emptyActivity}>
@@ -108,15 +117,4 @@ class MyList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.serviceReducers.loading,
-    activity: state.mainReducers.activity,
-  };
-};
-
-export default connect(mapStateToProps, {
-  deleteActivityItem,
-  activitiesInList,
-  switchSpinner,
-})(withStyles(styles, { withTheme: true })(MyList));
+export default withStyles(styles, { withTheme: true })(MyList);

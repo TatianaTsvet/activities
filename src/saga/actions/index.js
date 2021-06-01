@@ -1,15 +1,15 @@
-import * as t from "./actionType";
+import * as types from "./actionType";
 
 export const updateDetailsBudget = (minprice, maxprice) => {
   return {
-    type: t.UPDATE_DETAILS_BUDGET,
+    type: types.UPDATE_DETAILS_BUDGET,
     payload: { minprice, maxprice },
   };
-};
+}; 
 
 export const updateDetailsParticipants = (participants) => {
   return {
-    type: "updateDetailsParticipants",
+    type: types.UPDATE_DETAILS_PARTICIPANTS,
     payload: { participants },
   };
 };
@@ -18,91 +18,91 @@ export const updateDetailsAccessability = (
   maxaccessability
 ) => {
   return {
-    type: "updateDetailsAccessability",
+    type: types.UPDATE_DETAIL_ACCESSABILITY,
     payload: { minaccessability, maxaccessability },
   };
 };
 
 export const updateDetailsType = (type) => {
   return {
-    type: "updateDetailsType",
+    type: types.UPDATE_DETAIL_TYPE,
     payload: { type },
   };
 };
 
 export const activityFetched = (randomActivity) => {
   return {
-    type: "activityFetched",
+    type: types.ACTIVITY_FETCHED,
     payload: { randomActivity },
   };
 };
 export const addItemToMyList = (randomActivity) => {
   return {
-    type: "addItemToMyList",
+    type: types.ADD_ITEM_TO_MY_LIST,
     payload: { randomActivity },
   };
 };
 export const deleteActivityItem = (key) => {
   return {
-    type: "deleteActivityItem",
+    type: types.DELETE_ACTIVITY_ITEM,
     payload: { key },
   };
 };
 export const showSuccess = (success) => {
   return {
-    type: "showSuccess",
+    type: types.SHOW_SUCCESS,
     payload: { success },
   };
 };
 export const closeToast = (success) => {
   return {
-    type: "closeToast",
+    type: types.CLOSE_TOAST,
     payload: { success },
   };
 };
 
 export const changeError = (error) => {
   return {
-    type: "changeError",
+    type: types.CHANGE_ERROR,
     payload: { error },
   };
 };
 export const switchSpinner = (loading) => {
   return {
-    type: "switchSpinner",
+    type: types.SWITCH_SPINNER,
     payload: { loading },
   };
 };
 
 export const activitiesInList = (activity) => {
   return {
-    type: "activitiesInList",
+    type: types.ACTIVITIES_IN_LIST,
     payload: { activity },
   };
 };
 
 export const activitiesInMyList = (activitiesInMyList) => {
   return {
-    type: "activitiesInMyList",
+    type: types.ACTIVITIES_IN_MY_LIST,
     payload: { activitiesInMyList },
   };
 };
 
 export const resetDetails = (details) => {
   return {
-    type: "resetDetails",
+    type: types.RESET_DETAILS,
     payload: { details },
   };
 };
 export const closeRepeatedToast = (repeatedActivity) => {
   return {
-    type: "closeRepeatedToast",
+    type: types.CLOSE_REPEATED_TOAST,
     payload: { repeatedActivity },
   };
 };
 export const saveAgainActivity = (repeatedActivity) => {
   return {
-    type: "saveAgainActivity",
+    type: types.SAVE_AGAIN_ACTIVITY,
     payload: { repeatedActivity },
   };
 };

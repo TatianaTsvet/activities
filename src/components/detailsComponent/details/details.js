@@ -7,15 +7,8 @@ import ActivityService from "../../../services/activityService";
 import Spinner from "../../serviceComponent/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
 
 import "./details.scss";
-import {
-  activityFetched,
-  switchSpinner,
-  changeError,
-  resetDetails,
-} from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -99,16 +92,4 @@ class Details extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    details: state.detailReducers.details,
-    loading: state.serviceReducers.loading,
-  };
-};
-
-export default connect(mapStateToProps, {
-  activityFetched,
-  changeError,
-  switchSpinner,
-  resetDetails,
-})(withStyles(styles, { withTheme: true })(Details));
+export default withStyles(styles, { withTheme: true })(Details);

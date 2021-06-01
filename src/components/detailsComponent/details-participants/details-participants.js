@@ -3,8 +3,6 @@ import { TextField, Typography, FormControl } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-participants.scss";
-import { connect } from "react-redux";
-import { updateDetailsParticipants } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -32,7 +30,6 @@ class DetailsParticipants extends Component {
           id="outlined-basic"
           type="number"
           min={1}
-          defaultValue={1}
           value={participants}
           variant="outlined"
           onChange={this.updateParticipants}
@@ -45,12 +42,5 @@ class DetailsParticipants extends Component {
 DetailsParticipants.defaultProps = {
   value: 1,
 };
-const mapStateToProps = (state) => {
-  return {
-    participants: state.detailReducers.details.participants,
-  };
-};
 
-export default connect(mapStateToProps, { updateDetailsParticipants })(
-  withStyles(styles, { withTheme: true })(DetailsParticipants)
-);
+export default withStyles(styles, { withTheme: true })(DetailsParticipants);

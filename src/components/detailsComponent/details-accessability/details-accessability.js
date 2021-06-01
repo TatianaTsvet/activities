@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
 
 import "./details-accessability.scss";
-import { updateDetailsAccessability } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -31,7 +29,6 @@ class DetailsAccessability extends Component {
     const [minValue, maxValue] = newValue;
     const minaccessibility = Number.parseFloat(minValue);
     const maxaccessibility = Number.parseFloat(maxValue);
-
     this.props.updateDetailsAccessability(minaccessibility, maxaccessibility);
   };
 
@@ -65,13 +62,4 @@ DetailsAccessability.defaultProps = {
   maxValue: 1,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    minaccessability: state.detailReducers.details.minaccessability,
-    maxaccessability: state.detailReducers.details.maxaccessability,
-  };
-};
-
-export default connect(mapStateToProps, { updateDetailsAccessability })(
-  withStyles(styles, { withTheme: true })(DetailsAccessability)
-);
+export default withStyles(styles, { withTheme: true })(DetailsAccessability);

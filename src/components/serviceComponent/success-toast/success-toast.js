@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { connect } from "react-redux";
 
 import "./success-toast.scss";
-import { closeToast } from "../../../saga/actions/index";
 
 class SuccessToast extends Component {
   closeToast = () => {
@@ -12,7 +10,7 @@ class SuccessToast extends Component {
   };
 
   render() {
-    const { success } = this.props;
+    const { success } = this.props; 
     let toast = "";
     if (success) {
       toast = (
@@ -32,10 +30,4 @@ class SuccessToast extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    success: state.serviceReducers.success,
-  };
-};
-
-export default connect(mapStateToProps, { closeToast })(SuccessToast);
+export default SuccessToast;

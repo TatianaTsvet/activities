@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Container, Paper, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
-import {
-  addItemToMyList,
-  showSuccess,
-  saveAgainActivity,
-} from "../../saga/actions";
 
 import "./activities-result.scss";
 
@@ -71,17 +65,4 @@ class ActivitiesResult extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    randomActivity: state.mainReducers.randomActivity,
-    error: state.serviceReducers.error,
-    repeatedActivity: state.serviceReducers.repeatedActivity,
-    activity: state.mainReducers.activity,
-  };
-};
-
-export default connect(mapStateToProps, {
-  addItemToMyList,
-  showSuccess,
-  saveAgainActivity,
-})(withStyles(styles, { withTheme: true })(ActivitiesResult));
+export default withStyles(styles, { withTheme: true })(ActivitiesResult);

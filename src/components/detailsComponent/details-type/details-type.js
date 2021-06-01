@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import "./details-type.scss";
-import { updateDetailsType } from "../../../saga/actions";
 
 const availableTypes = [
   { title: "Education" },
@@ -24,10 +22,6 @@ const styles = (theme) => ({
     width: "100%",
     background: "#fff",
   },
-  wrapper: {
-    color: "red",
-    background: "red,",
-  },
 });
 
 class DetailsType extends Component {
@@ -41,7 +35,7 @@ class DetailsType extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, type } = this.props;
 
     return (
       <Autocomplete
@@ -61,12 +55,5 @@ class DetailsType extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    type: state.detailReducers.details.type,
-  };
-};
 
-export default connect(mapStateToProps, { updateDetailsType })(
-  withStyles(styles, { withTheme: true })(DetailsType)
-);
+export default withStyles(styles, { withTheme: true })(DetailsType);

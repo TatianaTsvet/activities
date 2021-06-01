@@ -1,3 +1,12 @@
-import DetailsParticipants from './details-participants';
+import DetailsParticipants from "./details-participants";
+import { connect } from "react-redux";
+import { updateDetailsParticipants } from "../../../saga/actions/";
 
-export default DetailsParticipants;
+const mapStateToProps = (state) => {
+  return {
+    participants: state.detailReducers.details.participants,
+  };
+};
+
+export default connect(mapStateToProps, { updateDetailsParticipants })(DetailsParticipants);
+

@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-
 import PropTypes from "prop-types";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./details-budget.scss";
-import { connect } from "react-redux";
-import { updateDetailsBudget } from "../../../saga/actions";
 
 const styles = (theme) => ({
   root: {
@@ -68,13 +65,4 @@ DetailsBudget.propTypes = {
   maxValue: PropTypes.number,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    minprice: state.detailReducers.details.minprice,
-    maxprice: state.detailReducers.details.maxprice,
-  };
-};
-
-export default connect(mapStateToProps, {
-  updateDetailsBudget,
-})(withStyles(styles, { withTheme: true })(DetailsBudget));
+export default withStyles(styles, { withTheme: true })(DetailsBudget);

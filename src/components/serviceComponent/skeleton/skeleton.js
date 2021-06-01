@@ -7,7 +7,7 @@ const styles = (theme) => ({
   root: {
     backgroundColor: "white",
     height: "11rem",
-    width: "100%",
+
     marginBottom: "1em",
     padding: "1em",
   },

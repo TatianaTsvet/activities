@@ -1,19 +1,37 @@
-//const detailsKey = "detailsKey";
+import {
+  RESET_DETAILS,
+  UPDATE_DETAILS_BUDGET,
+  UPDATE_DETAILS_PARTICIPANTS,
+  UPDATE_DETAIL_ACCESSABILITY,
+  UPDATE_DETAIL_TYPE,
+} from "../actions/actionType";
+
+const storageKey = "detailsKey";
+const details = {
+  type: "",
+  participants: 1,
+  minprice: 0,
+  maxprice: 1,
+  minaccessability: 0,
+  maxaccessability: 1,
+};
+const detail = localStorage.setItem(storageKey, JSON.stringify(details));
+console.log(detail);
 const initialState = {
-  //details: JSON.parse(localStorage.getItem(detailsKey) ?? "[]"),
   details: {
     type: "",
     participants: 1,
-    minprice: 0,
-    maxprice: 1,
+    minprice: JSON.parse(localStorage.getItem(storageKey.minprice)) ?? 0,
+    maxprice: JSON.parse(localStorage.getItem(storageKey.maxprice)) ?? 1,
     minaccessability: 0,
     maxaccessability: 1,
   },
 };
 
 const detailReducers = (state = initialState, action) => {
+  const details = JSON.parse(localStorage.getItem(storageKey));
   switch (action.type) {
-    case "updateDetailsAccessability":
+    case UPDATE_DETAIL_ACCESSABILITY:
       return {
         ...state,
         details: {
@@ -22,32 +40,19 @@ const detailReducers = (state = initialState, action) => {
           maxaccessability: action.payload.maxaccessability,
         },
       };
-    case "updateDetailsBudget":
+    case UPDATE_DETAILS_BUDGET:
+      details["minprice"] = action.payload.minprice;
+      details["maxprice"] = action.payload.maxprice;
+
+      localStorage.setItem(storageKey, JSON.stringify(details));
+
       return {
-        ...state,
         details: {
-          ...state.details,
-          minprice: action.payload.minprice,
-          maxprice: action.payload.maxprice,
+          details,
         },
       };
-    case "changeMinPrice":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          minprice: action.payload.minprice,
-        },
-      };
-    case "changeMaxPrice":
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          maxprice: action.payload.maxprice,
-        },
-      };
-    case "updateDetailsParticipants":
+
+    case UPDATE_DETAILS_PARTICIPANTS:
       return {
         ...state,
         details: {
@@ -55,7 +60,7 @@ const detailReducers = (state = initialState, action) => {
           participants: action.payload.participants,
         },
       };
-    case "updateDetailsType":
+    case UPDATE_DETAIL_TYPE:
       return {
         ...state,
         details: {
@@ -63,7 +68,7 @@ const detailReducers = (state = initialState, action) => {
           type: action.payload.type,
         },
       };
-    case "resetDetails":
+    case RESET_DETAILS:
       return {
         details: {
           type: "",

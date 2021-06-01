@@ -1,7 +1,7 @@
 import DetailsBudget from "./details-budget";
 import { connect } from "react-redux";
 
-import { updateDetailsBudget } from "../../../saga/actions/index";
+import { updateDetailsBudget } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -9,8 +9,6 @@ const mapStateToProps = (state) => {
     maxprice: state.detailReducers.details.maxprice,
   };
 };
-connect(mapStateToProps, {
+export default connect(mapStateToProps, {
   updateDetailsBudget,
 })(DetailsBudget);
-
-export default DetailsBudget;
