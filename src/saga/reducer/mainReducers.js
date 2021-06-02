@@ -3,15 +3,19 @@ import {
   ACTIVITY_FETCHED,
   ADD_ITEM_TO_MY_LIST,
   DELETE_ACTIVITY_ITEM,
+  RESET_DETAILS,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
-const initialState = {
-  activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
-  randomActivity: null,
+const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+const filterActivity = activityKeys.filter((item) => item !== null);
+
+const defaultState = {
+  activity: filterActivity,
+  randomActivity: "",
 };
 
-const mainReducers = (state = initialState, action) => {
+const mainReducers = (state = defaultState, action) => {
   switch (action.type) {
     case ACTIVITY_FETCHED:
       if (action.payload.randomActivity.error) {
@@ -26,23 +30,15 @@ const mainReducers = (state = initialState, action) => {
       };
     case ADD_ITEM_TO_MY_LIST:
       const { randomActivity } = action.payload;
-      const newItem = {
-        type: randomActivity.type,
-        participants: randomActivity.participants,
-        activity: randomActivity.activity,
-        key: randomActivity.key,
-      };
+      const newItem = randomActivity.key;
       const sameActivity =
         !!state.randomActivity &&
-        !!state.activity.find((item) => item.key === newItem.key);
+        !!state.activity.find((item) => item === newItem);
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, newItem];
 
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(newActivity.map((item) => item.key))
-      );
+      localStorage.setItem(storageKey, JSON.stringify(newActivity));
 
       return {
         ...state,
@@ -70,6 +66,13 @@ const mainReducers = (state = initialState, action) => {
         ...state,
         activity: action.payload.activitiesInMyList,
       };
+
+    case RESET_DETAILS:
+      return {
+        ...state,
+        randomActivity: "",
+      };
+
     default:
       return state;
   }

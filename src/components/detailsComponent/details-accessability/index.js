@@ -4,11 +4,10 @@ import { updateDetailsAccessability } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
-    minaccessability: state.detailReducers.details.minaccessability,
-    maxaccessability: state.detailReducers.details.maxaccessability,
+    minaccessability: state.detailReducers.minaccessability,
+    maxaccessability: state.detailReducers.maxaccessability,
   };
 };
 export default connect(mapStateToProps, { updateDetailsAccessability })(
   DetailsAccessability
 );
- 

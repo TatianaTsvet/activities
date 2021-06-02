@@ -40,7 +40,7 @@ class DetailsType extends Component {
     return (
       <Autocomplete
         className={classes.root}
-        id="combo-box-demo"
+        id="controlled-demo"
         options={availableTypes}
         getOptionLabel={(option) => option.title}
         onChange={this.changeType}

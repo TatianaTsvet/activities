@@ -84,9 +84,9 @@ class App extends Component {
             </Route>
             <Route path="/error" component={ErrorComponent} />
             <Redirect from="*" to="/error" />
-            {/* <Route path="/">
+            <Route path="/">
               <Redirect to="/activities" />
-            </Route> */}
+            </Route>
           </Switch>
         </Container>
       </BrowserRouter>

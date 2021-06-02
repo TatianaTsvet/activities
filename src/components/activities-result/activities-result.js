@@ -18,7 +18,7 @@ class ActivitiesResult extends Component {
     this.props.addItemToMyList(randomActivity);
     this.props.showSuccess(true);
     const repeatedActivity = activity.find(
-      (item) => item.key === randomActivity.key
+      (item) => item === randomActivity.key
     );
     if (repeatedActivity) {
       this.props.saveAgainActivity(true);

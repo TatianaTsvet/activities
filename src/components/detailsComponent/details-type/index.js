@@ -4,7 +4,7 @@ import { updateDetailsType } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
-    type: state.detailReducers.details.type,
+    type: state.detailReducers.type,
   };
 };
 

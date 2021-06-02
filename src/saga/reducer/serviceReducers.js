@@ -5,19 +5,20 @@ import {
   CLOSE_REPEATED_TOAST,
   CLOSE_TOAST,
   DELETE_ACTIVITY_ITEM,
+  RESET_DETAILS,
   SAVE_AGAIN_ACTIVITY,
   SHOW_SUCCESS,
   SWITCH_SPINNER,
 } from "../actions/actionType";
 
-const initialState = {
+const defaultState = {
   error: false,
   success: false,
   loading: false,
   repeatedActivity: false,
 };
 
-const serviceReducers = (state = initialState, action) => {
+const serviceReducers = (state = defaultState, action) => {
   switch (action.type) {
     case ACTIVITY_FETCHED:
       if (action.payload.randomActivity.error) {
@@ -74,6 +75,11 @@ const serviceReducers = (state = initialState, action) => {
       return {
         ...state,
         repeatedActivity: action.payload.repeatedActivity,
+      };
+    case RESET_DETAILS:
+      return {
+        ...state,
+        error: false,
       };
     default:
       return state;

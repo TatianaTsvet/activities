@@ -35,7 +35,8 @@ class MyList extends Component {
   componentDidMount() {
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-    this.props.activitiesInList(activityKeys);
+    const filterKeys = activityKeys.filter((item) => item !== null);
+    this.props.activitiesInList(filterKeys);
     this.props.switchSpinner(true);
   }
 
@@ -48,30 +49,23 @@ class MyList extends Component {
     const skeleton = activity.map(function (item) {
       return (
         <Grid item key={item.key}>
-          <SkeletonInList item key={item.key} />
+          <SkeletonInList item key={item} />
         </Grid>
       );
     });
-    const skeletonInList = loading ? (
-      <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="stretch"
-        spacing={2}
-      >
-        {skeleton}
-      </Grid>
-    ) : null;
 
     const posts = activity.map((item) => {
       if (!item.activity) {
       }
       return (
         <div key={item.key}>
-          <Card component="nav" className={classes.card}>
+          <Card component="nav" className={classes.card} key={item.type}>
             <Chip color="primary" label={item.type} className={classes.chip} />
-            <Typography variant="h6" className={classes.activity}>
+            <Typography
+              variant="h6"
+              key={item.activity}
+              className={classes.activity}
+            >
               {item.activity}
             </Typography>
             <Typography className={classes.activity}>
@@ -90,9 +84,18 @@ class MyList extends Component {
       );
     });
 
-    return (
+    return loading ? (
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="stretch"
+        spacing={2}
+      >
+        {skeleton}
+      </Grid>
+    ) : (
       <>
-        {skeletonInList}
         {activity.length === 0 ? (
           <Card className={classes.card} key="noActivity">
             <Typography variant="h6" className={classes.emptyActivity}>

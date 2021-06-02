@@ -6,8 +6,9 @@ import {
   UPDATE_DETAIL_TYPE,
 } from "../actions/actionType";
 
-const storageKey = "detailsKey";
-const details = {
+const storageKey = "details";
+
+const defaultState = {
   type: "",
   participants: 1,
   minprice: 0,
@@ -15,73 +16,62 @@ const details = {
   minaccessability: 0,
   maxaccessability: 1,
 };
-const detail = localStorage.setItem(storageKey, JSON.stringify(details));
-console.log(detail);
-const initialState = {
-  details: {
-    type: "",
-    participants: 1,
-    minprice: JSON.parse(localStorage.getItem(storageKey.minprice)) ?? 0,
-    maxprice: JSON.parse(localStorage.getItem(storageKey.maxprice)) ?? 1,
-    minaccessability: 0,
-    maxaccessability: 1,
-  },
-};
 
-const detailReducers = (state = initialState, action) => {
-  const details = JSON.parse(localStorage.getItem(storageKey));
+const detailReducers = (state = defaultState, action) => {
+  const { payload } = action;
+
+  let newState = state;
+
   switch (action.type) {
     case UPDATE_DETAIL_ACCESSABILITY:
-      return {
+      const { minaccessability, maxaccessability } = payload;
+      newState = {
         ...state,
-        details: {
-          ...state.details,
-          minaccessability: action.payload.minaccessability,
-          maxaccessability: action.payload.maxaccessability,
-        },
+        minaccessability,
+        maxaccessability,
       };
+      break;
     case UPDATE_DETAILS_BUDGET:
-      details["minprice"] = action.payload.minprice;
-      details["maxprice"] = action.payload.maxprice;
+      const { minprice, maxprice } = payload;
 
-      localStorage.setItem(storageKey, JSON.stringify(details));
-
-      return {
-        details: {
-          details,
-        },
+      newState = {
+        ...state,
+        minprice,
+        maxprice,
       };
+      break;
 
     case UPDATE_DETAILS_PARTICIPANTS:
-      return {
+      const { participants } = payload;
+
+      newState = {
         ...state,
-        details: {
-          ...state.details,
-          participants: action.payload.participants,
-        },
+        participants,
       };
+      break;
+
     case UPDATE_DETAIL_TYPE:
-      return {
+      const { type } = payload;
+      newState = {
         ...state,
-        details: {
-          ...state.details,
-          type: action.payload.type,
-        },
+        type,
       };
+      break;
+
     case RESET_DETAILS:
-      return {
-        details: {
-          type: "",
-          participants: 1,
-          minprice: 0,
-          maxprice: 1,
-          minaccessability: 0,
-          maxaccessability: 1,
-        },
+      newState = {
+        ...defaultState,
       };
+      break;
 
     default:
-      return state;
+      newState = state;
   }
+
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(newState));
+  } catch {}
+  return newState;
 };
+
 export default detailReducers;

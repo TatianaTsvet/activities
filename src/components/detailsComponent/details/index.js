@@ -11,7 +11,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    details: state.detailReducers.details,
+    details: state.detailReducers,
     loading: state.serviceReducers.loading,
   };
 };

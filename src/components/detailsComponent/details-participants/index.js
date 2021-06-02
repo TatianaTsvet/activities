@@ -4,9 +4,10 @@ import { updateDetailsParticipants } from "../../../saga/actions/";
 
 const mapStateToProps = (state) => {
   return {
-    participants: state.detailReducers.details.participants,
+    participants: state.detailReducers.participants,
   };
 };
 
-export default connect(mapStateToProps, { updateDetailsParticipants })(DetailsParticipants);
-
+export default connect(mapStateToProps, { updateDetailsParticipants })(
+  DetailsParticipants
+);

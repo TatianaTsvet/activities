@@ -5,8 +5,8 @@ import { updateDetailsBudget } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
-    minprice: state.detailReducers.details.minprice,
-    maxprice: state.detailReducers.details.maxprice,
+    minprice: state.detailReducers.minprice,
+    maxprice: state.detailReducers.maxprice,
   };
 };
 export default connect(mapStateToProps, {
