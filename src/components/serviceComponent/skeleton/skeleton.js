@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
+import {  Grid } from "@material-ui/core";
+
 import "./skeleton.scss";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -17,10 +19,17 @@ class SkeletonInList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <Skeleton variant="text" />
+      <Grid
+        item
+        className={classes.root}
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="stretch"
+        spacing={2}
+      >
         <Skeleton variant="rect" height={140}></Skeleton>
-      </div>
+      </Grid>
     );
   }
 }

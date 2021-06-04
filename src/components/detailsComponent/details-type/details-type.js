@@ -35,7 +35,7 @@ class DetailsType extends Component {
   };
 
   render() {
-    const { classes, type } = this.props;
+    const { classes } = this.props;
 
     return (
       <Autocomplete

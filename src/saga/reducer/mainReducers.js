@@ -7,12 +7,11 @@ import {
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
-const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-const filterActivity = activityKeys.filter((item) => item !== null);
 
 const defaultState = {
-  activity: filterActivity,
+  activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: "",
+  activitiesInMyList: [],
 };
 
 const mainReducers = (state = defaultState, action) => {
@@ -30,41 +29,42 @@ const mainReducers = (state = defaultState, action) => {
       };
     case ADD_ITEM_TO_MY_LIST:
       const { randomActivity } = action.payload;
-      const newItem = randomActivity.key;
-      const sameActivity =
-        !!state.randomActivity &&
-        !!state.activity.find((item) => item === newItem);
+      const newItem = { ...randomActivity };
+
+      const sameActivity = !!state.activity.includes(newItem.key);
       const newActivity = sameActivity
         ? state.activity
-        : [...state.activity, newItem];
+        : [...state.activity, newItem.key];
 
       localStorage.setItem(storageKey, JSON.stringify(newActivity));
 
       return {
         ...state,
         activity: newActivity,
+        activitiesInMyList: [...state.activitiesInMyList, newItem],
       };
 
     case DELETE_ACTIVITY_ITEM:
       const { key } = action.payload;
       const nonDeletedActivities = state.activity.filter(
-        (item) => key !== item.key
+        (item) => key !== item
       );
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(nonDeletedActivities.map((item) => item.key))
+
+      localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
+      const activitiesInMyList = state.activitiesInMyList.filter(
+        (item) => item.key !== key
       );
 
       return {
         ...state,
         activity: nonDeletedActivities,
-        activitiesInMyList: nonDeletedActivities,
+        activitiesInMyList: activitiesInMyList,
       };
 
     case ACTIVITIES_IN_MY_LIST:
       return {
         ...state,
-        activity: action.payload.activitiesInMyList,
+        activitiesInMyList: action.payload.activitiesInMyList,
       };
 
     case RESET_DETAILS:

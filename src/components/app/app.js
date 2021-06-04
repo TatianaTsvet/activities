@@ -31,7 +31,7 @@ const styles = (theme) => ({
 
 class App extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, activity } = this.props;
     return (
       <BrowserRouter>
         <Container
@@ -82,11 +82,12 @@ class App extends Component {
                 <MyList />
               </Grid>
             </Route>
-            <Route path="/error" component={ErrorComponent} />
-            <Redirect from="*" to="/error" />
-            <Route path="/">
+            <Route path="/error" component={ErrorComponent} exact />
+
+            <Route path="/" exact>
               <Redirect to="/activities" />
             </Route>
+            <Redirect to="/error" />
           </Switch>
         </Container>
       </BrowserRouter>

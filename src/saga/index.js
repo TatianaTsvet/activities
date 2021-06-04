@@ -8,7 +8,7 @@ export function* fetchActivityById(activitiesInList) {
     ActivityKeyService.getActivityByKey(item)
   );
   const res = yield call(() => Promise.all(myListActivities));
-  yield put(activitiesInMyList(res));
+  yield put(activitiesInMyList(res)); 
 }
 
 export default function* mySaga() {

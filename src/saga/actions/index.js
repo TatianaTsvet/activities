@@ -5,7 +5,7 @@ export const updateDetailsBudget = (minprice, maxprice) => {
     type: types.UPDATE_DETAILS_BUDGET,
     payload: { minprice, maxprice },
   };
-}; 
+};
 
 export const updateDetailsParticipants = (participants) => {
   return {
@@ -104,5 +104,17 @@ export const saveAgainActivity = (repeatedActivity) => {
   return {
     type: types.SAVE_AGAIN_ACTIVITY,
     payload: { repeatedActivity },
+  };
+};
+export const setIsVisible = (isVisible) => {
+  return {
+    type: types.SET_IS_VISIBLE,
+    payload: { isVisible },
+  };
+};
+export const changeIndex = (index) => {
+  return {
+    type: types.CHANGE_INDEX,
+    payload: { index },
   };
 };

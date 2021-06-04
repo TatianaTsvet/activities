@@ -1,6 +1,6 @@
-import SkeletonInList from "../serviceComponent/skeleton";
 import React, { Component } from "react";
-import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
+import SkeletonInList from "../serviceComponent/skeleton";
+import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import "./my-list.scss";
@@ -32,33 +32,98 @@ const styles = (theme) => ({
 });
 
 class MyList extends Component {
+  constructor(props) {
+    super(props);
+    this.rootRef = React.createRef();
+  }
+
+  // callbackFunction = (entries) => {
+  //   entries.forEach((entry) => {
+  //     console.log(entry);
+
+  //     if (entry.intersectionRatio > 0) {
+  //       console.log(this.props.index);
+  //       this.props.changeIndex(this.props.index + 5);
+  //     }
+  //   });
+  // };
+  // options = {
+  //   root: null,
+  //   rootMargin: "0px",
+  //   threshold: 0,
+  // };
+  // observer = new IntersectionObserver(this.callbackFunction, this.options);
+
   componentDidMount() {
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-    const filterKeys = activityKeys.filter((item) => item !== null);
-    this.props.activitiesInList(filterKeys);
+    this.props.activitiesInList(activityKeys);
     this.props.switchSpinner(true);
+
+    const callbackFunction = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0) {
+          this.props.setIsVisible(true);
+        }
+      });
+    };
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    };
+    debugger;
+    const observer = new IntersectionObserver(callbackFunction, options);
+    if (this.rootRef.current) observer.observe(this.rootRef.current);
   }
 
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
+  changeIndex = () => {
+    this.props.changeIndex(this.props.index + 5);
+  };
 
   render() {
-    const { activity, classes, loading } = this.props;
-    const skeleton = activity.map(function (item) {
-      return (
-        <Grid item key={item.key}>
-          <SkeletonInList item key={item} />
-        </Grid>
-      );
-    });
+    const { activity, activitiesInMyList, classes, loading, isVisible, index } =
+      this.props;
 
-    const posts = activity.map((item) => {
-      if (!item.activity) {
-      }
+    if (activity.length === 0) {
       return (
-        <div key={item.key}>
+        <Card className={classes.card} key="noActivity">
+          <Typography variant="h6" className={classes.emptyActivity}>
+            You have nothing saved yet
+          </Typography>
+
+          <Link to="/activities" className={classes.link}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.emptyActivityButton}
+            >
+              Go back to "Activities"!
+            </Button>
+          </Link>
+        </Card>
+      );
+    }
+
+    const showMoreButton = isVisible ? (
+      <Button
+        className={classes.doneButton}
+        variant="contained"
+        color="primary"
+        onClick={() => this.changeIndex()}
+      >
+        Show more
+      </Button>
+    ) : null;
+
+    let posts = activitiesInMyList.slice(0, index).map((item) => {
+      return loading ? (
+        <SkeletonInList item key={item.key} />
+      ) : (
+        <div key={item.key} ref={this.rootRef}>
           <Card component="nav" className={classes.card} key={item.type}>
             <Chip color="primary" label={item.type} className={classes.chip} />
             <Typography
@@ -84,38 +149,11 @@ class MyList extends Component {
       );
     });
 
-    return loading ? (
-      <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="stretch"
-        spacing={2}
-      >
-        {skeleton}
-      </Grid>
-    ) : (
-      <>
-        {activity.length === 0 ? (
-          <Card className={classes.card} key="noActivity">
-            <Typography variant="h6" className={classes.emptyActivity}>
-              You have nothing saved yet
-            </Typography>
-
-            <Link to="/activities" className={classes.link}>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.emptyActivityButton}
-              >
-                Go back to "Activities"!
-              </Button>
-            </Link>
-          </Card>
-        ) : (
-          posts
-        )}
-      </>
+    return (
+      <div>
+        {posts}
+        {showMoreButton}
+      </div>
     );
   }
 }
