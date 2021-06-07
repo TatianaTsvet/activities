@@ -29,7 +29,7 @@ class ActivitiesResult extends Component {
   render() {
     const { randomActivity, error, classes } = this.props;
 
-    const showButton = !error && randomActivity;
+    const showComponent = !error && randomActivity;
     const activityComponent = randomActivity ? (
       <Paper className="result_window">{randomActivity.activity}</Paper>
     ) : (
@@ -37,18 +37,17 @@ class ActivitiesResult extends Component {
     );
 
     return (
-      <>
-        <Container>
-          <Typography variant="h5" gutterBottom>
-            You should
-          </Typography>
-          {error ? (
-            <Paper className="result_window error">{error}</Paper>
-          ) : (
-            activityComponent
-          )}
-
-          {showButton && (
+      showComponent && (
+        <>
+          <Container>
+            <Typography variant="h5" gutterBottom>
+              You should
+            </Typography>
+            {error ? (
+              <Paper className="result_window error">{error}</Paper>
+            ) : (
+              activityComponent
+            )}
             <Button
               className={classes.button}
               variant="contained"
@@ -58,9 +57,9 @@ class ActivitiesResult extends Component {
             >
               Save for you later
             </Button>
-          )}
-        </Container>
-      </>
+          </Container>
+        </>
+      )
     );
   }
 }

@@ -35,24 +35,26 @@ class MyList extends Component {
   constructor(props) {
     super(props);
     this.rootRef = React.createRef();
+    this.observer = new IntersectionObserver(
+      this.callbackFunction,
+      this.options
+    );
   }
 
-  // callbackFunction = (entries) => {
-  //   entries.forEach((entry) => {
-  //     console.log(entry);
-
-  //     if (entry.intersectionRatio > 0) {
-  //       console.log(this.props.index);
-  //       this.props.changeIndex(this.props.index + 5);
-  //     }
-  //   });
-  // };
-  // options = {
-  //   root: null,
-  //   rootMargin: "0px",
-  //   threshold: 0,
-  // };
-  // observer = new IntersectionObserver(this.callbackFunction, this.options);
+  callbackFunction = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio) {
+        //entry.target.onload = () => {
+        this.props.setIsVisible(entry.isIntersecting);
+        //};
+      }
+    });
+  };
+  options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  };
 
   componentDidMount() {
     const storageKey = "activityKey";
@@ -60,21 +62,14 @@ class MyList extends Component {
     this.props.activitiesInList(activityKeys);
     this.props.switchSpinner(true);
 
-    const callbackFunction = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          this.props.setIsVisible(true);
-        }
-      });
-    };
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0,
-    };
-    debugger;
-    const observer = new IntersectionObserver(callbackFunction, options);
-    if (this.rootRef.current) observer.observe(this.rootRef.current);
+    if (this.rootRef.current) this.observer.observe(this.rootRef.current);
+  }
+  componentDidUpdate() {
+    //if (this.rootRef.current) this.observer.observe(this.rootRef.current);
+  }
+
+  componentWillUnmount() {
+    this.observer.disconnect();
   }
 
   deleteItem = (key) => {
@@ -108,52 +103,51 @@ class MyList extends Component {
       );
     }
 
-    const showMoreButton = isVisible ? (
-      <Button
-        className={classes.doneButton}
-        variant="contained"
-        color="primary"
-        onClick={() => this.changeIndex()}
-      >
-        Show more
-      </Button>
-    ) : null;
-
-    let posts = activitiesInMyList.slice(0, index).map((item) => {
+    let posts = activitiesInMyList.map((item, index) => {
       return loading ? (
         <SkeletonInList item key={item.key} />
       ) : (
-        <div key={item.key} ref={this.rootRef}>
-          <Card component="nav" className={classes.card} key={item.type}>
-            <Chip color="primary" label={item.type} className={classes.chip} />
-            <Typography
-              variant="h6"
-              key={item.activity}
-              className={classes.activity}
-            >
-              {item.activity}
-            </Typography>
-            <Typography className={classes.activity}>
-              {item.participants} participants
-            </Typography>
-            <Button
-              className={classes.doneButton}
-              variant="contained"
-              color="primary"
-              onClick={() => this.deleteItem(item.key)}
-            >
-              Done
-            </Button>
-          </Card>
+        <div key={item.key} id={index} ref={this.rootRef}>
+          {isVisible ? (
+            <Card component="nav" className={classes.card} key={item.type}>
+              <Chip
+                color="primary"
+                label={item.type}
+                className={classes.chip}
+              />
+              <Typography
+                variant="h6"
+                key={item.activity}
+                className={classes.activity}
+              >
+                {item.activity}
+              </Typography>
+              <Typography className={classes.activity}>
+                {item.participants} participants
+              </Typography>
+              <Button
+                className={classes.doneButton}
+                variant="contained"
+                color="primary"
+                onClick={() => this.deleteItem(item.key)}
+              >
+                Done
+              </Button>
+            </Card>
+          ) : (
+            <SkeletonInList />
+          )}
         </div>
       );
     });
 
     return (
-      <div>
-        {posts}
-        {showMoreButton}
-      </div>
+      // <div ref={this.rootRef}>
+      //   {posts.map((item) =>
+      //     this.props.isVisible ? item : <SkeletonInList />
+      //   )}
+      // </div>
+      <div>{posts}</div>
     );
   }
 }

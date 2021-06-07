@@ -1,4 +1,4 @@
-import RepeatedActivityToast from "./repeated-activity-toast";
+import RepeatedModal from "./repeated-modal";
 import { connect } from "react-redux";
 import { closeRepeatedToast } from "../../../saga/actions/index";
 
@@ -9,6 +9,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { closeRepeatedToast })(
-  RepeatedActivityToast
-);
+export default connect(mapStateToProps, { closeRepeatedToast })(RepeatedModal);

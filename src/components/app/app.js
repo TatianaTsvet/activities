@@ -5,9 +5,9 @@ import ActivitiesResult from "../activities-result";
 import MyList from "../my-list";
 import SuccessToast from "../serviceComponent/success-toast";
 import ErrorComponent from "../serviceComponent/error-component";
-import RepeatedActivityToast from "../serviceComponent/repeated-activity-toast";
+import RepeatedModal from "../serviceComponent/repeated-modal";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
-import { Container, Grid } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./app.scss";
@@ -18,6 +18,7 @@ const styles = (theme) => ({
     color: "white",
     margin: "2em auto",
     textTransform: "uppercase",
+    padding: "1em 2em",
   },
   activity: {
     background: "#546e7a",
@@ -31,7 +32,7 @@ const styles = (theme) => ({
 
 class App extends Component {
   render() {
-    const { classes, activity } = this.props;
+    const { classes } = this.props;
     return (
       <BrowserRouter>
         <Container
@@ -67,7 +68,7 @@ class App extends Component {
                   alignItems="flex-end"
                 >
                   <SuccessToast />
-                  <RepeatedActivityToast />
+                  <RepeatedModal />
                 </Grid>
               </Grid>
             </Route>

@@ -20,11 +20,13 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "babel-polyfill": "^6.26.0",
     "eslint-plugin-json": "^3.0.0",
     "node-sass": "^4.14.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^9.7.2",
     "react": "^17.0.2",
+    "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-dual-range-slider": "^1.0.4",
     "react-intersection-observer": "^8.32.0",
@@ -47,14 +49,17 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
+      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
   },
+ 
   "main": "index.js",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.0",
