@@ -1,19 +1,8 @@
 import React, { Component } from "react";
 import { TextField, Typography, FormControl } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
+import styles from "../../../styles";
 import "./details-participants.scss";
-
-const styles = (theme) => ({
-  root: {
-    width: "100%",
-    marginTop: "1em",
-  },
-  textField: {
-    background: "#fff",
-    marginBottom: "1em",
-  },
-});
 
 class DetailsParticipants extends Component {
   updateParticipants = (event) => {
@@ -23,10 +12,10 @@ class DetailsParticipants extends Component {
   render() {
     const { classes, participants } = this.props;
     return (
-      <FormControl className={classes.root}>
+      <FormControl className={classes.participansForm}>
         <Typography gutterBottom>Participants</Typography>
         <TextField
-          className={classes.textField}
+          className={classes.participantsTextField}
           id="outlined-basic"
           type="number"
           min={1}

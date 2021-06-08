@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
+import styles from "../../../styles";
 import "./details-accessability.scss";
-
-const styles = (theme) => ({
-  root: {
-    color: "#fff",
-    marginBottom: "1em",
-    textTransform: "lowercase",
-  },
-});
 
 const marks = [
   {
@@ -41,7 +33,7 @@ class DetailsAccessability extends Component {
           accessability
         </Typography>
         <Slider
-          className={classes.root}
+          className={classes.slider}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           onChange={this.changeAccessability}

@@ -10,7 +10,6 @@ import {
   SHOW_SUCCESS,
   SWITCH_SPINNER,
   SET_IS_VISIBLE,
-  CHANGE_INDEX,
 } from "../actions/actionType";
 
 const defaultState = {
@@ -19,7 +18,6 @@ const defaultState = {
   loading: false,
   repeatedActivity: false,
   isVisible: false,
-  index: 5,
 };
 
 const serviceReducers = (state = defaultState, action) => {
@@ -90,11 +88,7 @@ const serviceReducers = (state = defaultState, action) => {
         ...state,
         isVisible: action.payload.isVisible,
       };
-    case CHANGE_INDEX:
-      return {
-        ...state,
-        index: action.payload.index,
-      };
+
     default:
       return state;
   }

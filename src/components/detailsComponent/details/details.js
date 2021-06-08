@@ -7,17 +7,8 @@ import ActivityService from "../../../services/activityService";
 import Spinner from "../../serviceComponent/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
+import styles from "../../../styles";
 import "./details.scss";
-
-const styles = (theme) => ({
-  root: {
-    padding: "0 1.5em",
-  },
-  buttonReset: {
-    marginTop: "2em",
-  },
-});
 
 class Details extends Component {
   componentDidMount() {
@@ -45,7 +36,7 @@ class Details extends Component {
     const { loading, classes } = this.props;
     return (
       <>
-        <form className={classes.root} onSubmit={this.sendForm}>
+        <form className={classes.detailsForm} onSubmit={this.sendForm}>
           <Typography variant="h5" gutterBottom>
             Activity details
           </Typography>

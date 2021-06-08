@@ -2,16 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import styles from "../../../styles";
 
 import "./details-budget.scss";
-
-const styles = (theme) => ({
-  root: {
-    color: "#fff",
-    marginBottom: "1em",
-    textTransform: "lowercase",
-  },
-});
 
 const marks = [
   {
@@ -41,7 +34,7 @@ class DetailsBudget extends Component {
           max budget
         </Typography>
         <Slider
-          className={classes.root}
+          className={classes.slider}
           valueLabelDisplay="auto"
           scale={(x) => `${x * 100}%`}
           aria-labelledby="range-slider"

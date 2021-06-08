@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
+import styles from "../../../styles";
 import "./details-type.scss";
 
 const availableTypes = [
@@ -16,13 +16,6 @@ const availableTypes = [
   { title: "Music" },
   { title: "Busy work" },
 ];
-
-const styles = (theme) => ({
-  root: {
-    width: "100%",
-    background: "#fff",
-  },
-});
 
 class DetailsType extends Component {
   changeType = (event, newValue, reason) => {
@@ -39,7 +32,7 @@ class DetailsType extends Component {
 
     return (
       <Autocomplete
-        className={classes.root}
+        className={classes.autocomplete}
         id="controlled-demo"
         options={availableTypes}
         getOptionLabel={(option) => option.title}

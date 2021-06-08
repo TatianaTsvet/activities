@@ -1,19 +1,9 @@
 import React, { Component } from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Grid } from "@material-ui/core";
-
+import styles from "../../../styles";
 import "./skeleton.scss";
 import { withStyles } from "@material-ui/core/styles";
-
-const styles = (theme) => ({
-  root: {
-    backgroundColor: "white",
-    height: "11rem",
-
-    marginBottom: "1em",
-    padding: "1em",
-  },
-});
 
 class SkeletonInList extends Component {
   render() {
@@ -21,7 +11,7 @@ class SkeletonInList extends Component {
     return (
       <Grid
         item
-        className={classes.root}
+        className={classes.skeleton}
         container
         direction="column"
         justify="flex-start"

@@ -4,8 +4,7 @@ import {
   activitiesInList,
   switchSpinner,
   setIsVisible,
-  changeIndex,
-} from "../../saga/actions";
+} from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -23,5 +22,4 @@ export default connect(mapStateToProps, {
   activitiesInList,
   switchSpinner,
   setIsVisible,
-  changeIndex,
 })(MyList);

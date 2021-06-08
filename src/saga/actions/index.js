@@ -112,9 +112,3 @@ export const setIsVisible = (isVisible) => {
     payload: { isVisible },
   };
 };
-export const changeIndex = (index) => {
-  return {
-    type: types.CHANGE_INDEX,
-    payload: { index },
-  };
-};

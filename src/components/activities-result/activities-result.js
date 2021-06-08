@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import { Container, Paper, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import styles from "../../styles";
 
 import "./activities-result.scss";
-
-const styles = (theme) => ({
-  button: {
-    margin: "2em auto",
-    display: "flex",
-    justifyContent: "center",
-  },
-});
 
 class ActivitiesResult extends Component {
   sendToMyList = () => {
@@ -49,7 +42,7 @@ class ActivitiesResult extends Component {
               activityComponent
             )}
             <Button
-              className={classes.button}
+              className={classes.activitiesResultButton}
               variant="contained"
               color="secondary"
               onClick={this.sendToMyList}
