@@ -1,0 +1,9 @@
+@import "../../../scss/variables.scss";
+.error {
+  color: rgb(243, 19, 19);
+  background-color: rgb(236, 244, 252);
+  text-transform: $budget_border-color;
+}
+.success {
+  color: $result_window_color;
+}

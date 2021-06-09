@@ -52,6 +52,7 @@ const styles = (theme) => ({
   myListCard: {
     marginBottom: "1em",
     padding: "1em",
+    height: "11rem",
   },
   myListActivity: {
     paddingTop: "1em",
@@ -103,7 +104,6 @@ const styles = (theme) => ({
   skeleton: {
     backgroundColor: "white",
     height: "11rem",
-
     marginBottom: "1em",
     padding: "1em",
   },
