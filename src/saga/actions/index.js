@@ -106,9 +106,4 @@ export const saveAgainActivity = (repeatedActivity) => {
     payload: { repeatedActivity },
   };
 };
-export const setIsVisible = (isVisible) => {
-  return {
-    type: types.SET_IS_VISIBLE,
-    payload: { isVisible },
-  };
-};
+

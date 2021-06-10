@@ -1,10 +1,10 @@
-import ActivitiesResult from "./activities-result";
+import ActivitiesResultItem from "./activities-result-item";
 import { connect } from "react-redux";
 import {
   addItemToMyList,
   showSuccess,
   saveAgainActivity,
-} from "../../saga/actions";
+} from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -19,4 +19,4 @@ export default connect(mapStateToProps, {
   addItemToMyList,
   showSuccess,
   saveAgainActivity,
-})(ActivitiesResult);
+})(ActivitiesResultItem);

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Container, Paper, Button, Typography } from "@material-ui/core";
+import ActivitiesResultPaper from "../activities-result-paper";
+import { Container, Grid, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../styles";
+import styles from "../../../styles";
 
-import "./activities-result.scss";
+import "./activities-result-item.scss";
 
-class ActivitiesResult extends Component {
+class ActivitiesResultItem extends Component {
   sendToMyList = () => {
     const { randomActivity, activity } = this.props;
     this.props.addItemToMyList(randomActivity);
@@ -22,25 +23,29 @@ class ActivitiesResult extends Component {
   render() {
     const { randomActivity, error, classes } = this.props;
 
-    const showComponent = !error && randomActivity;
-    const activityComponent = randomActivity ? (
-      <Paper className="result_window">{randomActivity.activity}</Paper>
-    ) : (
-      <Paper className="result_window invitation">Choose any activity</Paper>
+    const errorActivity = (
+      <Grid
+        container
+        item
+        direction="row"
+        justify="center"
+        alignItems="center"
+        xs={12}
+        className={classes.resultError}
+      >
+        {error}
+      </Grid>
     );
 
-    return (
+    const showComponent = !error && randomActivity;
+
+    return error ? (
+      <> {errorActivity} </>
+    ) : (
       showComponent && (
         <>
           <Container>
-            <Typography variant="h5" gutterBottom>
-              You should
-            </Typography>
-            {error ? (
-              <Paper className="result_window error">{error}</Paper>
-            ) : (
-              activityComponent
-            )}
+            <ActivitiesResultPaper />
             <Button
               className={classes.activitiesResultButton}
               variant="contained"
@@ -57,4 +62,4 @@ class ActivitiesResult extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(ActivitiesResult);
+export default withStyles(styles, { withTheme: true })(ActivitiesResultItem);

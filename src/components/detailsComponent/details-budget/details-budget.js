@@ -37,7 +37,7 @@ class DetailsBudget extends Component {
           className={classes.slider}
           valueLabelDisplay="auto"
           scale={(x) => `${x * 100}%`}
-          aria-labelledby="range-slider"
+          aria-labelledby="track-inverted-range-slider"
           onChange={this.onChange}
           min={0}
           max={1}

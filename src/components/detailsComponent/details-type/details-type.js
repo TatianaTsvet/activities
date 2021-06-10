@@ -38,11 +38,7 @@ class DetailsType extends Component {
         getOptionLabel={(option) => option.title}
         onChange={this.changeType}
         renderInput={(params) => (
-          <TextField
-            className={classes.wrapper}
-            {...params}
-            label="choose any type"
-          />
+          <TextField {...params} label="choose any type" />
         )}
       />
     );

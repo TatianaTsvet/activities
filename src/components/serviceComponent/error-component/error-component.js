@@ -13,7 +13,7 @@ class ErrorComponent extends Component {
         justify="center"
         component="main"
         maxWidth="md"
-        className={classes.console.error}
+        className={classes.error}
       >
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>

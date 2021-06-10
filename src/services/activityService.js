@@ -37,7 +37,7 @@ export default class ActivityService {
     const data = new URLSearchParams();
     data.append("key", key);
     const res = await this.getResource(`?${data}`);
-    
+
     return await res;
   }
 }

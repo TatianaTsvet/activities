@@ -42,6 +42,7 @@ const styles = (theme) => ({
     width: "100%",
     background: "#fff",
   },
+
   header: {
     display: "inline-block",
     color: "#fff",
@@ -105,6 +106,16 @@ const styles = (theme) => ({
     backgroundColor: "white",
     height: "11rem",
     marginBottom: "1em",
+    padding: "1em",
+  },
+  resultError: {
+    backgroundColor: "rgb(231, 81, 81)",
+    color: "#fff",
+    padding: "1em",
+    marginTop: "3em",
+  },
+  resultWindow: {
+    color: "rgb(24, 23, 23)",
     padding: "1em",
   },
 });

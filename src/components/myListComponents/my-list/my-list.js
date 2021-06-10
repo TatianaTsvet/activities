@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import MyListPosts from "../my-list-posts";
 import MyListNoPosts from "../my-list-no-posts";
-import { withStyles } from "@material-ui/core/styles";
-import styles from "../../../styles";
+
 import "./my-list.scss";
 
-class MyList extends Component {
+export default class MyList extends Component {
   componentDidMount() {
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
@@ -22,5 +21,3 @@ class MyList extends Component {
     );
   }
 }
-
-export default withStyles(styles, { withTheme: true })(MyList);

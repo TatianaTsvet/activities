@@ -16,25 +16,17 @@ class MyListPostsItems extends Component {
 
     let posts = activitiesInMyList.map((item) => {
       return (
-        <InView threshold={0}>
+        <InView threshold={0} triggerOnce key={item.key}>
           {({ ref, inView }) => (
-            <div key={item.key} ref={ref}>
+            <div ref={ref} id={item.type}>
               {inView ? (
-                <Card
-                  component="nav"
-                  className={classes.myListCard}
-                  key={item.type}
-                >
+                <Card component="nav" className={classes.myListCard}>
                   <Chip
                     color="primary"
                     label={item.type}
                     className={classes.myListChip}
                   />
-                  <Typography
-                    variant="h6"
-                    key={item.activity}
-                    className={classes.myListActivity}
-                  >
+                  <Typography variant="h6" className={classes.myListActivity}>
                     {item.activity}
                   </Typography>
                   <Typography className={classes.myListActivity}>
@@ -45,7 +37,6 @@ class MyListPostsItems extends Component {
                     variant="contained"
                     color="primary"
                     onClick={() => this.deleteItem(item.key)}
-                    onChange={(skip) => (skip = true)}
                   >
                     Done
                   </Button>

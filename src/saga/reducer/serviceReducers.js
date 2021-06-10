@@ -9,7 +9,6 @@ import {
   SAVE_AGAIN_ACTIVITY,
   SHOW_SUCCESS,
   SWITCH_SPINNER,
-  SET_IS_VISIBLE,
 } from "../actions/actionType";
 
 const defaultState = {
@@ -17,7 +16,6 @@ const defaultState = {
   success: false,
   loading: false,
   repeatedActivity: false,
-  isVisible: false,
 };
 
 const serviceReducers = (state = defaultState, action) => {
@@ -82,11 +80,6 @@ const serviceReducers = (state = defaultState, action) => {
       return {
         ...state,
         error: false,
-      };
-    case SET_IS_VISIBLE:
-      return {
-        ...state,
-        isVisible: action.payload.isVisible,
       };
 
     default:

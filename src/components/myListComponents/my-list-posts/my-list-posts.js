@@ -9,8 +9,8 @@ class MyListPosts extends Component {
   render() {
     const { loading, activitiesInMyList } = this.props;
 
-    const skeleton = activitiesInMyList.map((item) => {
-      return <SkeletonInList item key={item.key} />;
+    const skeleton = activitiesInMyList.map((item, index) => {
+      return <SkeletonInList item key={index} />;
     });
 
     return loading ? (
