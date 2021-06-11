@@ -53,7 +53,7 @@ const styles = (theme) => ({
   myListCard: {
     marginBottom: "1em",
     padding: "1em",
-    height: "11rem",
+    height: "100%",
   },
   myListActivity: {
     paddingTop: "1em",
@@ -104,7 +104,7 @@ const styles = (theme) => ({
   },
   skeleton: {
     backgroundColor: "white",
-    height: "11rem",
+    height: "12rem",
     marginBottom: "1em",
     padding: "1em",
   },
@@ -117,6 +117,9 @@ const styles = (theme) => ({
   resultWindow: {
     color: "rgb(24, 23, 23)",
     padding: "1em",
+  },
+  backToTop: {
+    backgroundColor: "#1976d2",
   },
 });
 

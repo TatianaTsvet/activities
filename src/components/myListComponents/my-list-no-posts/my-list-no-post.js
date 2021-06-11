@@ -9,27 +9,27 @@ class MyListNoPosts extends Component {
   render() {
     const { activity, classes } = this.props;
 
-    if (activity.length === 0) {
-      return (
-        <Card className={classes.myListCard} key="noActivity">
-          <Typography variant="h6" className={classes.myListEmptyActivity}>
-            You have nothing saved yet
-          </Typography>
-
-          <Link to="/activities" className={classes.myListLink}>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.myListEmptyActivityButton}
-            >
-              Go back to "Activities"!
-            </Button>
-          </Link>
-        </Card>
-      );
-    } else {
+    if (activity.length !== 0) {
       return null;
     }
+
+    return (
+      <Card key="noActivity">
+        <Typography variant="h6" className={classes.myListEmptyActivity}>
+          You have nothing saved yet
+        </Typography>
+
+        <Link to="/activities" className={classes.myListLink}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.myListEmptyActivityButton}
+          >
+            Go back to "Activities"!
+          </Button>
+        </Link>
+      </Card>
+    );
   }
 }
 

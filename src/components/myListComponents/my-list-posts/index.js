@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.serviceReducers.loading,
+    skeletonLoading: state.serviceReducers.skeletonLoading,
     activitiesInMyList: state.mainReducers.activitiesInMyList,
   };
 };

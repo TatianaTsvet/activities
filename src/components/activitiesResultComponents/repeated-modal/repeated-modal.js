@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Backdrop, Fade } from "@material-ui/core";
+import ModalComponent from "./repeatedHoc";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../../../styles";
 import "./repeated-modal.scss";
@@ -39,4 +40,6 @@ class RepeatedModal extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(RepeatedModal);
+export default ModalComponent(
+  withStyles(styles, { withTheme: true })(RepeatedModal)
+);

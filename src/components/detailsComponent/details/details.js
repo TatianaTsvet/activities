@@ -4,7 +4,7 @@ import DetailsParticipants from "../details-participants";
 import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
 import ActivityService from "../../../services/activityService";
-import Spinner from "../../serviceComponent/spinner";
+import Spinner from "../../../core/components/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../../../styles";

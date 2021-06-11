@@ -1,5 +1,5 @@
 import Details from "./details";
-import { connect } from "react-redux";
+import { connect } from "react-redux"; 
 
 import "./details.scss";
 import {

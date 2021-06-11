@@ -4,11 +4,11 @@ import {
   CHANGE_ERROR,
   CLOSE_REPEATED_TOAST,
   CLOSE_TOAST,
-  DELETE_ACTIVITY_ITEM,
   RESET_DETAILS,
   SAVE_AGAIN_ACTIVITY,
   SHOW_SUCCESS,
   SWITCH_SPINNER,
+  SWITCH_SKELET,
 } from "../actions/actionType";
 
 const defaultState = {
@@ -16,6 +16,7 @@ const defaultState = {
   success: false,
   loading: false,
   repeatedActivity: false,
+  skeletonLoading: true,
 };
 
 const serviceReducers = (state = defaultState, action) => {
@@ -33,12 +34,6 @@ const serviceReducers = (state = defaultState, action) => {
           loading: false,
         };
       }
-
-    case DELETE_ACTIVITY_ITEM:
-      return {
-        ...state,
-        success: false,
-      };
 
     case SHOW_SUCCESS:
       return {
@@ -60,11 +55,15 @@ const serviceReducers = (state = defaultState, action) => {
         ...state,
         loading: action.payload.loading,
       };
-
+    case SWITCH_SKELET:
+      return {
+        ...state,
+        skeletonLoading: action.payload.loading,
+      };
     case ACTIVITIES_IN_MY_LIST:
       return {
         ...state,
-        loading: false,
+        skeletonLoading: false,
       };
     case CLOSE_REPEATED_TOAST:
       return {

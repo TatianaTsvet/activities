@@ -1,8 +1,19 @@
 import MyList from "./my-list";
-import { activitiesInList, switchSpinner } from "../../../saga/actions";
+import {
+  activitiesInList,
+  switchSkelet,
+  closeToast,
+} from "../../../saga/actions";
 import { connect } from "react-redux";
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    activity: state.mainReducers.activity,
+  };
+};
+
+export default connect(mapStateToProps, {
   activitiesInList,
-  switchSpinner,
+  switchSkelet,
+  closeToast,
 })(MyList);

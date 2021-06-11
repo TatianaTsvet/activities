@@ -3,7 +3,7 @@ import Details from "../detailsComponent/details";
 import Header from "../header";
 import ActivitiesResult from "../activitiesResultComponents/activities-result";
 import MyList from "../myListComponents/my-list";
-import ErrorComponent from "../serviceComponent/error-component";
+import ErrorComponent from "../../core/components/error-component";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import styles from "../../styles";
@@ -11,6 +11,9 @@ import { withStyles } from "@material-ui/core/styles";
 import "./app.scss";
 
 class App extends Component {
+  // componentDidMount() {
+  //   this.props.switchSkelet(true);
+  // }
   render() {
     const { classes } = this.props;
     return (

@@ -3,6 +3,7 @@ import {
   ACTIVITY_FETCHED,
   ADD_ITEM_TO_MY_LIST,
   DELETE_ACTIVITY_ITEM,
+  RESET_ACTIVITIES,
   RESET_DETAILS,
 } from "../actions/actionType";
 
@@ -71,6 +72,14 @@ const mainReducers = (state = defaultState, action) => {
       return {
         ...state,
         randomActivity: "",
+      };
+    case RESET_ACTIVITIES:
+      const resetActivity = [];
+      localStorage.setItem(storageKey, JSON.stringify(resetActivity));
+      return {
+        ...state,
+        activity: [],
+        activitiesInMyList: [],
       };
 
     default:

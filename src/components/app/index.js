@@ -1,3 +1,9 @@
 import App from "./app";
 
-export default App;
+import { connect } from "react-redux";
+
+import { switchSkelet } from "../../saga/actions";
+
+export default connect(null, {
+  switchSkelet,
+})(App);

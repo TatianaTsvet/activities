@@ -14,12 +14,7 @@ export default class ActivityService {
 
   async getActivity(activityData) {
     const data = new URLSearchParams();
-    if (activityData.minprice === activityData.maxprice) {
-      activityData.maxprice = "";
-    }
-    if (activityData.minaccessability === activityData.maxaccessability) {
-      activityData.maxaccessability = "";
-    }
+
     for (let key in activityData) {
       if (
         activityData[key] !== "" &&
@@ -28,6 +23,12 @@ export default class ActivityService {
       ) {
         data.append(key, activityData[key]);
       }
+    }
+    if (activityData.minaccessability === activityData.maxaccessability) {
+      data.delete("maxaccessability");
+    }
+    if (activityData.minprice === activityData.maxprice) {
+      data.delete("maxprice");
     }
     const newData = await this.getResource(`?${data}`);
     return newData;

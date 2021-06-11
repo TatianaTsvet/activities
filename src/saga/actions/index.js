@@ -73,6 +73,12 @@ export const switchSpinner = (loading) => {
     payload: { loading },
   };
 };
+export const switchSkelet = (loading) => {
+  return {
+    type: types.SWITCH_SKELET,
+    payload: { loading },
+  };
+};
 
 export const activitiesInList = (activity) => {
   return {
@@ -106,4 +112,8 @@ export const saveAgainActivity = (repeatedActivity) => {
     payload: { repeatedActivity },
   };
 };
-
+export const resetActivities = () => {
+  return {
+    type: types.RESET_ACTIVITIES,
+  };
+};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { InView } from "react-intersection-observer";
-import SkeletonInList from "../../serviceComponent/skeleton";
+import SkeletonInList from "../../../core/components/skeleton";
 import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../../../styles";
