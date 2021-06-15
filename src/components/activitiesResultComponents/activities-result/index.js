@@ -1,3 +1,13 @@
 import ActivitiesResult from "./activities-result";
+import { connect } from "react-redux";
+import { closeRepeatedToast } from "../../../saga/actions/index";
 
-export default ActivitiesResult;
+const mapStateToProps = (state) => {
+  return {
+    repeatedActivity: state.serviceReducers.repeatedActivity,
+    randomActivity: state.mainReducers.randomActivity,
+  };
+};
+export default connect(mapStateToProps, { closeRepeatedToast })(
+  ActivitiesResult
+);

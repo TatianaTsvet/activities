@@ -3,7 +3,7 @@ import { InView } from "react-intersection-observer";
 import SkeletonInList from "../../../core/components/skeleton";
 import { Button, Card, Chip, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../../styles";
+import styles from "./styles";
 import "./my-list-posts-items.scss";
 
 class MyListPostsItems extends Component {

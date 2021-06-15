@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import styles from "../../../styles";
+import styles from "./styles";
 import "./details-type.scss";
 
 const availableTypes = [

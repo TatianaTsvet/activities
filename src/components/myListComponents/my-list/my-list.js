@@ -3,7 +3,7 @@ import MyListPosts from "../my-list-posts";
 import MyListNoPosts from "../my-list-no-posts";
 import MyListResetButton from "../my-list-reset-button";
 import { BackToTop, StyledProvider } from "components-extra";
-import styles from "../../../styles";
+import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./my-list.scss";

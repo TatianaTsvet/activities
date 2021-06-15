@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Card, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import styles from "../../../styles";
+import styles from "./styles";
 import "./my-list-no-posts.scss";
 
 class MyListNoPosts extends Component {

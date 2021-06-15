@@ -6,14 +6,21 @@ import SuccessToast from "../../../core/components/success-toast";
 import "./activities-result.scss";
 
 export default class ActivitiesResult extends Component {
+  closeRepeatedToast = () => {
+    this.props.closeRepeatedToast(false);
+  };
   render() {
+    const { repeatedActivity, randomActivity } = this.props;
     return (
       <>
         <ActivitiesResultItem />
         <SuccessToast />
-        <RepeatedModal />
+        <RepeatedModal
+          repeatedActivity={repeatedActivity}
+          randomActivity={randomActivity.activity}
+          closeRepeatedToast={this.closeRepeatedToast}
+        />
       </>
     );
   }
 }
-

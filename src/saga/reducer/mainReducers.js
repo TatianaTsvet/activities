@@ -21,7 +21,6 @@ const mainReducers = (state = defaultState, action) => {
       if (action.payload.randomActivity.error) {
         return {
           ...state,
-          error: action.payload.randomActivity.error,
         };
       }
       return {

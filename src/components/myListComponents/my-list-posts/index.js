@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
   return {
     skeletonLoading: state.serviceReducers.skeletonLoading,
     activitiesInMyList: state.mainReducers.activitiesInMyList,
+    activity: state.mainReducers.activity,
   };
 };
 

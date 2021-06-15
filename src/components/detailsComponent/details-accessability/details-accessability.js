@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../../styles";
+import styles from "./styles";
 import "./details-accessability.scss";
 
 const marks = [

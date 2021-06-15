@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Slider, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../../styles";
+import styles from "./styles";
 
 import "./details-budget.scss";
 

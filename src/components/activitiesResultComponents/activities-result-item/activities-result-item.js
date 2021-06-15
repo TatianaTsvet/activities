@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ActivitiesResultPaper from "../activities-result-paper";
 import { Container, Grid, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../../styles";
+import styles from "./styles";
 
 import "./activities-result-item.scss";
 
