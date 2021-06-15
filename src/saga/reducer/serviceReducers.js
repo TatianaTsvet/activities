@@ -9,6 +9,7 @@ import {
   SHOW_SUCCESS,
   SWITCH_SPINNER,
   SWITCH_SKELET,
+  POST_IS_VISIBLE,
 } from "../actions/actionType";
 
 const defaultState = {
@@ -17,6 +18,7 @@ const defaultState = {
   loading: false,
   repeatedActivity: false,
   skeletonLoading: true,
+  isVisible: false,
 };
 
 const serviceReducers = (state = defaultState, action) => {
@@ -79,6 +81,11 @@ const serviceReducers = (state = defaultState, action) => {
       return {
         ...state,
         error: false,
+      };
+    case POST_IS_VISIBLE:
+      return {
+        ...state,
+        isVisible: action.payload.isVisible,
       };
 
     default:

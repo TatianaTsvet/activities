@@ -8,16 +8,16 @@ class MyListPosts extends Component {
   render() {
     const { skeletonLoading, activity } = this.props;
 
-    const skeleton = [];
-    for (let i = 0; i === activity.length; i++) {
-      skeleton.push(<SkeletonInList key={`skeleton${i}`} />);
-    }
-    // const skeleton = activity.map((item, index) => {
-    //   return <SkeletonInList item key={index} />;
+    // const skeleton = activity.map((item) => {
+    //   return <SkeletonInList item key={`skeleton${item}`} />;
     // });
 
     return skeletonLoading ? (
-      <>{skeleton}</>
+      <>
+        {activity.map((item) => {
+          return <SkeletonInList item key={`skeleton${item}`} />;
+        })}
+      </>
     ) : (
       <div>
         <MyListPostsItems />

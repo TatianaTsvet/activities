@@ -117,3 +117,9 @@ export const resetActivities = () => {
     type: types.RESET_ACTIVITIES,
   };
 };
+export const postIsVisible = (isVisible) => {
+  return {
+    type: types.POST_IS_VISIBLE,
+    payload: { isVisible },
+  };
+};

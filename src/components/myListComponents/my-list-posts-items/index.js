@@ -1,13 +1,14 @@
 import MyListPostsItems from "./my-list-posts-items";
-import { deleteActivityItem } from "../../../saga/actions";
+import { deleteActivityItem, postIsVisible } from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     activitiesInMyList: state.mainReducers.activitiesInMyList,
+    isVisible: state.serviceReducers.isVisible,
   };
 };
 
-export default connect(mapStateToProps, {
-  deleteActivityItem,
-})(MyListPostsItems);
+export default connect(mapStateToProps, { postIsVisible, deleteActivityItem })(
+  MyListPostsItems
+);
