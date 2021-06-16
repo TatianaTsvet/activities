@@ -80,10 +80,10 @@ export const switchSkelet = (loading) => {
   };
 };
 
-export const activitiesInList = (activity) => {
+export const activitiesInList = (key) => {
   return {
     type: types.ACTIVITIES_IN_LIST,
-    payload: { activity },
+    payload: { key },
   };
 };
 

@@ -1,14 +1,16 @@
 import ActivityService from "../services/activityService";
-import { put, takeEvery, call } from "redux-saga/effects";
+import { put, takeEvery, call, all } from "redux-saga/effects";
 import { activitiesInMyList } from "./actions";
 
 export function* fetchActivityById(activitiesInList) {
   const ActivityKeyService = new ActivityService();
-  const myListActivities = activitiesInList.payload.activity.map((item) =>
-    ActivityKeyService.getActivityByKey(item)
+  const myListActivities = ActivityKeyService.getActivityByKey(
+    activitiesInList.payload.key
   );
-  const res = yield call(() => Promise.all(myListActivities));
-  yield put(activitiesInMyList(res)); 
+
+  const res = yield call(() => myListActivities);
+
+  yield put(activitiesInMyList(res));
 }
 
 export default function* mySaga() {

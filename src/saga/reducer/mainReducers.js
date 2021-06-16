@@ -13,6 +13,7 @@ const defaultState = {
   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: "",
   activitiesInMyList: [],
+  // activitiesInMyList: "",
 };
 
 const mainReducers = (state = defaultState, action) => {
@@ -41,7 +42,8 @@ const mainReducers = (state = defaultState, action) => {
       return {
         ...state,
         activity: newActivity,
-        activitiesInMyList: [...state.activitiesInMyList, newItem],
+        //activitiesInMyList: [...state.activitiesInMyList, newItem],
+        // activitiesInMyList: newItem,
       };
 
     case DELETE_ACTIVITY_ITEM:
@@ -64,7 +66,11 @@ const mainReducers = (state = defaultState, action) => {
     case ACTIVITIES_IN_MY_LIST:
       return {
         ...state,
-        activitiesInMyList: action.payload.activitiesInMyList,
+        activitiesInMyList: [
+          ...state.activitiesInMyList,
+          action.payload.activitiesInMyList,
+        ],
+        //activitiesInMyList: action.payload.activitiesInMyList,
       };
 
     case RESET_DETAILS:

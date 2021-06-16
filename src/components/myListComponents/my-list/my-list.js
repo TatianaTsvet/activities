@@ -10,9 +10,10 @@ import "./my-list.scss";
 
 class MyList extends Component {
   componentDidMount() {
-    const storageKey = "activityKey";
-    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-    this.props.activitiesInList(activityKeys);
+    // const storageKey = "activityKey";
+    //const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+    // console.log(activityKeys);
+    // this.props.activitiesInList(activityKeys);
     this.props.switchSkelet(true);
     this.props.closeToast(false);
   }
@@ -20,10 +21,22 @@ class MyList extends Component {
     this.props.resetActivities();
   };
   render() {
-    const { classes } = this.props;
+    const { classes, activity } = this.props;
+
+    const storageKey = "activityKey";
+    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+    //console.log(activityKeys);
+    const posts = activityKeys.map((key, index) => {
+      return <MyListPosts key={key} activityKey={key} index={index}/>;
+    });
+
     return (
       <div>
-        <MyListPosts />
+        {/* <MyListPosts /> */}
+        {/* {activityKeys.map((key) => {
+          return <MyListPosts key={key} activityKey={key} />;
+        })} */}
+        {posts}
         <MyListResetButton />
         <MyListNoPosts />
         <StyledProvider>

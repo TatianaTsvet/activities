@@ -1,5 +1,9 @@
 import MyListPosts from "./my-list-posts";
-import { activitiesInList, switchSpinner } from "../../../saga/actions";
+import {
+  activitiesInList,
+  switchSpinner,
+  deleteActivityItem,
+} from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -12,5 +16,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   activitiesInList,
+  deleteActivityItem,
   switchSpinner,
 })(MyListPosts);
