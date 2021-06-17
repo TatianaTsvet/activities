@@ -18,7 +18,7 @@ const defaultState = {
   loading: false,
   repeatedActivity: false,
   skeletonLoading: true,
-  isVisible: true,
+  isVisible: false,
 };
 
 const serviceReducers = (state = defaultState, action) => {

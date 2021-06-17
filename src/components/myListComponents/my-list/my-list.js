@@ -7,35 +7,30 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 
 import "./my-list.scss";
+import SkeletonInList from "../../../core/components/skeleton";
 
 class MyList extends Component {
   componentDidMount() {
-    // const storageKey = "activityKey";
-    //const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-    // console.log(activityKeys);
-    // this.props.activitiesInList(activityKeys);
-    this.props.switchSkelet(true);
+    //this.props.switchSkelet(true);
     this.props.closeToast(false);
   }
   resetActivities = () => {
     this.props.resetActivities();
   };
   render() {
-    const { classes, activity } = this.props;
+    const { classes } = this.props;
 
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-    //console.log(activityKeys);
     const posts = activityKeys.map((key, index) => {
-      return <MyListPosts key={key} activityKey={key} index={index}/>;
+      return <MyListPosts key={key} activityKey={key} index={index} />;
     });
 
     return (
       <div>
-        {/* <MyListPosts /> */}
-        {/* {activityKeys.map((key) => {
-          return <MyListPosts key={key} activityKey={key} />;
-        })} */}
+        {/* {activityKeys.map((key, index) => {
+          return <MyListPosts key={key} activityKey={key} index={index} />;
+        })}  */}
         {posts}
         <MyListResetButton />
         <MyListNoPosts />

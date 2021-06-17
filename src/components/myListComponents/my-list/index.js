@@ -1,19 +1,17 @@
 import MyList from "./my-list";
-import {
-  activitiesInList,
-  switchSkelet,
-  closeToast,
-} from "../../../saga/actions";
+import { switchSkelet, closeToast, postIsVisible } from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     activity: state.mainReducers.activity,
+    skeletonLoading: state.serviceReducers.skeletonLoading,
+    isVisible: state.serviceReducers.isVisible,
   };
 };
 
 export default connect(mapStateToProps, {
-  activitiesInList,
   switchSkelet,
   closeToast,
+  postIsVisible,
 })(MyList);

@@ -1,14 +1,16 @@
 import MyListPosts from "./my-list-posts";
 import {
   activitiesInList,
-  switchSpinner,
+  switchSkelet,
   deleteActivityItem,
+  postIsVisible,
 } from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     skeletonLoading: state.serviceReducers.skeletonLoading,
+    isVisible: state.serviceReducers.isVisible,
     activitiesInMyList: state.mainReducers.activitiesInMyList,
     activity: state.mainReducers.activity,
   };
@@ -17,5 +19,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   activitiesInList,
   deleteActivityItem,
-  switchSpinner,
+  switchSkelet,
+  postIsVisible,
 })(MyListPosts);

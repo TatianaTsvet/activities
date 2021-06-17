@@ -13,7 +13,6 @@ const defaultState = {
   activity: JSON.parse(localStorage.getItem(storageKey) ?? "[]"),
   randomActivity: "",
   activitiesInMyList: [],
-  // activitiesInMyList: "",
 };
 
 const mainReducers = (state = defaultState, action) => {
@@ -53,24 +52,28 @@ const mainReducers = (state = defaultState, action) => {
       );
 
       localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
-      const activitiesInMyList = state.activitiesInMyList.filter(
+      const activitiesInMyListKeys = state.activitiesInMyList.filter(
         (item) => item.key !== key
       );
 
       return {
         ...state,
         activity: nonDeletedActivities,
-        activitiesInMyList: activitiesInMyList,
+        activitiesInMyList: activitiesInMyListKeys,
       };
 
     case ACTIVITIES_IN_MY_LIST:
+      const { activitiesInMyList } = action.payload;
+      const sameActivityInMyList = !!state.activitiesInMyList.find(
+        (item) => item.key === activitiesInMyList.key
+      );
+      const newActivityInMyList = sameActivityInMyList
+        ? state.activitiesInMyList
+        : [...state.activitiesInMyList, activitiesInMyList];
+
       return {
         ...state,
-        activitiesInMyList: [
-          ...state.activitiesInMyList,
-          action.payload.activitiesInMyList,
-        ],
-        //activitiesInMyList: action.payload.activitiesInMyList,
+        activitiesInMyList: newActivityInMyList,
       };
 
     case RESET_DETAILS:
