@@ -1,5 +1,10 @@
 import MyList from "./my-list";
-import { switchSkelet, closeToast, postIsVisible } from "../../../saga/actions";
+import {
+  switchSkelet,
+  closeToast,
+  postIsVisible,
+  activitiesInList,
+} from "../../../saga/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -14,4 +19,5 @@ export default connect(mapStateToProps, {
   switchSkelet,
   closeToast,
   postIsVisible,
+  activitiesInList,
 })(MyList);

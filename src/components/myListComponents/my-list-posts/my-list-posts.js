@@ -9,64 +9,71 @@ import "./my-list-posts.scss";
 
 class MyListPosts extends Component {
   componentDidMount() {
-    this.props.switchSkelet(true);
+    //this.props.switchSkelet(true);
   }
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
-  viewStateChange = (InView) => {
+  viewStateChange = (InView, entry) => {
     if (InView) {
-      //this.props.switchSkelet(true);
       this.props.activitiesInList(this.props.activityKey);
     }
   };
   render() {
-    const { activityKey, classes, index, activitiesInMyList, skeletonLoading } =
-      this.props;
+    const {
+      activityKey,
+      classes,
+      index,
+      activitiesInMyList,
+      visible,
+      skeletonLoading,
+      isVisible,
+      entry,
+    } = this.props;
 
     const activity = activitiesInMyList[index] ?? activitiesInMyList;
 
+    //this.props.activitiesInList(this.props.activityKey);
+    console.log(visible);
     return (
-      <InView
-        //triggerOnce
-        threshold={0}
-        //rootMargin={"-20px"}
-        onChange={this.viewStateChange}
-      >
-        <div>
-          <Card component="nav" className={classes.myListCard}>
-            {skeletonLoading ? (
-              <SkeletonInList />
-            ) : (
-              <>
-                <Chip
-                  color="primary"
-                  label={activity.type}
-                  className={classes.myListChip}
-                />
-                <Typography
-                  variant="h6"
-                  key={activityKey}
-                  className={classes.myListActivity}
-                >
-                  {activity.activity}
-                </Typography>
-                <Typography className={classes.myListActivity}>
-                  {activity.participants} participants
-                </Typography>
-                <Button
-                  className={classes.myListDoneButton}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => this.deleteItem(activity.key)}
-                >
-                  Done
-                </Button>
-              </>
-            )}
-          </Card>
-        </div>
-      </InView>
+      // <InView
+      // trackVisibility={true}
+      // delay={100}
+      // triggerOnce
+      // threshold={0}
+      // rootMargin={"-20px 0px -20%"}
+      //   onChange={this.viewStateChange}
+      // >
+      <div>
+        <Card component="nav" className={classes.myListCard}>
+          <>
+            <Chip
+              color="primary"
+              label={activity.type}
+              className={classes.myListChip}
+            />
+            <Typography
+              variant="h6"
+              key={activityKey}
+              className={classes.myListActivity}
+            >
+              {activity.activity}
+            </Typography>
+            <Typography className={classes.myListActivity}>
+              {activity.participants} participants
+            </Typography>
+            <Button
+              className={classes.myListDoneButton}
+              variant="contained"
+              color="primary"
+              onClick={() => this.deleteItem(activity.key)}
+            >
+              Done
+            </Button>
+          </>
+        </Card>
+      </div>
+      // </InView>
     );
   }
 }

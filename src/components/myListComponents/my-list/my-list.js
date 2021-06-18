@@ -5,9 +5,9 @@ import MyListResetButton from "../my-list-reset-button";
 import { BackToTop, StyledProvider } from "components-extra";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-
-import "./my-list.scss";
 import SkeletonInList from "../../../core/components/skeleton";
+import InView from "react-intersection-observer";
+import "./my-list.scss";
 
 class MyList extends Component {
   componentDidMount() {
@@ -17,20 +17,39 @@ class MyList extends Component {
   resetActivities = () => {
     this.props.resetActivities();
   };
+  viewStateChange = (key, InView) => {
+    console.log(InView);
+    if (InView) {
+      this.props.activitiesInList(key);
+    }
+  };
   render() {
-    const { classes } = this.props;
+    const { classes, skeletonLoading } = this.props;
 
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+
     const posts = activityKeys.map((key, index) => {
-      return <MyListPosts key={key} activityKey={key} index={index} />;
+      return (
+        <InView
+          //threshold={1}
+          // triggerOnce
+          rootMargin={"200%"}
+          onChange={(InView, entry) => {
+            if (InView) {
+              this.props.activitiesInList(key);
+            }
+          }}
+        >
+          {InView ? (
+            <MyListPosts key={key} activityKey={key} index={index} />
+          ) : null}
+        </InView>
+      );
     });
 
     return (
       <div>
-        {/* {activityKeys.map((key, index) => {
-          return <MyListPosts key={key} activityKey={key} index={index} />;
-        })}  */}
         {posts}
         <MyListResetButton />
         <MyListNoPosts />
