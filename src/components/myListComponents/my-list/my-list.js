@@ -11,39 +11,35 @@ import "./my-list.scss";
 
 class MyList extends Component {
   componentDidMount() {
-    //this.props.switchSkelet(true);
     this.props.closeToast(false);
   }
+
   resetActivities = () => {
     this.props.resetActivities();
   };
-  viewStateChange = (key, InView) => {
-    console.log(InView);
-    if (InView) {
-      this.props.activitiesInList(key);
-    }
-  };
+
   render() {
     const { classes, skeletonLoading } = this.props;
 
     const storageKey = "activityKey";
     const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
 
-    const posts = activityKeys.map((key, index) => {
+    const posts = activityKeys.map((key) => {
       return (
         <InView
-          //threshold={1}
-          // triggerOnce
-          rootMargin={"200%"}
-          onChange={(InView, entry) => {
+          key={key}
+          triggerOnce
+          onChange={(InView) => {
             if (InView) {
               this.props.activitiesInList(key);
             }
           }}
         >
-          {InView ? (
-            <MyListPosts key={key} activityKey={key} index={index} />
-          ) : null}
+          {skeletonLoading ? (
+            <SkeletonInList />
+          ) : (
+            <MyListPosts activityKey={key} />
+          )}
         </InView>
       );
     });

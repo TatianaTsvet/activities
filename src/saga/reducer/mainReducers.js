@@ -64,13 +64,13 @@ const mainReducers = (state = defaultState, action) => {
 
     case ACTIVITIES_IN_MY_LIST:
       const { activitiesInMyList } = action.payload;
+
       const sameActivityInMyList = !!state.activitiesInMyList.find(
         (item) => item.key === activitiesInMyList.key
       );
       const newActivityInMyList = sameActivityInMyList
         ? state.activitiesInMyList
         : [...state.activitiesInMyList, activitiesInMyList];
-
       return {
         ...state,
         activitiesInMyList: newActivityInMyList,

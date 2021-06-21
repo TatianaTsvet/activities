@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
     activity: state.mainReducers.activity,
     skeletonLoading: state.serviceReducers.skeletonLoading,
     isVisible: state.serviceReducers.isVisible,
+    activitiesInMyList: state.mainReducers.activitiesInMyList,
   };
 };
 
