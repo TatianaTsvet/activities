@@ -19,12 +19,9 @@ class MyList extends Component {
   };
 
   render() {
-    const { classes, skeletonLoading } = this.props;
+    const { classes, skeletonLoading, activity } = this.props;
 
-    const storageKey = "activityKey";
-    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-
-    const posts = activityKeys.map((key) => {
+    const posts = activity.map((key) => {
       return (
         <InView
           key={key}
