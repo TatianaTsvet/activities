@@ -30,7 +30,12 @@ export default class ActivityService {
     if (activityData.minprice === activityData.maxprice) {
       data.delete("maxprice");
     }
-    const newData = await this.getResource(`?${data}`);
+    const newData = await this.getResource(`?${data}`, {
+      headers: {
+        Pragma: "no-cache",
+        CacheControl: "no-no-store, no-cache, must-revalidate",
+      },
+    });
     return newData;
   }
 
