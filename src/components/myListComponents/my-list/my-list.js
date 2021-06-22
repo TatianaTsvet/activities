@@ -20,7 +20,9 @@ class MyList extends Component {
 
   render() {
     const { classes, skeletonLoading, activity } = this.props;
-
+    if (activity.length === 0) {
+      return <MyListNoPosts />;
+    }
     const posts = activity.map((key) => {
       return (
         <InView
@@ -45,7 +47,7 @@ class MyList extends Component {
       <div>
         {posts}
         <MyListResetButton />
-        <MyListNoPosts />
+
         <StyledProvider>
           <BackToTop className={classes.backToTop} />
         </StyledProvider>
