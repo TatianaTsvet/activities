@@ -30,7 +30,9 @@ export default class ActivityService {
     if (activityData.minprice === activityData.maxprice) {
       data.delete("maxprice");
     }
+
     const newData = await this.getResource(`?${data}`);
+
     return newData;
   }
 

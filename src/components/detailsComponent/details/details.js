@@ -22,7 +22,7 @@ class Details extends Component {
     this.props.switchSpinner(true);
     const { details } = this.props;
     const randomActivity = await this.ActivityService.getActivity(details);
-    this.props.activityFetched(randomActivity);
+    setTimeout(() => this.props.activityFetched(randomActivity), 2000);
     if (!randomActivity.error) {
       this.props.changeError(false);
     }
@@ -69,15 +69,17 @@ class Details extends Component {
             </Grid>
           )}
         </form>
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          className={classes.buttonReset}
-          onClick={this.resetDetails}
-        >
-          Reset all
-        </Button>
+        {loading ? null : (
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            className={classes.buttonReset}
+            onClick={this.resetDetails}
+          >
+            Reset all
+          </Button>
+        )}
       </>
     );
   }
