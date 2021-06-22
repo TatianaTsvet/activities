@@ -8,6 +8,7 @@ export function* fetchActivityById(activitiesInList) {
     activitiesInList.payload.key
   );
   const res = yield call(() => myListActivities);
+
   yield put(activitiesInMyList(res));
 }
 
