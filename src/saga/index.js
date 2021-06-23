@@ -8,8 +8,7 @@ export function* fetchActivityById(activitiesInList) {
     activitiesInList.payload.key
   );
   const res = yield call(() => myListActivities);
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-  yield delay(2000);
+
   yield put(activitiesInMyList(res));
 }
 
