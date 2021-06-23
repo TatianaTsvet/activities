@@ -11,7 +11,16 @@ const styles = (theme) => ({
     background: "#2e7d32",
   },
   myListDoneButton: {
+    width: "6em",
+    height: "5em",
     marginTop: "1em",
   },
+  slider: {},
+  success: {
+    marginTop: "1em",
+    textTransform: "capitalize",
+    color: "#1976d2",
+  },
+  tooltip: {},
 });
 export default styles;
