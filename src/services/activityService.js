@@ -12,7 +12,8 @@ export default class ActivityService {
     return await res.json();
   }
 
-  async getActivity(activityData) {
+  async getActivity(details) {
+    const activityData = { ...details };
     const data = new URLSearchParams();
     if (activityData.minaccessability === activityData.maxaccessability) {
       data.append("accessibility", activityData.minaccessability);
