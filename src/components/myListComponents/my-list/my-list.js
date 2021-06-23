@@ -19,12 +19,11 @@ class MyList extends Component {
   };
 
   render() {
-    const { classes, skeletonLoading } = this.props;
-
-    const storageKey = "activityKey";
-    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-
-    const posts = activityKeys.map((key) => {
+    const { classes, skeletonLoading, activity } = this.props;
+    if (activity.length === 0) {
+      return <MyListNoPosts />;
+    }
+    const posts = activity.map((key) => {
       return (
         <InView
           key={key}
@@ -48,7 +47,7 @@ class MyList extends Component {
       <div>
         {posts}
         <MyListResetButton />
-        <MyListNoPosts />
+
         <StyledProvider>
           <BackToTop className={classes.backToTop} />
         </StyledProvider>
