@@ -7,11 +7,7 @@ import "./my-list-no-posts.scss";
 
 class MyListNoPosts extends Component {
   render() {
-    const { activity, classes } = this.props;
-
-    if (activity.length !== 0) {
-      return null;
-    }
+    const { classes } = this.props;
 
     return (
       <Card key="noActivity">
