@@ -46,6 +46,9 @@ class MyListPosts extends Component {
     this.props.deleteActivityItem(key);
   };
   onChange = (event, newValue) => {
+    const activityItem = { key: this.props.activityKey, progress: newValue };
+
+    this.props.changeActivityProgress(activityItem);
     if (newValue === 100) {
       this.setState({ disabled: false });
     } else {
@@ -53,7 +56,7 @@ class MyListPosts extends Component {
     }
   };
   render() {
-    const { activityKey, classes, activitiesInMyList } = this.props;
+    const { activityKey, classes, activitiesInMyList, progress } = this.props;
     const { disabled } = this.state;
     const activity = activitiesInMyList.find(({ key }) => key === activityKey);
 

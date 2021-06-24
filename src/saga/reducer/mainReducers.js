@@ -5,6 +5,7 @@ import {
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
   RESET_DETAILS,
+  CHANGE_ACTIVITY_PROGRESS,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
@@ -29,26 +30,28 @@ const mainReducers = (state = defaultState, action) => {
       };
     case ADD_ITEM_TO_MY_LIST:
       const { randomActivity } = action.payload;
-      const newItem = { ...randomActivity };
+      const newItem = randomActivity.key;
 
-      const sameActivity = !!state.activity.includes(newItem.key);
+      const sameActivity = !!state.activity.find(
+        (item) => item.key === newItem
+      );
+
+      const activityKey = { key: newItem, progress: 0 };
       const newActivity = sameActivity
         ? state.activity
-        : [...state.activity, newItem.key];
+        : [...state.activity, activityKey];
 
       localStorage.setItem(storageKey, JSON.stringify(newActivity));
 
       return {
         ...state,
         activity: newActivity,
-        //activitiesInMyList: [...state.activitiesInMyList, newItem],
-        // activitiesInMyList: newItem,
       };
 
     case DELETE_ACTIVITY_ITEM:
       const { key } = action.payload;
       const nonDeletedActivities = state.activity.filter(
-        (item) => key !== item
+        (item) => key !== item.key
       );
 
       localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
@@ -61,7 +64,22 @@ const mainReducers = (state = defaultState, action) => {
         activity: nonDeletedActivities,
         activitiesInMyList: activitiesInMyListKeys,
       };
+    case CHANGE_ACTIVITY_PROGRESS:
+      const { changedActivity } = action.payload;
+      const activitiesList = JSON.parse(localStorage.getItem(storageKey));
 
+      activitiesList.map((item) => {
+        if (item.key === changedActivity.key) {
+          return item.progress === changedActivity.progress;
+        } else {
+          return null;
+        }
+      });
+      console.log(activitiesList);
+      return {
+        ...state,
+        activity: activitiesList,
+      };
     case ACTIVITIES_IN_MY_LIST:
       const { activitiesInMyList } = action.payload;
 

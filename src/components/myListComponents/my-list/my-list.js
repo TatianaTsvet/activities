@@ -19,33 +19,30 @@ class MyList extends Component {
   };
 
   render() {
-    const { classes, skeletonLoading } = this.props;
+    const { classes, skeletonLoading, activity } = this.props;
 
-    const storageKey = "activityKey";
-    const activityKeys = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
-
-    const posts = activityKeys.map((key) => {
+    const posts = activity.map((item) => {
       return (
         <InView
-          key={key}
+          key={item.key}
           triggerOnce
           onChange={(InView) => {
             if (InView) {
-              this.props.activitiesInList(key);
+              this.props.activitiesInList(item.key);
             }
           }}
         >
           {skeletonLoading ? (
             <SkeletonInList />
           ) : (
-            <MyListPosts activityKey={key} />
+            <MyListPosts activityKey={item.key} progress={item.progress} />
           )}
         </InView>
       );
     });
 
     return (
-      <div>
+      <div className="my-list">
         {posts}
         <MyListResetButton />
         <MyListNoPosts />
