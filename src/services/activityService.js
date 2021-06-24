@@ -1,14 +1,12 @@
 const waitingTime = 2000;
+
 export default class ActivityService {
   constructor() {
     this._apiBase = "http://www.boredapi.com/api/activity";
   }
-  sleepFor(sleepDuration) {
-    const now = new Date().getTime();
-    while (new Date().getTime() < now + sleepDuration) {}
-  }
+
   async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`, { timeout: 2000 });
+    const res = await fetch(`${this._apiBase}${url}`);
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
@@ -16,8 +14,9 @@ export default class ActivityService {
     return await res.json();
   }
 
-  async getActivity(activityData) {
+  async getActivity(details) {
     const startTime = new Date().getTime();
+    const activityData = { ...details };
     const data = new URLSearchParams();
 
     for (let key in activityData) {
@@ -37,14 +36,10 @@ export default class ActivityService {
     }
     const newData = await this.getResource(`?${data}`);
     const endTime = new Date().getTime();
-
     const leftTime = waitingTime - (endTime - startTime);
-
-    this.sleepFor(leftTime);
-
+    await new Promise((resolve) => setTimeout(resolve, leftTime));
     return newData;
   }
-
   async getActivityByKey(key) {
     const startTime = new Date().getTime();
 
@@ -53,7 +48,8 @@ export default class ActivityService {
     const res = await this.getResource(`?${data}`);
     const endTime = new Date().getTime();
     const leftTime = waitingTime - (endTime - startTime);
-    this.sleepFor(leftTime);
+
+    await new Promise((resolve) => setTimeout(resolve, leftTime));
     return await res;
   }
 }

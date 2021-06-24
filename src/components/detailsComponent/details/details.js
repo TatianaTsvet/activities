@@ -22,8 +22,6 @@ class Details extends Component {
     this.props.switchSpinner(true);
     const { details } = this.props;
     const randomActivity = await this.ActivityService.getActivity(details);
-
-    //setTimeout(() => this.props.activityFetched(randomActivity), 2000);
     this.props.activityFetched(randomActivity);
     if (!randomActivity.error) {
       this.props.changeError(false);

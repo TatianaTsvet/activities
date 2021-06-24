@@ -21,7 +21,7 @@ class ActivitiesResultItem extends Component {
   };
 
   render() {
-    const { randomActivity, error, classes } = this.props;
+    const { randomActivity, error, classes, loading } = this.props;
 
     const errorActivity = (
       <Grid
@@ -36,29 +36,23 @@ class ActivitiesResultItem extends Component {
         {error}
       </Grid>
     );
-
+    const loadingActivity = loading ? null : (
+      <Container>
+        <ActivitiesResultPaper />
+        <Button
+          className={classes.activitiesResultButton}
+          variant="contained"
+          color="secondary"
+          onClick={this.sendToMyList}
+          size="medium"
+        >
+          Save for you later
+        </Button>
+      </Container>
+    );
     const showComponent = !error && randomActivity;
 
-    return error ? (
-      <> {errorActivity} </>
-    ) : (
-      showComponent && (
-        <>
-          <Container>
-            <ActivitiesResultPaper />
-            <Button
-              className={classes.activitiesResultButton}
-              variant="contained"
-              color="secondary"
-              onClick={this.sendToMyList}
-              size="medium"
-            >
-              Save for you later
-            </Button>
-          </Container>
-        </>
-      )
-    );
+    return error ? { errorActivity } : showComponent && loadingActivity;
   }
 }
 

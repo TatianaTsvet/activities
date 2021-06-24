@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
     error: state.serviceReducers.error,
     repeatedActivity: state.serviceReducers.repeatedActivity,
     activity: state.mainReducers.activity,
+    loading: state.serviceReducers.loading,
   };
 };
 
