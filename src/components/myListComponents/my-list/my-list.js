@@ -44,9 +44,13 @@ class MyList extends Component {
     });
 
     return (
-      <div>
+      <div className="my_list">
         {posts}
-        <MyListResetButton />
+        <MyListResetButton
+          resetActivities={this.resetActivities}
+          activity={activity}
+          loading={skeletonLoading}
+        />
 
         <StyledProvider>
           <BackToTop className={classes.backToTop} />

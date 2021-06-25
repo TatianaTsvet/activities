@@ -29,7 +29,7 @@ class DetailsBudget extends Component {
   render() {
     const { classes, minprice, maxprice } = this.props;
     return (
-      <>
+      <div className="detail_budget">
         <Typography id="range-slider" gutterBottom>
           max budget
         </Typography>
@@ -45,7 +45,7 @@ class DetailsBudget extends Component {
           value={[minprice, maxprice]}
           marks={marks}
         />
-      </>
+      </div>
     );
   }
 }
