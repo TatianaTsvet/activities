@@ -11,6 +11,7 @@ import App from "./components/app/";
 import { Provider } from "react-redux";
 import "intersection-observer-polyfill";
 import store from "./saga/store/store";
+
 import "./index.scss";
 
 ReactDOM.render(
