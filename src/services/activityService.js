@@ -4,7 +4,14 @@ export default class ActivityService {
   }
 
   async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`);
+    const res = await fetch(
+      `${this._apiBase}${url}`,
+      new Headers({
+        Pragma: "no-cache",
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        Expires: "-1",
+      })
+    );
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
@@ -14,7 +21,8 @@ export default class ActivityService {
 
   async getActivity(activityData) {
     const data = new URLSearchParams();
-
+    const t = Date.now();
+    data.append("time", t);
     for (let key in activityData) {
       if (
         activityData[key] !== "" &&
@@ -30,6 +38,7 @@ export default class ActivityService {
     if (activityData.minprice === activityData.maxprice) {
       data.delete("maxprice");
     }
+
     const newData = await this.getResource(`?${data}`);
     return newData;
   }
