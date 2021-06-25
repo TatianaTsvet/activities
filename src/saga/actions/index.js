@@ -123,9 +123,15 @@ export const postIsVisible = (isVisible) => {
     payload: { isVisible },
   };
 };
-export const changeActivityProgress = (changedActivity) => {
+// export const changeActivityProgress = (changedActivity) => {
+//   return {
+//     type: types.CHANGE_ACTIVITY_PROGRESS,
+//     payload: { changedActivity },
+//   };
+// };
+export const changeActivityProgress = (key, progress) => {
   return {
     type: types.CHANGE_ACTIVITY_PROGRESS,
-    payload: { changedActivity },
+    payload: { key, progress },
   };
 };

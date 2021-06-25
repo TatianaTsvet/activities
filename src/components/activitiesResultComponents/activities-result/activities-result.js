@@ -15,11 +15,11 @@ export default class ActivitiesResult extends Component {
       <>
         <ActivitiesResultItem />
         <SuccessToast />
-        {/* <RepeatedModal
+        <RepeatedModal
           repeatedActivity={repeatedActivity}
           randomActivity={randomActivity.activity}
           closeRepeatedToast={this.closeRepeatedToast}
-        /> */}
+        />
       </>
     );
   }

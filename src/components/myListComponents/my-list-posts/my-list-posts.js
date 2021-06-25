@@ -38,26 +38,15 @@ const marks = [
 ];
 
 class MyListPosts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { disabled: true };
-  }
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
   onChange = (event, newValue) => {
-    const activityItem = { key: this.props.activityKey, progress: newValue };
-
-    this.props.changeActivityProgress(activityItem);
-    if (newValue === 100) {
-      this.setState({ disabled: false });
-    } else {
-      this.setState({ disabled: true });
-    }
+    this.props.changeActivityProgress(this.props.activityKey, newValue);
   };
   render() {
     const { activityKey, classes, activitiesInMyList, progress } = this.props;
-    const { disabled } = this.state;
+
     const activity = activitiesInMyList.find(({ key }) => key === activityKey);
 
     if (!activity) {
@@ -108,24 +97,26 @@ class MyListPosts extends Component {
                 defaultValue={0}
                 aria-labelledby="discrete-slider-always"
                 step={25}
+                value={progress}
                 marks={marks}
-                valueLabelDisplay="auto"
+                // valueLabelDisplay="auto"
               />
             </Grid>
           </Grid>
           <Grid>
             <Tooltip
+              interactive
               className={classes.tooltip}
               placement="top"
               title={
-                disabled
-                  ? "Do your activity completely"
-                  : "You may delete your activity"
+                progress === 100
+                  ? "You may delete your activity"
+                  : "Do your activity completely"
               }
             >
               <span>
                 <Button
-                  disabled={disabled}
+                  disabled={progress === 100 ? false : true}
                   className={classes.myListDoneButton}
                   variant="contained"
                   color="primary"

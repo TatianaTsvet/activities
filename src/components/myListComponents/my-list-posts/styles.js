@@ -13,7 +13,6 @@ const styles = (theme) => ({
   myListDoneButton: {
     width: "6em",
     height: "5em",
-    marginTop: "1em",
   },
   slider: {},
   success: {

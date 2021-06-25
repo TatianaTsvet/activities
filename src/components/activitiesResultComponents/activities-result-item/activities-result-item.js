@@ -11,13 +11,13 @@ class ActivitiesResultItem extends Component {
     const { randomActivity, activity } = this.props;
     this.props.addItemToMyList(randomActivity);
     this.props.showSuccess(true);
-    // const repeatedActivity = activity.find(
-    //   (item) => item === randomActivity.key
-    // );
-    // if (repeatedActivity) {
-    //   this.props.saveAgainActivity(true);
-    //   this.props.showSuccess(false);
-    // }
+    const repeatedActivity = activity.find(
+      (item) => item.key === randomActivity.key
+    );
+    if (repeatedActivity) {
+      this.props.saveAgainActivity(true);
+      this.props.showSuccess(false);
+    }
   };
 
   render() {

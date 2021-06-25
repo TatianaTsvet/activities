@@ -65,20 +65,19 @@ const mainReducers = (state = defaultState, action) => {
         activitiesInMyList: activitiesInMyListKeys,
       };
     case CHANGE_ACTIVITY_PROGRESS:
-      const { changedActivity } = action.payload;
       const activitiesList = JSON.parse(localStorage.getItem(storageKey));
 
-      activitiesList.map((item) => {
-        if (item.key === changedActivity.key) {
-          return item.progress === changedActivity.progress;
+      const newList = activitiesList.map((item) => {
+        if (item.key === action.payload.key) {
+          return { ...item, progress: action.payload.progress };
         } else {
-          return null;
+          return item;
         }
       });
-      console.log(activitiesList);
+      localStorage.setItem(storageKey, JSON.stringify(newList));
       return {
         ...state,
-        activity: activitiesList,
+        activity: newList,
       };
     case ACTIVITIES_IN_MY_LIST:
       const { activitiesInMyList } = action.payload;
