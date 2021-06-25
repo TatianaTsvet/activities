@@ -9,10 +9,6 @@ class MyListNoPosts extends Component {
   render() {
     const { activity, classes } = this.props;
 
-    if (activity.length !== 0) {
-      return null;
-    }
-
     return (
       <Card key="noActivity">
         <Typography variant="h6" className={classes.myListEmptyActivity}>
