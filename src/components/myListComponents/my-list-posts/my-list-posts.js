@@ -23,27 +23,25 @@ class MyListPosts extends Component {
     return (
       <div>
         <Card component="nav" className={classes.myListCard}>
-          <>
-            <Chip
-              color="primary"
-              label={activity.type}
-              className={classes.myListChip}
-            />
-            <Typography variant="h6" className={classes.myListActivity}>
-              {activity.activity}
-            </Typography>
-            <Typography className={classes.myListActivity}>
-              {activity.participants} participants
-            </Typography>
-            <Button
-              className={classes.myListDoneButton}
-              variant="contained"
-              color="primary"
-              onClick={() => this.deleteItem(activity.key)}
-            >
-              Done
-            </Button>
-          </>
+          <Chip
+            color="primary"
+            label={activity.type}
+            className={classes.myListChip}
+          />
+          <Typography variant="h6" className={classes.myListActivity}>
+            {activity.activity}
+          </Typography>
+          <Typography className={classes.myListActivity}>
+            {activity.participants} participants
+          </Typography>
+          <Button
+            className={classes.myListDoneButton}
+            variant="contained"
+            color="primary"
+            onClick={() => this.deleteItem(activity.key)}
+          >
+            Done
+          </Button>
         </Card>
       </div>
     );

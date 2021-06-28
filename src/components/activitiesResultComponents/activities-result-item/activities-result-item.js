@@ -43,20 +43,18 @@ class ActivitiesResultItem extends Component {
       <> {errorActivity} </>
     ) : (
       showComponent && (
-        <>
-          <Container>
-            <ActivitiesResultPaper />
-            <Button
-              className={classes.activitiesResultButton}
-              variant="contained"
-              color="secondary"
-              onClick={this.sendToMyList}
-              size="medium"
-            >
-              Save for you later
-            </Button>
-          </Container>
-        </>
+        <Container>
+          <ActivitiesResultPaper />
+          <Button
+            className={classes.activitiesResultButton}
+            variant="contained"
+            color="secondary"
+            onClick={this.sendToMyList}
+            size="medium"
+          >
+            Save for you later
+          </Button>
+        </Container>
       )
     );
   }
