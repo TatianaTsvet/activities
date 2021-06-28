@@ -47,7 +47,6 @@ export default class ActivityService {
       }
     }
 
-
     const newData = await this.getResource(`?${data}`);
     return newData;
   }
