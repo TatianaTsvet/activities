@@ -69,15 +69,17 @@ class Details extends Component {
             </Grid>
           )}
         </form>
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          className={classes.buttonReset}
-          onClick={this.resetDetails}
-        >
-          Reset all
-        </Button>
+        {loading ? null : (
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            className={classes.buttonReset}
+            onClick={this.resetDetails}
+          >
+            Reset all
+          </Button>
+        )}
       </>
     );
   }

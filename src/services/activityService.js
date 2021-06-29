@@ -1,3 +1,5 @@
+const waitingTime = 2000;
+
 export default class ActivityService {
   constructor() {
     this._apiBase = "http://www.boredapi.com/api/activity";
@@ -13,8 +15,10 @@ export default class ActivityService {
   }
 
   async getActivity(details) {
+    const startTime = new Date().getTime();
     const activityData = { ...details };
     const data = new URLSearchParams();
+
     if (activityData.minaccessability === activityData.maxaccessability) {
       data.append("accessibility", activityData.minaccessability);
       activityData.minaccessability = 0;
@@ -36,13 +40,21 @@ export default class ActivityService {
     }
 
     const newData = await this.getResource(`?${data}`);
+    const endTime = new Date().getTime();
+    const leftTime = waitingTime - (endTime - startTime);
+    await new Promise((resolve) => setTimeout(resolve, leftTime));
     return newData;
   }
-
   async getActivityByKey(key) {
+    const startTime = new Date().getTime();
+
     const data = new URLSearchParams();
     data.append("key", key);
     const res = await this.getResource(`?${data}`);
+    const endTime = new Date().getTime();
+    const leftTime = waitingTime - (endTime - startTime);
+
+    await new Promise((resolve) => setTimeout(resolve, leftTime));
     return await res;
   }
 }
