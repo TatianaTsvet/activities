@@ -45,8 +45,6 @@ export default class ActivityService {
 
   async getActivityByKey(key) {
     const data = new URLSearchParams();
-    const t = Date.now();
-    data.append("time", t);
     data.append("key", key);
     const res = await this.getResource(`?${data}`);
     return await res;
