@@ -117,12 +117,7 @@ export const resetActivities = () => {
     type: types.RESET_ACTIVITIES,
   };
 };
-export const postIsVisible = (isVisible) => {
-  return {
-    type: types.POST_IS_VISIBLE,
-    payload: { isVisible },
-  };
-};
+
 // export const changeActivityProgress = (changedActivity) => {
 //   return {
 //     type: types.CHANGE_ACTIVITY_PROGRESS,
@@ -135,3 +130,4 @@ export const changeActivityProgress = (key, progress) => {
     payload: { key, progress },
   };
 };
+

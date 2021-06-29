@@ -10,14 +10,14 @@ class ActivitiesResultPaper extends Component {
     const { randomActivity, classes } = this.props;
 
     return (
-      <>
+      <div className="activities_result_paper">
         <Typography variant="h5" gutterBottom>
           You should
         </Typography>
         <Paper className={classes.resultWindow}>
           {randomActivity.activity}
         </Paper>
-      </>
+      </div>
     );
   }
 }

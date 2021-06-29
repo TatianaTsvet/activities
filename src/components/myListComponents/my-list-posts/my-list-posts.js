@@ -54,6 +54,7 @@ class MyListPosts extends Component {
     }
 
     return (
+
       <Card component="nav" className={classes.myListCard}>
         <Grid
           container
@@ -129,6 +130,7 @@ class MyListPosts extends Component {
           </Grid>
         </Grid>
       </Card>
+
     );
   }
 }
