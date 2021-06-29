@@ -52,7 +52,9 @@ class ActivitiesResultItem extends Component {
     );
     const showComponent = !error && randomActivity;
 
+
     return error ? { errorActivity } : showComponent && loadingActivity;
+
   }
 }
 

@@ -28,17 +28,26 @@ class DetailsType extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-
+    const { classes, type } = this.props;
+    let newType = type;
+    if (newType === "busywork") {
+      newType = "busy work";
+    }
     return (
       <Autocomplete
+        key={type}
+        clearText="close"
         className={classes.autocomplete}
-        id="controlled-demo"
+        id="controllable-states-demo"
         options={availableTypes}
-        getOptionLabel={(option) => option.title}
+        getOptionLabel={(option) => option.title.toUpperCase()}
         onChange={this.changeType}
         renderInput={(params) => (
-          <TextField {...params} label="choose any type" />
+          <TextField
+            {...params}
+            label={type === "" ? "Choose any type" : newType}
+            //label="choose any type"
+          />
         )}
       />
     );

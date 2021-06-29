@@ -9,28 +9,26 @@ class RepeatedModal extends Component {
     const { repeatedActivity, randomActivity, classes } = this.props;
 
     return (
-      <div>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={repeatedActivity}
-          onClose={() => this.props.closeRepeatedToast(false)}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={repeatedActivity}>
-            <div className={classes.modalPaper}>
-              <h2 id="transition-modal-title">
-                "{randomActivity}" was already saved
-              </h2>
-            </div>
-          </Fade>
-        </Modal>
-      </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={repeatedActivity}
+        onClose={() => this.props.closeRepeatedToast(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={repeatedActivity}>
+          <div className={classes.modalPaper}>
+            <h2 id="transition-modal-title">
+              "{randomActivity}" was already saved
+            </h2>
+          </div>
+        </Fade>
+      </Modal>
     );
   }
 }

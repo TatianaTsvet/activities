@@ -28,7 +28,7 @@ class DetailsAccessability extends Component {
     const { classes, minaccessability, maxaccessability } = this.props;
 
     return (
-      <>
+      <div className="detail_accessability">
         <Typography id="range-slider" gutterBottom>
           accessability
         </Typography>
@@ -44,7 +44,7 @@ class DetailsAccessability extends Component {
           value={[minaccessability, maxaccessability]}
           marks={marks}
         />
-      </>
+      </div>
     );
   }
 }
