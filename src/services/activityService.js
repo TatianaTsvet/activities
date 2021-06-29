@@ -4,14 +4,9 @@ export default class ActivityService {
   }
 
   async getResource(url) {
-    const res = await fetch(
-      `${this._apiBase}${url}`,
-      new Headers({
-        Pragma: "no-cache",
-        "Cache-Control": "no-store, no-cache, must-revalidate",
-        Expires: "-1",
-      })
-    );
+    const res = await fetch(`${this._apiBase}${url}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
@@ -22,9 +17,6 @@ export default class ActivityService {
   async getActivity(details) {
     const activityData = { ...details };
     const data = new URLSearchParams();
-
-    const t = Date.now();
-    data.append("time", t);
 
     if (activityData.minaccessability === activityData.maxaccessability) {
       data.append("accessibility", activityData.minaccessability);
