@@ -1,5 +1,6 @@
 import MyList from "./my-list";
 import {
+  resetActivities,
   switchSkelet,
   closeToast,
   activitiesInList,
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  resetActivities,
   switchSkelet,
   closeToast,
   activitiesInList,
