@@ -6,7 +6,9 @@ export default class ActivityService {
   }
 
   async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`);
+    const res = await fetch(`${this._apiBase}${url}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
@@ -29,6 +31,7 @@ export default class ActivityService {
       activityData.minprice = 0;
       activityData.maxprice = 1;
     }
+
     for (let key in activityData) {
       if (
         activityData[key] !== "" &&
