@@ -21,14 +21,10 @@ class MyList extends Component {
   render() {
     const { classes, skeletonLoading, activity } = this.props;
 
-
-    
-
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
-    const posts = activity.map((key) => {
-
+    const posts = activity.map((item) => {
       return (
         <InView
           key={item.key}
@@ -49,9 +45,7 @@ class MyList extends Component {
     });
 
     return (
-
       <div className="my_list">
-
         {posts}
         <MyListResetButton
           resetActivities={this.resetActivities}
