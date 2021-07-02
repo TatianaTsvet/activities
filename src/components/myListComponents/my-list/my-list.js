@@ -17,13 +17,34 @@ class MyList extends Component {
   resetActivities = () => {
     this.props.resetActivities();
   };
+  deleteItem = (key) => {
+    this.props.deleteActivityItem(key);
+  };
+  dragStart = (e, index) => {
+    console.log(index);
+  };
+  dragLeave = (e) => {
+    e.target.style.background = "white";
+  };
+  dragEnd = (e) => {};
+  dragOver = (e) => {
+    e.preventDefault();
+    e.target.style.background = "green";
+  };
+  dragDrop = (e, index) => {
+    e.preventDefault();
+    
 
+    })
+    console.log(index);
+    
+  };
   render() {
     const { classes, skeletonLoading, activity } = this.props;
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
-    const posts = activity.map((key) => {
+    const posts = activity.map((key, index) => {
       return (
         <InView
           key={key}
@@ -37,7 +58,16 @@ class MyList extends Component {
           {skeletonLoading ? (
             <SkeletonInList />
           ) : (
-            <MyListPosts activityKey={key} />
+            <div
+              draggable={true}
+              onDragStart={(e) => this.dragStart(e, index)}
+              onDragLeave={(e) => this.dragLeave(e)}
+              onDragEnd={(e) => this.dragEnd(e)}
+              onDragOver={(e) => this.dragOver(e)}
+              onDrop={(e) => this.dragDrop(e, index)}
+            >
+              <MyListPosts activityKey={key} index={index} />
+            </div>
           )}
         </InView>
       );
