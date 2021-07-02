@@ -7,6 +7,7 @@ import {
   Grid,
   Tooltip,
 } from "@material-ui/core";
+import { debounce } from "lodash";
 import { withStyles } from "@material-ui/core/styles";
 import React, { Component } from "react";
 import styles from "./styles";
@@ -38,14 +39,35 @@ const marks = [
 ];
 
 class MyListPosts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { stateProgress: 0 };
+  }
+  componentDidMount() {
+    this.setState({
+      stateProgress: this.props.progress,
+    });
+  }
+
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
+  debounceEvent = debounce((activityKey, progress) => {
+    this.props.changeActivityProgress(activityKey, progress);
+  }, 1000);
   onChange = (event, newValue) => {
-    this.props.changeActivityProgress(this.props.activityKey, newValue);
+    const { activityKey } = this.props;
+    const { stateProgress } = this.state;
+    this.setState({
+      stateProgress: newValue,
+    });
+
+    this.debounceEvent(activityKey, stateProgress);
   };
+
   render() {
-    const { activityKey, classes, activitiesInMyList, progress } = this.props;
+    const { activityKey, classes, activitiesInMyList } = this.props;
+    const { stateProgress } = this.state;
 
     const activity = activitiesInMyList.find(({ key }) => key === activityKey);
 
@@ -54,7 +76,6 @@ class MyListPosts extends Component {
     }
 
     return (
-
       <Card component="nav" className={classes.myListCard}>
         <Grid
           container
@@ -98,7 +119,7 @@ class MyListPosts extends Component {
                 defaultValue={0}
                 aria-labelledby="discrete-slider-always"
                 step={25}
-                value={progress}
+                value={stateProgress}
                 marks={marks}
                 // valueLabelDisplay="auto"
               />
@@ -110,14 +131,14 @@ class MyListPosts extends Component {
               className={classes.tooltip}
               placement="top"
               title={
-                progress === 100
+                stateProgress === 100
                   ? "You may delete your activity"
                   : "Do your activity completely"
               }
             >
               <span>
                 <Button
-                  disabled={progress === 100 ? false : true}
+                  disabled={stateProgress === 100 ? false : true}
                   className={classes.myListDoneButton}
                   variant="contained"
                   color="primary"
@@ -130,7 +151,6 @@ class MyListPosts extends Component {
           </Grid>
         </Grid>
       </Card>
-
     );
   }
 }
