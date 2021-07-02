@@ -9,7 +9,6 @@ import {
   SHOW_SUCCESS,
   SWITCH_SPINNER,
   SWITCH_SKELET,
-  POST_IS_VISIBLE,
 } from "../actions/actionType";
 
 const defaultState = {
