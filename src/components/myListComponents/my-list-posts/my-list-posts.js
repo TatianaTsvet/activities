@@ -55,6 +55,7 @@ class MyListPosts extends Component {
   debounceEvent = debounce((activityKey, progress) => {
     this.props.changeActivityProgress(activityKey, progress);
   }, 1000);
+
   onChange = (event, newValue) => {
     const { activityKey } = this.props;
     const { stateProgress } = this.state;
