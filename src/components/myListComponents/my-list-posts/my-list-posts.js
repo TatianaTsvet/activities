@@ -7,9 +7,9 @@ import SkeletonInList from "../../../core/components/skeleton";
 import "./my-list-posts.scss";
 
 class MyListPosts extends Component {
-  // deleteItem = (key) => {
-  //   this.props.deleteActivityItem(key);
-  // };
+  deleteItem = (key) => {
+    this.props.deleteActivityItem(key);
+  };
   // dragStart = (e, index) => {
   //   console.log(index);
   // };
@@ -36,6 +36,7 @@ class MyListPosts extends Component {
 
     return (
       <div
+        className="myListPostItem"
         // draggable={true}
         // onDragStart={(e) => this.dragStart(e, index)}
         // onDragLeave={(e) => this.dragLeave(e)}
