@@ -33,10 +33,7 @@ class MyList extends Component {
 
   dragOver = (e) => {
     e.preventDefault();
-    if (e.target.classList.contains("MyListPosts-myListCard-33")) {
-      e.target.style.background = "green";
-    }
-    //e.target.style.background = "lightBlue";
+    e.target.style.background = "#5DCEC6";
   };
   dragDrop = (e, dropIndex) => {
     e.preventDefault();

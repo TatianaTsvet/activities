@@ -35,12 +35,15 @@ const mainReducers = (state = defaultState, action) => {
       const sameActivity = !!state.activity.find(
         (item) => item.key === newItem
       );
-      const newOrder = Math.max.apply(
-        null,
-        state.activity.map((item) => item.order)
-      );
-      console.log(newOrder);
-      const activityKey = { key: newItem, order: newOrder + 1  };
+      const newOrder =
+        state.activity.length !== 0
+          ? Math.max.apply(
+              null,
+              state.activity.map((item) => item.order)
+            )
+          : 0;
+
+      const activityKey = { key: newItem, order: newOrder + 1 };
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, activityKey];

@@ -6,6 +6,7 @@ const styles = (theme) => ({
   },
   myListActivity: {
     paddingTop: "1em",
+    pointerEvents: "none",
   },
   myListChip: {
     background: "#2e7d32",
