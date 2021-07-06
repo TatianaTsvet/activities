@@ -7,7 +7,7 @@ import {
   Grid,
   Tooltip,
 } from "@material-ui/core";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { withStyles } from "@material-ui/core/styles";
 import React, { Component } from "react";
 import styles from "./styles";
@@ -41,12 +41,7 @@ const marks = [
 class MyListPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = { stateProgress: 0 };
-  }
-  componentDidMount() {
-    this.setState({
-      stateProgress: this.props.progress,
-    });
+    this.state = { stateProgress: this.props.progress };
   }
 
   deleteItem = (key) => {
@@ -58,12 +53,12 @@ class MyListPosts extends Component {
 
   onChange = (event, newValue) => {
     const { activityKey } = this.props;
-    const { stateProgress } = this.state;
+
     this.setState({
       stateProgress: newValue,
     });
 
-    this.debounceEvent(activityKey, stateProgress);
+    this.debounceEvent(activityKey, newValue);
   };
 
   render() {
