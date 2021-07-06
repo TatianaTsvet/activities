@@ -24,6 +24,29 @@ class MyList extends Component {
   deleteItem = (key) => {
     this.props.deleteActivityItem(key);
   };
+  changeOrder = (card1, card2) => {
+    const newActivity = this.props.activity.map((item) => {
+      if (item.order === card1) {
+        return { ...item, order: card2 };
+      }
+      if (item.order === card2) {
+        return { ...item, order: card1 };
+      }
+      return item;
+    });
+    return this.props.changeActivityOrder(newActivity);
+  };
+  changeOrderByArrowUp = (cardIndex) => {
+    const changedCard1 = this.props.activity[cardIndex].order;
+    const changedCard2 = this.props.activity[cardIndex - 1].order;
+    this.changeOrder(changedCard1, changedCard2);
+  };
+  changeOrderByArrowDown = (cardIndex) => {
+    const changedCard1 = this.props.activity[cardIndex].order;
+    const changedCard2 = this.props.activity[cardIndex + 1].order;
+    this.changeOrder(changedCard1, changedCard2);
+  };
+
   dragStart = (e, index) => {
     this.setState({ card1: index });
   };
@@ -37,20 +60,8 @@ class MyList extends Component {
   };
   dragDrop = (e, dropIndex) => {
     e.preventDefault();
-
-    const { activity } = this.props;
     const { card1 } = this.state;
-
-    const activityOrder = activity.map((item) => {
-      if (item.order === card1) {
-        return { ...item, order: dropIndex };
-      }
-      if (item.order === dropIndex) {
-        return { ...item, order: card1 };
-      }
-      return item;
-    });
-    this.props.changeActivityOrder(activityOrder);
+    this.changeOrder(card1, dropIndex);
 
     e.target.style.background = "white";
   };
@@ -82,7 +93,13 @@ class MyList extends Component {
               onDragOver={(e) => this.dragOver(e)}
               onDrop={(e) => this.dragDrop(e, item.order)}
             >
-              <MyListPosts activityKey={item.key} index={index} />
+              <MyListPosts
+                activityKey={item.key}
+                order={item.order}
+                index={index}
+                changeOrderByArrowUp={this.changeOrderByArrowUp}
+                changeOrderByArrowDown={this.changeOrderByArrowDown}
+              />
             </div>
           )}
         </InView>

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
     activitiesInMyList: state.mainReducers.activitiesInMyList,
+    activity: state.mainReducers.activity,
   };
 };
 

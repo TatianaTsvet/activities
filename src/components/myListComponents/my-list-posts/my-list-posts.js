@@ -1,9 +1,10 @@
-import { Button, Card, Chip, Typography } from "@material-ui/core";
+import { Button, Card, Chip, Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import React, { Component } from "react";
 import styles from "./styles";
 import SkeletonInList from "../../../core/components/skeleton";
-
+import ArrowUpwardRoundedIcon from "@material-ui/icons/ArrowUpwardRounded";
+import ArrowDownwardRoundedIcon from "@material-ui/icons/ArrowDownwardRounded";
 import "./my-list-posts.scss";
 
 class MyListPosts extends Component {
@@ -12,28 +13,45 @@ class MyListPosts extends Component {
   };
 
   render() {
-    const { activityKey, classes, activitiesInMyList } = this.props;
+    const { activityKey, classes, activitiesInMyList, index, activity } =
+      this.props;
 
-    const activity = activitiesInMyList.find(({ key }) => key === activityKey);
+    const activityInList = activitiesInMyList.find(
+      ({ key }) => key === activityKey
+    );
 
-    if (!activity) {
+    if (!activityInList) {
       return <SkeletonInList />;
     }
-
+    const upArrow =
+      index === 0 ? null : (
+        <ArrowUpwardRoundedIcon
+          fontSize={"large"}
+          onClick={() => this.props.changeOrderByArrowUp(index)}
+        />
+      );
+    const downArrow =
+      index === activity.length - 1 ? null : (
+        <ArrowDownwardRoundedIcon
+          fontSize={"large"}
+          onClick={() => this.props.changeOrderByArrowDown(index)}
+        />
+      );
     return (
       <div className="myListPostItem">
         <Card component="nav" className={classes.myListCard}>
           <Chip
             color="primary"
-            label={activity.type}
+            label={activityInList.type}
             className={classes.myListChip}
           />
           <Typography variant="h6" className={classes.myListActivity}>
-            {activity.activity}
+            {activityInList.activity}
           </Typography>
           <Typography className={classes.myListActivity}>
-            {activity.participants} participants
+            {activityInList.participants} participants
           </Typography>
+          {upArrow}
           <Button
             className={classes.myListDoneButton}
             variant="contained"
@@ -42,6 +60,7 @@ class MyListPosts extends Component {
           >
             Done
           </Button>
+          {downArrow}
         </Card>
       </div>
     );
