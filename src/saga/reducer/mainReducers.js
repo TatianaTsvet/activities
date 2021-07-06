@@ -2,6 +2,7 @@ import {
   ACTIVITIES_IN_MY_LIST,
   ACTIVITY_FETCHED,
   ADD_ITEM_TO_MY_LIST,
+  CHANGE_ACTIVITY_ORDER,
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
   RESET_DETAILS,
@@ -29,26 +30,32 @@ const mainReducers = (state = defaultState, action) => {
       };
     case ADD_ITEM_TO_MY_LIST:
       const { randomActivity } = action.payload;
-      const newItem = { ...randomActivity };
+      const newItem = randomActivity.key;
 
-      const sameActivity = !!state.activity.includes(newItem.key);
+      const sameActivity = !!state.activity.find(
+        (item) => item.key === newItem
+      );
+      const newOrder = Math.max.apply(
+        null,
+        state.activity.map((item) => item.order)
+      );
+      console.log(newOrder);
+      const activityKey = { key: newItem, order: newOrder + 1  };
       const newActivity = sameActivity
         ? state.activity
-        : [...state.activity, newItem.key];
+        : [...state.activity, activityKey];
 
       localStorage.setItem(storageKey, JSON.stringify(newActivity));
 
       return {
         ...state,
         activity: newActivity,
-        //activitiesInMyList: [...state.activitiesInMyList, newItem],
-        // activitiesInMyList: newItem,
       };
 
     case DELETE_ACTIVITY_ITEM:
       const { key } = action.payload;
       const nonDeletedActivities = state.activity.filter(
-        (item) => key !== item
+        (item) => key !== item.key
       );
 
       localStorage.setItem(storageKey, JSON.stringify(nonDeletedActivities));
@@ -88,6 +95,14 @@ const mainReducers = (state = defaultState, action) => {
         ...state,
         activity: [],
         activitiesInMyList: [],
+      };
+    case CHANGE_ACTIVITY_ORDER:
+      const { activityOrder } = action.payload;
+      activityOrder.sort((a, b) => (a.order > b.order ? 1 : -1));
+      localStorage.setItem(storageKey, JSON.stringify(activityOrder));
+      return {
+        ...state,
+        activity: activityOrder,
       };
 
     default:

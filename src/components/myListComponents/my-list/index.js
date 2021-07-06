@@ -4,6 +4,7 @@ import {
   switchSkelet,
   closeToast,
   activitiesInList,
+  changeActivityOrder,
 } from "../../../saga/actions";
 import { connect } from "react-redux";
 
@@ -20,4 +21,5 @@ export default connect(mapStateToProps, {
   switchSkelet,
   closeToast,
   activitiesInList,
+  changeActivityOrder,
 })(MyList);

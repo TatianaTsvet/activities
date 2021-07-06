@@ -117,3 +117,9 @@ export const resetActivities = () => {
     type: types.RESET_ACTIVITIES,
   };
 };
+export const changeActivityOrder = (activityOrder) => {
+  return {
+    type: types.CHANGE_ACTIVITY_ORDER,
+    payload: { activityOrder },
+  };
+};

@@ -12,7 +12,7 @@ import "./my-list.scss";
 class MyList extends Component {
   constructor(props) {
     super(props);
-    this.state = { card1: "", card2: "" };
+    this.state = { card1: "" };
   }
   componentDidMount() {
     this.props.closeToast(false);
@@ -33,28 +33,28 @@ class MyList extends Component {
 
   dragOver = (e) => {
     e.preventDefault();
-    if (
-      //e.target.className === "myListPostsItem"
-      e.target.classList.contains("MyListPosts-myListCard-33")
-      // ||      e.target.classList.contains("MyListPosts-myListActivity-34")
-    ) {
+    if (e.target.classList.contains("MyListPosts-myListCard-33")) {
       e.target.style.background = "green";
     }
     //e.target.style.background = "lightBlue";
   };
-  dragDrop = (e, index) => {
+  dragDrop = (e, dropIndex) => {
     e.preventDefault();
-    this.setState({ card2: index });
+
     const { activity } = this.props;
     const { card1 } = this.state;
 
-    [activity[card1], activity[index]] = [activity[index], activity[card1]];
+    const activityOrder = activity.map((item) => {
+      if (item.order === card1) {
+        return { ...item, order: dropIndex };
+      }
+      if (item.order === dropIndex) {
+        return { ...item, order: card1 };
+      }
+      return item;
+    });
+    this.props.changeActivityOrder(activityOrder);
 
-    // const newActivity = activity.map((item, index) => {
-    //   if (item[index] === card1) {
-    //     return {}
-    //   }
-    // })
     e.target.style.background = "white";
   };
   render() {
@@ -62,14 +62,15 @@ class MyList extends Component {
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
-    const posts = activity.map((key, index) => {
+
+    const posts = activity.map((item, index) => {
       return (
         <InView
-          key={key}
+          key={item.key}
           triggerOnce
           onChange={(InView) => {
             if (InView) {
-              this.props.activitiesInList(key);
+              this.props.activitiesInList(item.key);
             }
           }}
         >
@@ -79,12 +80,12 @@ class MyList extends Component {
             <div
               className="myListPostContainer"
               draggable={true}
-              onDragStart={(e) => this.dragStart(e, index)}
+              onDragStart={(e) => this.dragStart(e, item.order)}
               onDragLeave={(e) => this.dragLeave(e)}
               onDragOver={(e) => this.dragOver(e)}
-              onDrop={(e) => this.dragDrop(e, index)}
+              onDrop={(e) => this.dragDrop(e, item.order)}
             >
-              <MyListPosts activityKey={key} index={index} />
+              <MyListPosts activityKey={item.key} index={index} />
             </div>
           )}
         </InView>
