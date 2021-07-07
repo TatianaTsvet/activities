@@ -56,7 +56,7 @@ class MyListPosts extends Component {
             className={classes.myListDoneButton}
             variant="contained"
             color="primary"
-            onClick={() => this.deleteItem(activity.key)}
+            onClick={() => this.deleteItem(activityInList.key)}
           >
             Done
           </Button>

@@ -18,22 +18,23 @@ class App extends Component {
         <Grid
           container
           item
-          xs={11}
-          sm={10}
+          xs={12}
+          sm={12}
           lg={8}
-          justify="flex-start"
+          justify="center"
           className={classes.root}
         >
           <Switch>
             <Route path="/activities/" exact>
               <Header />
               <Grid container spacing={3} justify="center">
-                <Grid item className={classes.activity} xs={10} sm={6}>
+                <Grid item className={classes.activity} xs={10} sm={5}>
                   <ActivitiesResult />
                 </Grid>
                 <Grid
                   item
                   container
+                  justify="space-between"
                   direction="column"
                   alignItems="stretch"
                   className={classes.details}
@@ -47,6 +48,7 @@ class App extends Component {
             <Route path="/mylist/" exact>
               <Header />
               <Grid
+                className={classes.myList}
                 container
                 direction="column"
                 justify="space-around"

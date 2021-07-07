@@ -83,7 +83,7 @@ class MyList extends Component {
           }}
         >
           {skeletonLoading ? (
-            <SkeletonInList />
+            <SkeletonInList /> 
           ) : (
             <div
               className="myListPostContainer"

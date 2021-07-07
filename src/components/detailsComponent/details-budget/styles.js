@@ -1,7 +1,8 @@
 const styles = (theme) => ({
   slider: {
     color: "#fff",
-    marginBottom: "1em",
+    marginBottom: "2em",
+    marginRight: "1em",
     textTransform: "lowercase",
   },
 });
