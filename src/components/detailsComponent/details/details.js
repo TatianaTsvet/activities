@@ -5,7 +5,7 @@ import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
 import ActivityService from "../../../services/activityService";
 import Spinner from "../../../core/components/spinner";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography, FormControl } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import "./details.scss";
@@ -36,24 +36,24 @@ class Details extends Component {
     const { loading, classes } = this.props;
     return (
       <>
-        <form className={classes.detailsForm} onSubmit={this.sendForm}>
+        <FormControl fullWidth={true}>
           <Typography variant="h5" gutterBottom>
             Activity details
           </Typography>
-          <Grid item>
+          <Grid item xs={12}>
             <DetailsType />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <DetailsParticipants />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <DetailsBudget />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <DetailsAccessability />
           </Grid>
           {loading ? (
-            <Grid container direction="column" alignItems="center">
+            <Grid container item direction="column" alignItems="center">
               <Spinner />
             </Grid>
           ) : (
@@ -63,12 +63,17 @@ class Details extends Component {
               justify="flex-start"
               alignItems="center"
             >
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                onClick={this.sendForm}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
                 Hit me with the new one
               </Button>
             </Grid>
           )}
-        </form>
+        </FormControl>
         {loading ? null : (
           <Button
             type="submit"

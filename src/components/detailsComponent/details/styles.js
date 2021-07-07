@@ -1,9 +1,9 @@
 const styles = (theme) => ({
-  detailsForm: {
-    padding: "0 1.5em",
-  },
   buttonReset: {
     marginTop: "2em",
+  },
+  detailsform: {
+    padding: "0 1.5em",
   },
 });
 

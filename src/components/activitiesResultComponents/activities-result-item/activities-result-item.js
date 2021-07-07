@@ -24,7 +24,7 @@ class ActivitiesResultItem extends Component {
     const { randomActivity, error, classes } = this.props;
 
     const errorActivity = (
-      <Grid
+      <Grid 
         container
         item
         direction="row"
