@@ -17,3 +17,6 @@ export const SAVE_AGAIN_ACTIVITY = "saveAgainActivity";
 export const REPEATED_ACTIVITY = "repeatedActivity";
 export const RESET_DETAILS = "resetDetails";
 export const RESET_ACTIVITIES = "resetActivities";
+
+export const CHANGE_ACTIVITY_PROGRESS = "changeActivityProgress";
+

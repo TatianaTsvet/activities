@@ -20,24 +20,25 @@ class MyList extends Component {
 
   render() {
     const { classes, skeletonLoading, activity } = this.props;
+
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
-    const posts = activity.map((key) => {
+    const posts = activity.map((item) => {
       return (
         <InView
-          key={key}
+          key={item.key}
           triggerOnce
           onChange={(InView) => {
             if (InView) {
-              this.props.activitiesInList(key);
+              this.props.activitiesInList(item.key);
             }
           }}
         >
           {skeletonLoading ? (
             <SkeletonInList />
           ) : (
-            <MyListPosts activityKey={key} />
+            <MyListPosts activityKey={item.key} progress={item.progress} />
           )}
         </InView>
       );

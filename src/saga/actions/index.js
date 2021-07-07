@@ -117,3 +117,9 @@ export const resetActivities = () => {
     type: types.RESET_ACTIVITIES,
   };
 };
+export const changeActivityProgress = (key, progress) => {
+  return {
+    type: types.CHANGE_ACTIVITY_PROGRESS,
+    payload: { key, progress },
+  };
+};
