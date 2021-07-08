@@ -123,3 +123,9 @@ export const changeActivityOrder = (activityOrder) => {
     payload: { activityOrder },
   };
 };
+export const changeActivityProgress = (key, progress) => {
+  return {
+    type: types.CHANGE_ACTIVITY_PROGRESS,
+    payload: { key, progress },
+  };
+};

@@ -6,6 +6,7 @@ import {
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
   RESET_DETAILS,
+  CHANGE_ACTIVITY_PROGRESS,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
@@ -35,6 +36,7 @@ const mainReducers = (state = defaultState, action) => {
       const sameActivity = !!state.activity.find(
         (item) => item.key === newItem
       );
+
       const newOrder =
         state.activity.length !== 0
           ? Math.max.apply(
@@ -43,7 +45,8 @@ const mainReducers = (state = defaultState, action) => {
             )
           : 0;
 
-      const activityKey = { key: newItem, order: newOrder + 1 };
+      const activityKey = { key: newItem, progress: 0, order: newOrder + 1 };
+
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, activityKey];
@@ -71,7 +74,21 @@ const mainReducers = (state = defaultState, action) => {
         activity: nonDeletedActivities,
         activitiesInMyList: activitiesInMyListKeys,
       };
+    case CHANGE_ACTIVITY_PROGRESS:
+      const activitiesList = JSON.parse(localStorage.getItem(storageKey));
 
+      const newList = activitiesList.map((item) => {
+        if (item.key === action.payload.key) {
+          return { ...item, progress: action.payload.progress };
+        } else {
+          return item;
+        }
+      });
+      localStorage.setItem(storageKey, JSON.stringify(newList));
+      return {
+        ...state,
+        activity: newList,
+      };
     case ACTIVITIES_IN_MY_LIST:
       const { activitiesInMyList } = action.payload;
 

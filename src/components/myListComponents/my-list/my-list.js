@@ -67,6 +67,7 @@ class MyList extends Component {
   };
   render() {
     const { classes, skeletonLoading, activity } = this.props;
+
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
@@ -83,7 +84,7 @@ class MyList extends Component {
           }}
         >
           {skeletonLoading ? (
-            <SkeletonInList /> 
+            <SkeletonInList />
           ) : (
             <div
               className="myListPostContainer"
@@ -99,6 +100,7 @@ class MyList extends Component {
                 index={index}
                 changeOrderByArrowUp={this.changeOrderByArrowUp}
                 changeOrderByArrowDown={this.changeOrderByArrowDown}
+                progress={item.progress}
               />
             </div>
           )}

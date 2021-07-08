@@ -1,0 +1,243 @@
+[33mcommit d150a03d90bf8c32f8556f61f79bf1705b56f5fb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Thu Jul 1 11:03:02 2021 +0300
+
+    fixed syntax mistakes
+
+[33mcommit d774c2da7c80d66164cb33d0e6d9c1871833cbaa[m
+Merge: 0241b3c aac383b
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Thu Jul 1 10:24:48 2021 +0300
+
+    Merge pull request #6 from TatianaTsvet/ie
+    
+    Ie
+
+[33mcommit aac383bdf9bbf44ef05749e7d85d5335f588b8f2[m[33m ([m[1;31morigin/ie[m[33m, [m[1;32mie[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 29 11:19:45 2021 +0300
+
+    delete time parameter
+
+[33mcommit f9e958e2aafc21b9e179566394af4ff4f05280e5[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 29 11:09:39 2021 +0300
+
+    delete headers
+
+[33mcommit 0241b3c28296588cedcfdc549ec54ed0be24ec7e[m
+Merge: 3f3b6f0 9fc21e8
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Tue Jun 29 09:52:41 2021 +0300
+
+    Merge pull request #3 from TatianaTsvet/waiting-time
+    
+    added waiting time
+
+[33mcommit 9fc21e805458fd35cdb59b612cfbc3dbc2b27693[m
+Merge: 891f887 3f3b6f0
+Author: TatianaTsvet <77292162+TatianaTsvet@users.noreply.github.com>
+Date:   Tue Jun 29 09:07:26 2021 +0300
+
+    Merge branch 'master' into waiting-time
+
+[33mcommit 3f3b6f005f96ac42cfd5d71970996d33a8d5577e[m
+Merge: a4132a0 fcd41f4
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Mon Jun 28 18:57:29 2021 +0300
+
+    Merge pull request #5 from TatianaTsvet/layout
+    
+    changed layout
+
+[33mcommit a4132a0d9c39d85abe3b71fd7b0b238c26bfc208[m
+Merge: 0d72fdd 2b4d2c1
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Mon Jun 28 18:42:44 2021 +0300
+
+    Merge pull request #7 from TatianaTsvet/autocomplete
+    
+    added reset to autocomplete
+
+[33mcommit 2b4d2c158bd873e413cad9346c4d5165afa2b84f[m[33m ([m[1;31morigin/autocomplete[m[33m, [m[1;32mautocomplete[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Mon Jun 28 14:47:23 2021 +0300
+
+    added reset to autocomplete
+
+[33mcommit 248ffa763d770e7c5e75b8b9bcd1be8ba0dcb595[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Mon Jun 28 11:39:19 2021 +0300
+
+    changed intersection observer
+
+[33mcommit ebb29379418df112343cb2ad28bf476dae77eef1[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Mon Jun 28 10:39:19 2021 +0300
+
+    fixed problems with intersection observer in IE
+
+[33mcommit 691b4ce7e3787e4d734a75958c25b8488c08b561[m
+Merge: 1f04f51 0d72fdd
+Author: TatianaTsvet <77292162+TatianaTsvet@users.noreply.github.com>
+Date:   Fri Jun 25 15:11:11 2021 +0300
+
+    Merge branch 'master' into ie
+
+[33mcommit 1f04f51c6d6347acaa0557bb36d1595510805e17[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 25 15:09:40 2021 +0300
+
+    debugged mistake with cache
+
+[33mcommit 504a37adf3f278208509dd324fa6495de686fc7f[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 25 15:02:50 2021 +0300
+
+    debugged mistake with cache
+
+[33mcommit fcd41f4fcbdd2c423d4c8244b7c9e494c2698a6f[m[33m ([m[1;31morigin/layout[m[33m, [m[1;32mlayout[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 25 14:05:48 2021 +0300
+
+    changed layout
+
+[33mcommit 5c1b8d3aa364666f673f4c262ace7bb4423b5944[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 25 13:58:32 2021 +0300
+
+    changed layout
+
+[33mcommit b2320dcf38af92fb07ee73186d88f4ba12a61fe8[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 25 13:17:19 2021 +0300
+
+    clear cache for ie
+
+[33mcommit 891f88791e3eb0c0c10b97ac17e55fce4c03ea96[m[33m ([m[1;31morigin/waiting-time[m[33m, [m[1;32mwaiting-time[m[33m)[m
+Merge: 4c3513f 702bd01
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Thu Jun 24 10:30:23 2021 +0300
+
+    changed waiting time
+
+[33mcommit 4c3513fbdb0944e85de5c210e07515a43b5e6606[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Thu Jun 24 10:21:50 2021 +0300
+
+    changed waiting time
+
+[33mcommit 702bd01a63e64baefe50ef999b0681f48d1f6fa6[m
+Merge: 0c16a72 0d72fdd
+Author: TatianaTsvet <77292162+TatianaTsvet@users.noreply.github.com>
+Date:   Wed Jun 23 15:16:14 2021 +0300
+
+    Merge branch 'master' into waiting-time
+
+[33mcommit 0c16a720206ff496b76f190a32e3d6ea03728997[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Wed Jun 23 15:10:12 2021 +0300
+
+    changed waiting time
+
+[33mcommit 0d72fdd46a9d580e5decf0f0eda810eb46974138[m
+Merge: 49b2813 1c60cf8
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Wed Jun 23 13:11:43 2021 +0300
+
+    Merge pull request #2 from TatianaTsvet/filters
+    
+    changes in filter
+
+[33mcommit 1c60cf821e9d7439122524443cc3313d146fdecf[m[33m ([m[1;31morigin/filters[m[33m, [m[1;32mfilters[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Wed Jun 23 12:34:36 2021 +0300
+
+    changed cloning in filters
+
+[33mcommit 49b281316f6b9e9bdcc4ad5ee2d3f7d7225d7efb[m
+Merge: 8225e5d d661720
+Author: NooMiD96 <koshak-9696@inbox.ru>
+Date:   Wed Jun 23 10:12:02 2021 +0300
+
+    Merge pull request #1 from TatianaTsvet/mylist
+    
+     data receiving from state
+
+[33mcommit 12ca69c4538757f192d0766e82113101a406f4d2[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 15:18:03 2021 +0300
+
+    request in ie
+
+[33mcommit 68a5ecab20938dbc7396d7e058eae468017f054c[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 13:05:31 2021 +0300
+
+    added waiting time
+
+[33mcommit 53bcbedb6345af26a0878fdb43cee8a9d2cbcb7b[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 12:26:59 2021 +0300
+
+    changes in filter
+
+[33mcommit d66172087f4dbdb9e2cec37a5048df3875d3d4d2[m[33m ([m[1;31morigin/mylist[m[33m, [m[1;32mmylist[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 11:20:28 2021 +0300
+
+    taking away my-list-no-posts from render
+
+[33mcommit afe10fe452ffb24d7e4f4e93edf99d07085347aa[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 11:06:39 2021 +0300
+
+     data receiving from state
+
+[33mcommit 8225e5db78e73ae28e8051594a0a3478cadfa3c4[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 22 09:46:45 2021 +0300
+
+    changed observer
+
+[33mcommit 5d4dc41cf12a856e9f6e47f568a4e6a4bb27743d[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Mon Jun 21 15:23:14 2021 +0300
+
+    changed observer
+
+[33mcommit 3eda7fcba23cd0036875741449751f43c0fadf26[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 18 15:06:43 2021 +0300
+
+    changed intersection observer
+
+[33mcommit 648fa974481a135d29068f8bee23b8c46bbaab93[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Thu Jun 17 15:09:39 2021 +0300
+
+    changed intersection observer
+
+[33mcommit e60e9891c38a6079b155dcbaf96cf0299e5d3599[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Wed Jun 16 15:05:24 2021 +0300
+
+    changed myList component
+
+[33mcommit 4fe244044f21060d236f992a4f3f54cb07618f39[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 15 15:07:33 2021 +0300
+
+    changed modal and intersection observer
+
+[33mcommit 984519f5893cfb16c12d4d73f76fdf8005186632[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Tue Jun 15 13:20:48 2021 +0300
+
+    changed module
+
+[33mcommit 24c7699119de7db81848ee020a196a2d15ea0985[m
+Author: Цветынина Татьяна <tcvetynina@milane.local>
+Date:   Fri Jun 11 15:05:35 2021 +0300
+
+    added clearAll, backToTop buttons and change Slider

@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import ActivitiesResultPaper from "../activities-result-paper";
 import { Container, Grid, Button } from "@material-ui/core";
@@ -12,7 +13,7 @@ class ActivitiesResultItem extends Component {
     this.props.addItemToMyList(randomActivity);
     this.props.showSuccess(true);
     const repeatedActivity = activity.find(
-      (item) => item === randomActivity.key
+      (item) => item.key === randomActivity.key
     );
     if (repeatedActivity) {
       this.props.saveAgainActivity(true);
