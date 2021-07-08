@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
   return {
     repeatedActivity: state.serviceReducers.repeatedActivity,
     randomActivity: state.mainReducers.randomActivity,
+   
   };
 };
 export default connect(mapStateToProps, { closeRepeatedToast })(

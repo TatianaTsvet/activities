@@ -11,8 +11,9 @@ export default class ActivitiesResult extends Component {
   };
   render() {
     const { repeatedActivity, randomActivity } = this.props;
+
     return (
-      <>
+      <div className="activities-result">
         <ActivitiesResultItem />
         <SuccessToast />
         <RepeatedModal
@@ -20,7 +21,7 @@ export default class ActivitiesResult extends Component {
           randomActivity={randomActivity.activity}
           closeRepeatedToast={this.closeRepeatedToast}
         />
-      </>
+      </div>
     );
   }
 }

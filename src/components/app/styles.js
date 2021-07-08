@@ -3,18 +3,21 @@ const styles = (theme) => ({
     background: "#37474f",
     color: "white",
     margin: "auto",
-    marginTop: "1em",
+    padding: "1em",
     textTransform: "uppercase",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0 0 1em 0",
+    },
+    [theme.breakpoints.down("md")]: {
+      padding: "0 1em 1em 1em",
+    },
   },
   activity: {
     background: "#546e7a",
-    marginBottom: "1em",
+    padding: "1em",
   },
   details: {
     background: "#78909c",
-    marginBottom: "1em",
-  },
-  myList: {
     padding: "1em",
   },
 });

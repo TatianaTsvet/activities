@@ -1,6 +1,6 @@
 const styles = (theme) => ({
   myListEmptyActivity: {
-    padding: "1em 0 0 1em",
+    padding: "1em",
   },
   myListEmptyActivityButton: {
     padding: "1em",

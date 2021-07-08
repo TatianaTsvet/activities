@@ -4,6 +4,9 @@ const styles = (theme) => ({
     color: "#fff",
     padding: "1em",
     marginTop: "3em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "0",
+    },
   },
   activitiesResultButton: {
     margin: "2em auto",

@@ -14,7 +14,7 @@ class SkeletonInList extends Component {
         className={classes.skeleton}
         container
         direction="column"
-        justify="flex-start"
+        justifyContent="flex-start"
         alignItems="stretch"
         spacing={2}
       >

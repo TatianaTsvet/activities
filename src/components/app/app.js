@@ -5,7 +5,7 @@ import ActivitiesResult from "../activitiesResultComponents/activities-result";
 import MyList from "../myListComponents/my-list";
 import ErrorComponent from "../../core/components/error-component";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import "./app.scss";
@@ -13,6 +13,9 @@ import "./app.scss";
 class App extends Component {
   render() {
     const { classes } = this.props;
+    const { error, randomActivity } = this.props;
+    const activityResultVisibility = error || randomActivity ? "block" : "none";
+
     return (
       <BrowserRouter>
         <Grid
@@ -21,24 +24,36 @@ class App extends Component {
           xs={12}
           sm={12}
           lg={8}
-          justify="center"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
           className={classes.root}
         >
           <Switch>
             <Route path="/activities/" exact>
               <Header />
-              <Grid container spacing={3} justify="center">
-                <Grid item className={classes.activity} xs={10} sm={5}>
+              <Grid container justifyContent="center" item>
+                <Grid
+                  item
+                  className={classes.activity}
+                  component={Box}
+                  display={{
+                    xs: activityResultVisibility,
+                    sm: activityResultVisibility,
+                  }}
+                  xs={12}
+                  sm={6}
+                >
                   <ActivitiesResult />
                 </Grid>
                 <Grid
                   item
                   container
-                  justify="space-between"
+                  justifyContent="space-between"
                   direction="column"
                   alignItems="stretch"
                   className={classes.details}
-                  xs={10}
+                  xs={12}
                   sm={6}
                 >
                   <Details />
@@ -51,7 +66,7 @@ class App extends Component {
                 className={classes.myList}
                 container
                 direction="column"
-                justify="space-around"
+                justifyContent="space-around"
                 alignItems="stretch"
               >
                 <MyList />

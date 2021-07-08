@@ -10,7 +10,7 @@ class ErrorComponent extends Component {
     const { classes } = this.props;
     return (
       <Container
-        justify="center"
+        justifyContent="center"
         component="main"
         maxWidth="md"
         className={classes.error}

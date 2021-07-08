@@ -60,7 +60,7 @@ class Details extends Component {
             <Grid
               container
               direction="column"
-              justify="flex-start"
+              justifyContent="flex-start"
               alignItems="center"
             >
               <Button

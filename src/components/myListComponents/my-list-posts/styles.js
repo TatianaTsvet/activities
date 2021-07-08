@@ -15,7 +15,15 @@ const styles = (theme) => ({
     width: "6em",
     height: "5em",
   },
-  slider: {},
+  slider: {
+    '& .MuiSlider-markLabel[data-index="0"]': {
+      transform: "translateX(0%)",
+    },
+    '& .MuiSlider-markLabel[data-index="4"]': {
+      transform: "translateX(-60%)",
+    },
+    marginBottom: "2em",
+  },
   success: {
     marginTop: "1em",
     textTransform: "capitalize",

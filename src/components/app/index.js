@@ -1,3 +1,11 @@
 import App from "./app";
 
-export default App;
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    randomActivity: state.mainReducers.randomActivity,
+    error: state.serviceReducers.error,
+  };
+};
+export default connect(mapStateToProps)(App);

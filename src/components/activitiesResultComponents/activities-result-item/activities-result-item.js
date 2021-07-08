@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import ActivitiesResultPaper from "../activities-result-paper";
 import { Container, Grid, Button } from "@material-ui/core";
@@ -25,11 +24,11 @@ class ActivitiesResultItem extends Component {
     const { randomActivity, error, classes } = this.props;
 
     const errorActivity = (
-      <Grid 
+      <Grid
         container
         item
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
         xs={12}
         className={classes.resultError}
