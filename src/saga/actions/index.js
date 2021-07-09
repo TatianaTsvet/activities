@@ -129,3 +129,9 @@ export const changeActivityProgress = (key, progress) => {
     payload: { key, progress },
   };
 };
+export const openDrawer = (mobileDrawer) => {
+  return {
+    type: types.OPEN_DRAWER,
+    payload: { mobileDrawer },
+  };
+};

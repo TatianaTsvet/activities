@@ -19,3 +19,4 @@ export const RESET_DETAILS = "resetDetails";
 export const RESET_ACTIVITIES = "resetActivities";
 export const CHANGE_ACTIVITY_ORDER = "changeActivityOrder";
 export const CHANGE_ACTIVITY_PROGRESS = "changeActivityProgress";
+export const OPEN_DRAWER = "openDrawer";

@@ -11,10 +11,28 @@ import { withStyles } from "@material-ui/core/styles";
 import "./app.scss";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { activityResultVisibility: "none" };
+  }
+
+  componentDidUpdate() {
+    const { error, randomActivity } = this.props;
+    // if (error || randomActivity.activity) {
+    //   this.setState({
+    //     activityResultVisibility: "block",
+    //   });
+    // }
+    //
+    // const newVisibility = error || randomActivity.activity ? "block" : "none";
+    // this.setState({
+    //   activityResultVisibility: newVisibility,
+    // });
+  }
   render() {
     const { classes } = this.props;
     const { error, randomActivity } = this.props;
-    const activityResultVisibility = error || randomActivity ? "block" : "none";
+    const { activityResultVisibility } = this.state;
 
     return (
       <BrowserRouter>
@@ -36,11 +54,15 @@ class App extends Component {
                 <Grid
                   item
                   className={classes.activity}
-                  component={Box}
-                  display={{
-                    xs: activityResultVisibility,
-                    sm: activityResultVisibility,
-                  }}
+                  // component={Box}
+                  // display={
+                  //   {
+                      //xs: error || randomActivity.activity ? "block" : "none",
+                      //xs: activityResultVisibility,
+                      //sm: error || randomActivity.activity ? "block" : "none",
+                      //sm: activityResultVisibility,
+                  //   }
+                  // }
                   xs={12}
                   sm={6}
                 >

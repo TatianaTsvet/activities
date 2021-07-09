@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import DetailsType from "../details-type";
-import DetailsParticipants from "../details-participants";
-import DetailsBudget from "../details-budget";
-import DetailsAccessability from "../details-accessability";
+
+import DetailsFilterGroup from "../details-filter-group";
+import DetailsMobileDrawer from "../details-mobile-drawer";
 import ActivityService from "../../../services/activityService";
 import Spinner from "../../../core/components/spinner";
 import { Button, Grid, Typography, FormControl } from "@material-ui/core";
+
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import "./details.scss";
@@ -27,64 +27,67 @@ class Details extends Component {
       this.props.changeError(false);
     }
   };
-
   resetDetails = () => {
     const { details } = this.props;
     this.props.resetDetails(details);
   };
+  openDrawer = () => {
+    this.props.openDrawer(true);
+  };
+
   render() {
-    const { loading, classes } = this.props;
+    const { loading, error, randomActivity, classes } = this.props;
+
     return (
       <>
-        <FormControl fullWidth={true}>
-          <Typography variant="h5" gutterBottom>
-            Activity details
-          </Typography>
-          <Grid item xs={12}>
-            <DetailsType />
+        <Typography variant="h5" gutterBottom>
+          Activity details
+        </Typography>
+        <FormControl fullWidth={true} className={classes.formSM}>
+          <DetailsFilterGroup />
+        </FormControl>
+        {loading ? (
+          <Grid container item direction="column" alignItems="center">
+            <Spinner />
           </Grid>
-          <Grid item xs={12}>
-            <DetailsParticipants />
-          </Grid>
-          <Grid item xs={12}>
-            <DetailsBudget />
-          </Grid>
-          <Grid item xs={12}>
-            <DetailsAccessability />
-          </Grid>
-          {loading ? (
-            <Grid container item direction="column" alignItems="center">
-              <Spinner />
-            </Grid>
-          ) : (
-            <Grid
-              container
-              direction="column"
-              justifyContent="flex-start"
-              alignItems="center"
+        ) : (
+          <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            <Button
+              onClick={this.sendForm}
+              type="submit"
+              variant="contained"
+              color="primary"
             >
+              Hit me with the new one
+            </Button>
+            <Button
+              className={classes.buttonSM}
+              onClick={this.openDrawer}
+              variant="contained"
+              color="warning"
+            >
+              Show filters
+            </Button>
+
+            {error || randomActivity.activity ? (
               <Button
-                onClick={this.sendForm}
                 type="submit"
                 variant="contained"
-                color="primary"
+                color="secondary"
+                className={classes.buttonMobileReset}
+                onClick={this.resetDetails}
               >
-                Hit me with the new one
+                Reset activity
               </Button>
-            </Grid>
-          )}
-        </FormControl>
-        {loading ? null : (
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            className={classes.buttonReset}
-            onClick={this.resetDetails}
-          >
-            Reset all
-          </Button>
+            ) : null}
+          </Grid>
         )}
+        <DetailsMobileDrawer />
       </>
     );
   }

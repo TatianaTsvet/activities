@@ -1,7 +1,7 @@
-import Details from "./details";
+import DetailsMobileDrawer from "./details-mobile-drawer";
 import { connect } from "react-redux";
 
-import "./details.scss";
+import "./details-mobile-drawer.scss";
 import {
   activityFetched,
   switchSpinner,
@@ -14,15 +14,14 @@ const mapStateToProps = (state) => {
   return {
     details: state.detailReducers,
     loading: state.serviceReducers.loading,
-    error: state.serviceReducers.error,
-    randomActivity: state.mainReducers.randomActivity,
+    mobileDrawer: state.serviceReducers.mobileDrawer,
   };
 };
 
 export default connect(mapStateToProps, {
+  openDrawer,
   activityFetched,
   changeError,
   switchSpinner,
   resetDetails,
-  openDrawer,
-})(Details);
+})(DetailsMobileDrawer);
