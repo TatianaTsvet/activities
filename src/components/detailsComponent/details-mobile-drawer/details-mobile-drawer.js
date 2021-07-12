@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DetailsFilterGroup from "../details-filter-group";
-import { Drawer, Hidden } from "@material-ui/core";
+import { Drawer, Hidden, Button } from "@material-ui/core";
 import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
@@ -14,19 +14,22 @@ class DetailsMobileDrawer extends Component {
 
     const drawer = (
       <div className={classes.drawer}>
-        <CancelPresentationIcon
-          fontSize={"large"}
-          color={"action"}
-          classname={classes.closeIcon}
+        <Button
+          variant="contained"
+          color="primary"
           onClick={this.handleDrawerToggle}
-        />
+          className={classes.filterButton}
+          startIcon={<CancelPresentationIcon />}
+        >
+          Exit
+        </Button>
         <DetailsFilterGroup />
       </div>
     );
 
     return (
       <nav>
-        <Hidden xsUP>
+        <Hidden xsUP={true}>
           <Drawer
             variant="temporary"
             anchor={"left"}

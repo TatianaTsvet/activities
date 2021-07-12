@@ -7,6 +7,8 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import SkeletonInList from "../../../core/components/skeleton";
 import InView from "react-intersection-observer";
+import { Grid } from "@material-ui/core";
+
 import "./my-list.scss";
 
 class MyList extends Component {
@@ -109,7 +111,13 @@ class MyList extends Component {
     });
 
     return (
-      <div className="my_list">
+      <Grid
+        className={classes.myList}
+        container
+        direction="column"
+        justifyContent="space-around"
+        alignItems="stretch"
+      >
         {posts}
         <MyListResetButton
           resetActivities={this.resetActivities}
@@ -120,7 +128,7 @@ class MyList extends Component {
         <StyledProvider>
           <BackToTop className={classes.backToTop} />
         </StyledProvider>
-      </div>
+      </Grid>
     );
   }
 }

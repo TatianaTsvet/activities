@@ -82,7 +82,7 @@ class Details extends Component {
                 className={classes.buttonMobileReset}
                 onClick={this.resetDetails}
               >
-                Reset activity
+                Reset all
               </Button>
             ) : null}
           </Grid>
