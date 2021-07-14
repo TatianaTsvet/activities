@@ -1,4 +1,7 @@
 const styles = (theme) => ({
+  noPostsCard: {
+    width: "100%",
+  },
   myListEmptyActivity: {
     padding: "1em",
   },

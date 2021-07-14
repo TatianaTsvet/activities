@@ -10,8 +10,13 @@ class MyListNoPosts extends Component {
     const { classes } = this.props;
 
     return (
-      <Card key="noActivity">
-        <Grid container direction="column" justify="center" alignItems="center">
+      <Card key="noActivity" className={classes.noPostsCard}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Typography variant="h6" className={classes.myListEmptyActivity}>
             You have nothing saved yet
           </Typography>

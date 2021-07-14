@@ -12,7 +12,7 @@ export default class MyListResetButton extends Component {
     }
 
     return loading ? null : (
-      <Grid container direction="row" justify="center">
+      <Grid container direction="row" justifyContent="center">
         <Button
           type="submit"
           variant="contained"

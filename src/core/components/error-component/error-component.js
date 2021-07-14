@@ -15,7 +15,12 @@ class ErrorComponent extends Component {
         maxWidth="md"
         className={classes.error}
       >
-        <Grid container direction="column" justify="center" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Grid item>
             <Typography className={classes.errorMistake} gutterBottom>
               404 error page.
