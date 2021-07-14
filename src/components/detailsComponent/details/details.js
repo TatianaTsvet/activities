@@ -4,8 +4,8 @@ import DetailsFilterGroup from "../details-filter-group";
 import DetailsMobileDrawer from "../details-mobile-drawer";
 import ActivityService from "../../../services/activityService";
 import Spinner from "../../../core/components/spinner";
-import { Button, Grid, Typography, FormControl } from "@material-ui/core";
-
+import { Button, Grid, Typography } from "@material-ui/core";
+import ResetButton from "../../../core/components/reset-button";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import "./details.scss";
@@ -20,16 +20,17 @@ class Details extends Component {
   sendForm = async (event) => {
     event.preventDefault();
     this.props.switchSpinner(true);
+
     const { details } = this.props;
     const randomActivity = await this.ActivityService.getActivity(details);
     this.props.activityFetched(randomActivity);
     if (!randomActivity.error) {
       this.props.changeError(false);
     }
+    this.props.changeStyle();
   };
   resetDetails = () => {
-    const { details } = this.props;
-    this.props.resetDetails(details);
+    this.props.resetDetails();
   };
   openDrawer = () => {
     this.props.openDrawer(true);
@@ -43,9 +44,9 @@ class Details extends Component {
         <Typography variant="h5" gutterBottom>
           Activity details
         </Typography>
-        <FormControl fullWidth={true} className={classes.formSM}>
+        <div className={classes.formSM}>
           <DetailsFilterGroup />
-        </FormControl>
+        </div>
         {loading ? (
           <Grid container item direction="column" alignItems="center">
             <Spinner />
@@ -69,21 +70,16 @@ class Details extends Component {
               className={classes.buttonSM}
               onClick={this.openDrawer}
               variant="contained"
-              color="warning"
             >
               Show filters
             </Button>
 
             {error || randomActivity.activity ? (
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
+              <ResetButton
+                name="details"
+                resetDetails={this.resetDetails}
                 className={classes.buttonMobileReset}
-                onClick={this.resetDetails}
-              >
-                Reset all
-              </Button>
+              />
             ) : null}
           </Grid>
         )}

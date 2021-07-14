@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ActivitiesResultPaper from "../activities-result-paper";
+import ResetButton from "../../../core/components/reset-button";
 import { Container, Grid, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
@@ -19,21 +20,29 @@ class ActivitiesResultItem extends Component {
       this.props.showSuccess(false);
     }
   };
-
+  resetErrorActivity = () => {
+    this.props.resetErrorActivity();
+  };
   render() {
     const { randomActivity, error, classes } = this.props;
 
     const errorActivity = (
       <Grid
         container
-        item
         direction="row"
         justifyContent="center"
         alignItems="center"
-        xs={12}
-        className={classes.resultError}
       >
-        {error}
+        <Grid item xs={12} className={classes.resultError}>
+          {error}
+        </Grid>
+        <Grid item>
+          <ResetButton
+            name="error"
+            resetDetails={this.resetErrorActivity}
+            className={classes.buttonResetError}
+          />
+        </Grid>
       </Grid>
     );
 

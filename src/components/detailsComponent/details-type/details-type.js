@@ -38,7 +38,6 @@ class DetailsType extends Component {
         key={type}
         clearText="close"
         className={classes.autocomplete}
-        id="controllable-states-demo"
         options={availableTypes}
         getOptionLabel={(option) => option.title.toUpperCase()}
         onChange={this.changeType}
@@ -46,7 +45,6 @@ class DetailsType extends Component {
           <TextField
             {...params}
             label={type === "" ? "Choose any type" : newType}
-            //label="choose any type"
           />
         )}
       />

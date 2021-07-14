@@ -4,7 +4,7 @@ import {
   CHANGE_ERROR,
   CLOSE_REPEATED_TOAST,
   CLOSE_TOAST,
-  RESET_DETAILS,
+  RESET_ERROR_ACTIVITY,
   SAVE_AGAIN_ACTIVITY,
   SHOW_SUCCESS,
   SWITCH_SPINNER,
@@ -77,7 +77,7 @@ const serviceReducers = (state = defaultState, action) => {
         ...state,
         repeatedActivity: action.payload.repeatedActivity,
       };
-    case RESET_DETAILS:
+    case RESET_ERROR_ACTIVITY:
       return {
         ...state,
         error: false,

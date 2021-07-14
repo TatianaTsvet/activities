@@ -3,8 +3,8 @@ const styles = (theme) => ({
     backgroundColor: "rgb(231, 81, 81)",
     color: "#fff",
     padding: "1em",
-    marginTop: "3em",
-    [theme.breakpoints.down("sm")]: {
+    marginTop: "2em",
+    [theme.breakpoints.down("xs")]: {
       marginTop: "0",
     },
   },
@@ -12,6 +12,10 @@ const styles = (theme) => ({
     margin: "2em auto",
     display: "flex",
     justifyContent: "center",
+  },
+  buttonResetError: {
+    marginTop: "1em",
+    backgroundColor: "rgb(231, 81, 81)",
   },
 });
 

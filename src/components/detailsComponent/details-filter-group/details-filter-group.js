@@ -3,7 +3,8 @@ import DetailsType from "../details-type";
 import DetailsParticipants from "../details-participants";
 import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
-import { Grid, Button } from "@material-ui/core";
+import ResetButton from "../../../core/components/reset-button";
+import { Grid } from "@material-ui/core";
 
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
@@ -16,7 +17,7 @@ class DetailsFilterGroup extends Component {
   render() {
     const { loading, classes } = this.props;
     return (
-      <div>
+      <div className="filters">
         <Grid item xs={12}>
           <DetailsType />
         </Grid>
@@ -31,15 +32,11 @@ class DetailsFilterGroup extends Component {
         </Grid>
         <Grid container>
           {loading ? null : (
-            <Button
-              type="submit"
-              variant="contained"
-              color="secondary"
+            <ResetButton
+              name="details"
+              resetDetails={this.resetDetails}
               className={classes.buttonReset}
-              onClick={this.resetDetails}
-            >
-              Reset all
-            </Button>
+            />
           )}
         </Grid>
       </div>

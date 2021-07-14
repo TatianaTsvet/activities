@@ -4,6 +4,7 @@ import {
   addItemToMyList,
   showSuccess,
   saveAgainActivity,
+  resetErrorActivity,
 } from "../../../saga/actions";
 
 const mapStateToProps = (state) => {
@@ -20,4 +21,5 @@ export default connect(mapStateToProps, {
   addItemToMyList,
   showSuccess,
   saveAgainActivity,
+  resetErrorActivity,
 })(ActivitiesResultItem);

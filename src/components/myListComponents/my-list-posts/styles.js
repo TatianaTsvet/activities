@@ -2,6 +2,10 @@ const styles = (theme) => ({
   myListCard: {
     padding: "1em",
     height: "100%",
+
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "1em",
+    },
   },
 
   myListChip: {

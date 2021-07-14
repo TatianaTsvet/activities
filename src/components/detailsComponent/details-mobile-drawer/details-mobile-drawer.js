@@ -16,7 +16,6 @@ class DetailsMobileDrawer extends Component {
       <div className={classes.drawer}>
         <Button
           variant="contained"
-          color="primary"
           onClick={this.handleDrawerToggle}
           className={classes.filterButton}
           startIcon={<CancelPresentationIcon />}
@@ -29,7 +28,7 @@ class DetailsMobileDrawer extends Component {
 
     return (
       <nav>
-        <Hidden xsUP={true}>
+        <Hidden smUp>
           <Drawer
             variant="temporary"
             anchor={"left"}

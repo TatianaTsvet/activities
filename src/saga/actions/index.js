@@ -97,7 +97,6 @@ export const activitiesInMyList = (activitiesInMyList) => {
 export const resetDetails = (details) => {
   return {
     type: types.RESET_DETAILS,
-    payload: { details },
   };
 };
 export const closeRepeatedToast = (repeatedActivity) => {
@@ -115,6 +114,11 @@ export const saveAgainActivity = (repeatedActivity) => {
 export const resetActivities = () => {
   return {
     type: types.RESET_ACTIVITIES,
+  };
+};
+export const resetErrorActivity = () => {
+  return {
+    type: types.RESET_ERROR_ACTIVITY,
   };
 };
 export const changeActivityOrder = (activityOrder) => {

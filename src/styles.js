@@ -106,7 +106,7 @@ const styles = (theme) => ({
     backgroundColor: "white",
     height: "12rem",
     marginBottom: "1em",
-    padding: "1em",
+    padding: "1em", 
   },
   resultError: {
     backgroundColor: "rgb(231, 81, 81)",

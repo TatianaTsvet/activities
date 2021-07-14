@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./error-component.scss";
-import styles from "../../../styles";
+import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 
 class ErrorComponent extends Component {
