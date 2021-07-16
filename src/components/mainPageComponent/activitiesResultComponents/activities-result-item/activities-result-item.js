@@ -36,9 +36,9 @@ class ActivitiesResultItem extends Component {
         <Grid item xs={12} className={classes.resultError}>
           {error}
         </Grid>
-        <Grid item>
+        <Grid item container justify="center">
           <ResetButton
-            name="error"
+            name="Reset error"
             resetDetails={this.resetErrorActivity}
             className={classes.buttonResetError}
           />

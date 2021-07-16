@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import MyListPosts from "../my-list-posts";
 import MyListNoPosts from "../my-list-no-posts";
 import MyListResetButton from "../my-list-reset-button";
+import SkeletonInList from "../../../core/components/skeleton";
 import { BackToTop, StyledProvider } from "components-extra";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import SkeletonInList from "../../../core/components/skeleton";
+
 import InView from "react-intersection-observer";
 import { Grid } from "@material-ui/core";
 
@@ -115,7 +116,6 @@ class MyList extends Component {
         className={classes.myList}
         container
         direction="column"
-        justifyContent="space-around"
         alignItems="stretch"
       >
         {posts}

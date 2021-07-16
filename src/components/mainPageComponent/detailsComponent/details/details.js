@@ -36,7 +36,7 @@ class Details extends Component {
   };
 
   render() {
-    const { loading, error, randomActivity, classes } = this.props;
+    const { loading, classes } = this.props;
 
     return (
       <>
@@ -73,13 +73,11 @@ class Details extends Component {
               Show filters
             </Button>
 
-            {error || randomActivity.activity ? (
-              <ResetButton
-                name="details"
-                resetDetails={this.resetDetails}
-                className={classes.buttonMobileReset}
-              />
-            ) : null}
+            <ResetButton
+              name="Reset filters"
+              resetDetails={this.resetDetails}
+              className={classes.buttonReset}
+            />
           </Grid>
         )}
         <DetailsMobileDrawer />

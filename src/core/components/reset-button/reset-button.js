@@ -14,7 +14,7 @@ class ResetButton extends Component {
         className={className}
         onClick={() => resetDetails()}
       >
-        Reset {name}
+        {name}
       </Button>
     );
   }
