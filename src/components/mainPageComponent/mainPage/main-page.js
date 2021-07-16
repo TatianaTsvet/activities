@@ -11,9 +11,8 @@ class MainPage extends Component {
     super(props);
     this.state = { display: "none" };
   }
-  changeStyle = () => {
-    const { error, randomActivity } = this.props;
-    const changedDisplay = error || randomActivity ? "block" : "none";
+  changeStyle = (randomActivity) => {
+    const changedDisplay = randomActivity ? "block" : "none";
     this.setState({ display: changedDisplay });
   };
   render() {

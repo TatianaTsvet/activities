@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import DetailsFilterGroup from "../details-filter-group";
 import DetailsMobileDrawer from "../details-mobile-drawer";
 import ActivityService from "../../../../services/activityService";
@@ -27,7 +26,7 @@ class Details extends Component {
     if (!randomActivity.error) {
       this.props.changeError(false);
     }
-    this.props.changeStyle();
+    this.props.changeStyle(randomActivity);
   };
   resetDetails = () => {
     this.props.resetDetails();
