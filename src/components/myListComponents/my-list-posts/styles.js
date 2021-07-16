@@ -3,6 +3,18 @@ const styles = (theme) => ({
     marginBottom: "1em",
     padding: "1em",
     height: "100%",
+    position: "relative",
+  },
+  cardContainerClose: {
+    [theme.breakpoints.down("xs")]: {
+      height: "8em",
+      overflow: "hidden",
+    },
+  },
+  cardContainerOpen: {
+    [theme.breakpoints.down("xs")]: {
+      height: "100%",
+    },
   },
   myListActivity: {
     paddingTop: "1em",
@@ -22,5 +34,10 @@ const styles = (theme) => ({
     color: "#1976d2",
   },
   tooltip: {},
+  expandButton: {
+    position: "absolute",
+    right: "1em",
+    bottom: "0",
+  },
 });
 export default styles;

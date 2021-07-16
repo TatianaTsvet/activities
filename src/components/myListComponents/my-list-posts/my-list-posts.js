@@ -6,6 +6,8 @@ import {
   Slider,
   Grid,
   Tooltip,
+  IconButton,
+  Hidden,
 } from "@material-ui/core";
 import debounce from "lodash/debounce";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,6 +16,8 @@ import styles from "./styles";
 import SkeletonInList from "../../../core/components/skeleton";
 import ArrowUpwardRoundedIcon from "@material-ui/icons/ArrowUpwardRounded";
 import ArrowDownwardRoundedIcon from "@material-ui/icons/ArrowDownwardRounded";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "./my-list-posts.scss";
 
 const marks = [
@@ -41,7 +45,7 @@ const marks = [
 class MyListPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = { stateProgress: this.props.progress };
+    this.state = { stateProgress: this.props.progress, isHidden: true };
   }
 
   deleteItem = (key) => {
@@ -53,18 +57,19 @@ class MyListPosts extends Component {
 
   onChange = (event, newValue) => {
     const { activityKey } = this.props;
-
     this.setState({
       stateProgress: newValue,
     });
 
     this.debounceEvent(activityKey, newValue);
   };
-
+  showMoreButton = () => {
+    this.setState({ isHidden: !this.state.isHidden });
+  };
   render() {
     const { activityKey, classes, activitiesInMyList, index, activity } =
       this.props;
-    const { stateProgress } = this.state;
+    const { stateProgress, isHidden } = this.state;
 
     const activityInList = activitiesInMyList.find(
       ({ key }) => key === activityKey
@@ -95,6 +100,9 @@ class MyListPosts extends Component {
           direction="row"
           justify="space-between"
           alignItems="center"
+          className={
+            isHidden ? classes.cardContainerClose : classes.cardContainerOpen
+          }
         >
           <Grid item sm={8} xs={12}>
             <Grid item>
@@ -165,6 +173,17 @@ class MyListPosts extends Component {
             </Tooltip>
           </Grid>
         </Grid>
+        <Hidden smUp>
+          <Button
+            size="medium"
+            color="secondary"
+            className={classes.expandButton}
+            onClick={this.showMoreButton}
+            startIcon={isHidden ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+          >
+            {isHidden ? "More" : "Less"}
+          </Button>
+        </Hidden>
       </Card>
     );
   }
