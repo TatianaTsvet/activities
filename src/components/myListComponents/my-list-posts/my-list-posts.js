@@ -1,6 +1,5 @@
 import {
   Button,
-  Collapse,
   Card,
   Chip,
   Typography,
@@ -157,35 +156,34 @@ class MyListPosts extends Component {
               />
             </Grid>
           </Grid>
-          <Collapse in={false} collapsedSize={1000}>
-            <Grid item>
-              {upArrow}
-              <Tooltip
-                leaveTouchDelay={2000}
-                enterTouchDelay={50}
-                className={classes.tooltip}
-                placement="top"
-                title={
-                  stateProgress === 100
-                    ? "You may delete your activity"
-                    : "Do your activity completely"
-                }
-              >
-                <span>
-                  <Button
-                    disabled={stateProgress === 100 ? false : true}
-                    className={classes.myListDoneButton}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => this.deleteItem(activityInList.key)}
-                  >
-                    Done
-                  </Button>
-                </span>
-              </Tooltip>
-              {downArrow}
-            </Grid>
-          </Collapse>
+
+          <Grid item>
+            {upArrow}
+            <Tooltip
+              leaveTouchDelay={2000}
+              enterTouchDelay={50}
+              className={classes.tooltip}
+              placement="top"
+              title={
+                stateProgress === 100
+                  ? "You may delete your activity"
+                  : "Do your activity completely"
+              }
+            >
+              <span>
+                <Button
+                  disabled={stateProgress === 100 ? false : true}
+                  className={classes.myListDoneButton}
+                  variant="contained"
+                  color="primary"
+                  onClick={() => this.deleteItem(activityInList.key)}
+                >
+                  Done
+                </Button>
+              </span>
+            </Tooltip>
+            {downArrow}
+          </Grid>
         </Grid>
       </Card>
     );
