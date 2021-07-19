@@ -3,6 +3,8 @@ import DetailsType from "../details-type";
 import DetailsParticipants from "../details-participants";
 import DetailsBudget from "../details-budget";
 import DetailsAccessability from "../details-accessability";
+import ResetButton from "../../../../core/components/reset-button";
+
 import { Grid } from "@material-ui/core";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -29,7 +31,13 @@ class DetailsFilterGroup extends Component {
         <Grid item xs={12}>
           <DetailsAccessability />
         </Grid>
-        <Grid container></Grid>
+        <Grid container>
+          <ResetButton
+            name="Reset filters"
+            resetDetails={this.resetDetails}
+            className={classes.buttonReset}
+          />
+        </Grid>
       </div>
     );
   }

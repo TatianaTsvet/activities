@@ -112,12 +112,7 @@ class MyList extends Component {
     });
 
     return (
-      <Grid
-        className={classes.myList}
-        container
-        direction="column"
-        alignItems="stretch"
-      >
+      <Grid className={classes.myList}>
         {posts}
         <MyListResetButton
           resetActivities={this.resetActivities}

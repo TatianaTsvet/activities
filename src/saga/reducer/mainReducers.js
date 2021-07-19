@@ -6,7 +6,7 @@ import {
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
   CHANGE_ACTIVITY_PROGRESS,
-  // RESET_ERROR_ACTIVITY,
+  RESET_ERROR_ACTIVITY,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
@@ -111,11 +111,11 @@ const mainReducers = (state = defaultState, action) => {
         activity: [],
         activitiesInMyList: [],
       };
-    // case RESET_ERROR_ACTIVITY:
-    //   return {
-    //     ...state,
-    //     randomActivity: [],
-    //   };
+    case RESET_ERROR_ACTIVITY:
+      return {
+        ...state,
+        randomActivity: [],
+      };
     case CHANGE_ACTIVITY_ORDER:
       const { activityOrder } = action.payload;
       activityOrder.sort((a, b) => (a.order > b.order ? 1 : -1));

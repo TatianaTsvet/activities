@@ -7,35 +7,28 @@ import { withStyles } from "@material-ui/core/styles";
 import "./main-page.scss";
 
 class MainPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { display: "none" };
-  }
-  changeStyle = (randomActivity) => {
-    const changedDisplay = randomActivity ? "block" : "none";
-    this.setState({ display: changedDisplay });
-  };
   render() {
-    const { classes } = this.props;
-    const { display } = this.state;
-
+    const { classes, error, randomActivity } = this.props;
+    const styledDisplay =
+      !error && randomActivity.length === 0 ? "none" : "block";
     return (
       <>
-        <Grid container justifyContent="center" item>
-          <Box
-            item
-            className={classes.activity}
-            component={Grid}
-            key={display}
-            display={{
-              xs: display,
-              sm: "block",
-            }}
-            xs={12}
-            sm={6}
-          >
-            <ActivitiesResult />
-          </Box>
+        <Grid container justify="flex-end" item>
+          {styledDisplay === "block" && (
+            <Box
+              item
+              className={classes.activity}
+              component={Grid}
+              display={{
+                xs: styledDisplay,
+                sm: "block",
+              }}
+              xs={12}
+              sm={6}
+            >
+              <ActivitiesResult />
+            </Box>
+          )}
 
           <Grid
             item
@@ -47,7 +40,7 @@ class MainPage extends Component {
             xs={12}
             sm={6}
           >
-            <Details changeStyle={this.changeStyle} />
+            <Details />
           </Grid>
         </Grid>
       </>

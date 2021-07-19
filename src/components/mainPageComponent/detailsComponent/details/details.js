@@ -4,7 +4,6 @@ import DetailsMobileDrawer from "../details-mobile-drawer";
 import ActivityService from "../../../../services/activityService";
 import Spinner from "../../../../core/components/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
-import ResetButton from "../../../../core/components/reset-button";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import "./details.scss";
@@ -26,7 +25,6 @@ class Details extends Component {
     if (!randomActivity.error) {
       this.props.changeError(false);
     }
-    this.props.changeStyle(randomActivity);
   };
   resetDetails = () => {
     this.props.resetDetails();
@@ -72,12 +70,6 @@ class Details extends Component {
             >
               Show filters
             </Button>
-
-            <ResetButton
-              name="Reset filters"
-              resetDetails={this.resetDetails}
-              className={classes.buttonReset}
-            />
           </Grid>
         )}
         <DetailsMobileDrawer />

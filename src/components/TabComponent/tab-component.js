@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MainPage from "../mainPageComponent/mainPage/main-page";
+import MainPage from "../mainPageComponent/mainPage";
 import MyList from "../myListComponents/my-list";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import { Grid, Tab, AppBar, Tabs } from "@material-ui/core";
@@ -21,6 +21,7 @@ class TabComponent extends Component {
             xs={12}
             sm={12}
             lg={8}
+            xl={5}
             direction="row"
             justifyContent="center"
             alignItems="center"
