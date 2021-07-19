@@ -6,6 +6,8 @@ import { BackToTop, StyledProvider } from "components-extra";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import SkeletonInList from "../../../core/components/skeleton";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Chip } from "@material-ui/core";
 import InView from "react-intersection-observer";
 import "./my-list.scss";
 
@@ -47,23 +49,14 @@ class MyList extends Component {
     this.changeOrder(changedCard1, changedCard2);
   };
 
-  dragStart = (e, index) => {
-    this.setState({ card1: index });
-  };
-  dragLeave = (e) => {
-    e.target.style.background = "white";
-  };
+  dragDrop = (result) => {
+    const { activity } = this.props;
+    const startIndex = result.source.index;
+    const endIndex = result.destination.index;
+    const startDropIndex = activity[startIndex].order;
+    const endDropIndex = activity[endIndex].order;
 
-  dragOver = (e) => {
-    e.preventDefault();
-    e.target.style.background = "#5DCEC6";
-  };
-  dragDrop = (e, dropIndex) => {
-    e.preventDefault();
-    const { card1 } = this.state;
-    this.changeOrder(card1, dropIndex);
-
-    e.target.style.background = "white";
+    this.changeOrder(startDropIndex, endDropIndex);
   };
   inViewChange = (key) => {
     const { activitiesInMyList } = this.props;
@@ -78,42 +71,66 @@ class MyList extends Component {
     if (activity.length === 0) {
       return <MyListNoPosts />;
     }
+    const dragChip = (
+      <Chip className={classes.dragChip} label="Pull activity">
+        drag me
+      </Chip>
+    );
 
-    const posts = activity.map((item, index) => {
-      return (
-        <InView
-          key={item.key}
-          triggerOnce
-          onChange={(InView) => {
-            if (InView) {
-              this.inViewChange(item.key);
-            }
-          }}
-        >
-          {skeletonLoading ? (
-            <SkeletonInList />
-          ) : (
-            <div
-              className="myListPostContainer"
-              draggable={true}
-              onDragStart={(e) => this.dragStart(e, item.order)}
-              onDragLeave={(e) => this.dragLeave(e)}
-              onDragOver={(e) => this.dragOver(e)}
-              onDrop={(e) => this.dragDrop(e, item.order)}
-            >
-              <MyListPosts
-                activityKey={item.key}
-                order={item.order}
-                index={index}
-                changeOrderByArrowUp={this.changeOrderByArrowUp}
-                changeOrderByArrowDown={this.changeOrderByArrowDown}
-                progress={item.progress}
-              />
+    const posts = (
+      <DragDropContext onDragEnd={this.dragDrop}>
+        <Droppable droppableId="dragCards">
+          {(provided) => (
+            <div ref={provided.innerRef}>
+              {activity.map((item, index) => {
+                return (
+                  <InView
+                    key={item.key}
+                    triggerOnce
+                    onChange={(InView) => {
+                      if (InView) {
+                        this.inViewChange(item.key);
+                      }
+                    }}
+                  >
+                    {skeletonLoading ? (
+                      <SkeletonInList />
+                    ) : (
+                      <Draggable draggableId={item.key} index={index}>
+                        {(provided) => (
+                          <div
+                            className="myListPostContainer"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                          >
+                            <MyListPosts
+                              activityKey={item.key}
+                              order={item.order}
+                              index={index}
+                              dragChip={
+                                <div {...provided.dragHandleProps}>
+                                  {dragChip}
+                                </div>
+                              }
+                              changeOrderByArrowUp={this.changeOrderByArrowUp}
+                              changeOrderByArrowDown={
+                                this.changeOrderByArrowDown
+                              }
+                              progress={item.progress}
+                            />
+                          </div>
+                        )}
+                      </Draggable>
+                    )}
+                  </InView>
+                );
+              })}
+              {provided.placeholder}
             </div>
           )}
-        </InView>
-      );
-    });
+        </Droppable>
+      </DragDropContext>
+    );
 
     return (
       <div className="my_list">
