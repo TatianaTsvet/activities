@@ -1,6 +1,5 @@
 import MyListPosts from "./my-list-posts";
 import {
-  activitiesInList,
   deleteActivityItem,
   changeActivityProgress,
 } from "../../../saga/actions";
@@ -14,7 +13,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  activitiesInList,
   changeActivityProgress,
   deleteActivityItem,
 })(MyListPosts);

@@ -58,6 +58,13 @@ class MyList extends Component {
 
     this.changeOrder(startDropIndex, endDropIndex);
   };
+  inViewChange = (key) => {
+    const { activitiesInMyList } = this.props;
+    const repeatedKey = activitiesInMyList.find((item) => item.key === key);
+    if (!repeatedKey) {
+      this.props.activitiesInList(key);
+    }
+  };
   render() {
     const { classes, skeletonLoading, activity } = this.props;
 
@@ -82,7 +89,7 @@ class MyList extends Component {
                     triggerOnce
                     onChange={(InView) => {
                       if (InView) {
-                        this.props.activitiesInList(item.key);
+                        this.inViewChange(item.key);
                       }
                     }}
                   >
