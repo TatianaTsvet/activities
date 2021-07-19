@@ -14,6 +14,7 @@ import styles from "./styles";
 import SkeletonInList from "../../../core/components/skeleton";
 import ArrowUpwardRoundedIcon from "@material-ui/icons/ArrowUpwardRounded";
 import ArrowDownwardRoundedIcon from "@material-ui/icons/ArrowDownwardRounded";
+
 import "./my-list-posts.scss";
 
 const marks = [
@@ -62,8 +63,14 @@ class MyListPosts extends Component {
   };
 
   render() {
-    const { activityKey, classes, activitiesInMyList, index, activity } =
-      this.props;
+    const {
+      activityKey,
+      classes,
+      activitiesInMyList,
+      index,
+      activity,
+      dragChip,
+    } = this.props;
     const { stateProgress } = this.state;
 
     const activityInList = activitiesInMyList.find(
@@ -74,22 +81,32 @@ class MyListPosts extends Component {
       return <SkeletonInList />;
     }
     const upArrow =
-      index === 0 ? null : (
-        <ArrowUpwardRoundedIcon
-          fontSize={"large"}
+      index === 0 ? (
+        <Button disabled></Button>
+      ) : (
+        <Button
+          size="large"
+          className={classes.arrow}
           onClick={() => this.props.changeOrderByArrowUp(index)}
-        />
+          startIcon={<ArrowUpwardRoundedIcon />}
+        ></Button>
       );
     const downArrow =
-      index === activity.length - 1 ? null : (
-        <ArrowDownwardRoundedIcon
-          fontSize={"large"}
+      index === activity.length - 1 ? (
+        <Button disabled></Button>
+      ) : (
+        <Button
+          size="large"
+          className={classes.arrow}
           onClick={() => this.props.changeOrderByArrowDown(index)}
-        />
+          startIcon={<ArrowDownwardRoundedIcon />}
+        ></Button>
       );
 
     return (
       <Card component="nav" className={classes.myListCard}>
+        {dragChip}
+
         <Grid
           container
           direction="row"
@@ -103,6 +120,7 @@ class MyListPosts extends Component {
                 label={activityInList.type}
                 className={classes.myListChip}
               />
+
               <Typography variant="h6" className={classes.myListActivity}>
                 {activityInList.activity}
               </Typography>
@@ -138,9 +156,12 @@ class MyListPosts extends Component {
               />
             </Grid>
           </Grid>
-          <Grid>
+
+          <Grid item>
+            {upArrow}
             <Tooltip
-              interactive
+              leaveTouchDelay={2000}
+              enterTouchDelay={50}
               className={classes.tooltip}
               placement="top"
               title={
@@ -150,7 +171,6 @@ class MyListPosts extends Component {
               }
             >
               <span>
-                {upArrow}
                 <Button
                   disabled={stateProgress === 100 ? false : true}
                   className={classes.myListDoneButton}
@@ -160,9 +180,9 @@ class MyListPosts extends Component {
                 >
                   Done
                 </Button>
-                {downArrow}
               </span>
             </Tooltip>
+            {downArrow}
           </Grid>
         </Grid>
       </Card>

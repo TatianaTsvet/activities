@@ -3,6 +3,7 @@ const styles = (theme) => ({
     marginBottom: "1em",
     padding: "1em",
     height: "100%",
+    position: "relative",
   },
   myListActivity: {
     paddingTop: "1em",
@@ -15,12 +16,18 @@ const styles = (theme) => ({
     width: "6em",
     height: "5em",
   },
-  slider: {},
+  arrow: {
+    color: "red",
+  },
   success: {
     marginTop: "1em",
     textTransform: "capitalize",
     color: "#1976d2",
   },
-  tooltip: {},
+  slider: {
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "2em",
+    },
+  },
 });
 export default styles;
