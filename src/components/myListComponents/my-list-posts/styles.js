@@ -7,7 +7,7 @@ const styles = (theme) => ({
   },
   cardContainerClose: {
     [theme.breakpoints.down("xs")]: {
-      height: "8em",
+      height: "5em",
       overflow: "hidden",
     },
   },
@@ -36,8 +36,9 @@ const styles = (theme) => ({
   tooltip: {},
   expandButton: {
     position: "absolute",
-    right: "1em",
+    right: "0.5em",
     bottom: "0",
+    textTransform: "capitalize",
   },
 });
 export default styles;

@@ -6,8 +6,8 @@ import {
   Slider,
   Grid,
   Tooltip,
-  IconButton,
   Hidden,
+  Link,
 } from "@material-ui/core";
 import debounce from "lodash/debounce";
 import { withStyles } from "@material-ui/core/styles";
@@ -18,6 +18,7 @@ import ArrowUpwardRoundedIcon from "@material-ui/icons/ArrowUpwardRounded";
 import ArrowDownwardRoundedIcon from "@material-ui/icons/ArrowDownwardRounded";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 import "./my-list-posts.scss";
 
 const marks = [
@@ -45,7 +46,10 @@ const marks = [
 class MyListPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = { stateProgress: this.props.progress, isHidden: true };
+    this.state = {
+      stateProgress: this.props.progress,
+      isHidden: true,
+    };
   }
 
   deleteItem = (key) => {
@@ -173,16 +177,16 @@ class MyListPosts extends Component {
             </Tooltip>
           </Grid>
         </Grid>
+
         <Hidden smUp>
-          <Button
-            size="medium"
-            color="secondary"
+          <Link
+            component="button"
+            variant="body2"
             className={classes.expandButton}
             onClick={this.showMoreButton}
-            startIcon={isHidden ? <ExpandMoreIcon /> : <ExpandLessIcon />}
           >
-            {isHidden ? "More" : "Less"}
-          </Button>
+            {isHidden ? "...Expand" : "Hide"}
+          </Link>
         </Hidden>
       </Card>
     );
