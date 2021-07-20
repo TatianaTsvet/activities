@@ -17,10 +17,6 @@ import SkeletonInList from "../../../core/components/skeleton";
 import ArrowUpwardRoundedIcon from "@material-ui/icons/ArrowUpwardRounded";
 import ArrowDownwardRoundedIcon from "@material-ui/icons/ArrowDownwardRounded";
 
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-
 import "./my-list-posts.scss";
 
 const marks = [
@@ -73,11 +69,15 @@ class MyListPosts extends Component {
     this.setState({ isHidden: !this.state.isHidden });
   };
   render() {
-
-    const { activityKey, classes, activitiesInMyList, index,   dragChip, activity } =
-      this.props;
+    const {
+      activityKey,
+      classes,
+      activitiesInMyList,
+      index,
+      dragChip,
+      activity,
+    } = this.props;
     const { stateProgress, isHidden } = this.state;
-
 
     const activityInList = activitiesInMyList.find(
       ({ key }) => key === activityKey

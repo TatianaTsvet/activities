@@ -4,7 +4,6 @@ const styles = (theme) => ({
     padding: "1em",
     height: "100%",
     position: "relative",
-
   },
   cardContainerClose: {
     [theme.breakpoints.down("xs")]: {
@@ -16,7 +15,6 @@ const styles = (theme) => ({
     [theme.breakpoints.down("xs")]: {
       height: "100%",
     },
-
   },
   myListActivity: {
     paddingTop: "1em",
@@ -38,18 +36,16 @@ const styles = (theme) => ({
     color: "#1976d2",
   },
 
-  tooltip: {},
   expandButton: {
     position: "absolute",
     right: "0.5em",
     bottom: "0",
     textTransform: "capitalize",
-
+  },
   slider: {
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
     },
-
   },
 });
 export default styles;
