@@ -47,5 +47,9 @@ const styles = (theme) => ({
       marginBottom: "2em",
     },
   },
+  draggableChip: {
+    position: "absolute",
+    right: "2em",
+  },
 });
 export default styles;

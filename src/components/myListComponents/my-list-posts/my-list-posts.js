@@ -111,7 +111,7 @@ class MyListPosts extends Component {
 
     return (
       <Card component="nav" className={classes.myListCard}>
-        {dragChip}
+        <div className={classes.draggableChip}>{dragChip}</div>
 
         <Grid
           container
