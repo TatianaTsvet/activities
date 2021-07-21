@@ -16,6 +16,9 @@ const styles = (theme) => ({
   buttonResetError: {
     marginTop: "1em",
     backgroundColor: "rgb(231, 81, 81)",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
   },
 });
 

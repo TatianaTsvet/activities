@@ -11,13 +11,21 @@ const styles = (theme) => ({
     },
   },
   buttonSM: {
+    width: "100%",
     [theme.breakpoints.down("sm")]: {
       display: "block",
     },
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
-    marginTop: "1em",
+  },
+  getActivityButton: {
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+      margin: "0 auto",
+    },
+    backgroundColor: "#ba000d",
+    color: "#fff",
   },
 });
 
