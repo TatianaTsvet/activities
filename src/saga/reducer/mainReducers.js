@@ -5,8 +5,8 @@ import {
   CHANGE_ACTIVITY_ORDER,
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
-  RESET_DETAILS,
   CHANGE_ACTIVITY_PROGRESS,
+  RESET_ERROR_ACTIVITY,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
@@ -103,11 +103,6 @@ const mainReducers = (state = defaultState, action) => {
         activitiesInMyList: newActivityInMyList,
       };
 
-    case RESET_DETAILS:
-      return {
-        ...state,
-        randomActivity: "",
-      };
     case RESET_ACTIVITIES:
       const resetActivity = [];
       localStorage.setItem(storageKey, JSON.stringify(resetActivity));
@@ -115,6 +110,11 @@ const mainReducers = (state = defaultState, action) => {
         ...state,
         activity: [],
         activitiesInMyList: [],
+      };
+    case RESET_ERROR_ACTIVITY:
+      return {
+        ...state,
+        randomActivity: [],
       };
     case CHANGE_ACTIVITY_ORDER:
       const { activityOrder } = action.payload;

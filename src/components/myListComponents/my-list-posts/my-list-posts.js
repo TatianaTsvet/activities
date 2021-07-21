@@ -6,6 +6,8 @@ import {
   Slider,
   Grid,
   Tooltip,
+  Hidden,
+  Link,
 } from "@material-ui/core";
 import debounce from "lodash/debounce";
 import { withStyles } from "@material-ui/core/styles";
@@ -42,7 +44,10 @@ const marks = [
 class MyListPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = { stateProgress: this.props.progress };
+    this.state = {
+      stateProgress: this.props.progress,
+      isHidden: true,
+    };
   }
 
   deleteItem = (key) => {
@@ -54,24 +59,25 @@ class MyListPosts extends Component {
 
   onChange = (event, newValue) => {
     const { activityKey } = this.props;
-
     this.setState({
       stateProgress: newValue,
     });
 
     this.debounceEvent(activityKey, newValue);
   };
-
+  showMoreButton = () => {
+    this.setState({ isHidden: !this.state.isHidden });
+  };
   render() {
     const {
       activityKey,
       classes,
       activitiesInMyList,
       index,
-      activity,
       dragChip,
+      activity,
     } = this.props;
-    const { stateProgress } = this.state;
+    const { stateProgress, isHidden } = this.state;
 
     const activityInList = activitiesInMyList.find(
       ({ key }) => key === activityKey
@@ -105,13 +111,16 @@ class MyListPosts extends Component {
 
     return (
       <Card component="nav" className={classes.myListCard}>
-        {dragChip}
+        <div className={classes.draggableChip}>{dragChip}</div>
 
         <Grid
           container
           direction="row"
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="center"
+          className={
+            isHidden ? classes.cardContainerClose : classes.cardContainerOpen
+          }
         >
           <Grid item sm={8} xs={12}>
             <Grid item>
@@ -134,7 +143,7 @@ class MyListPosts extends Component {
               sm={8}
               xs={12}
               direction="column"
-              justify="center"
+              justifyContent="center"
               alignItems="center"
             >
               <Typography
@@ -185,6 +194,17 @@ class MyListPosts extends Component {
             {downArrow}
           </Grid>
         </Grid>
+
+        <Hidden smUp>
+          <Link
+            component="button"
+            variant="body2"
+            className={classes.expandButton}
+            onClick={this.showMoreButton}
+          >
+            {isHidden ? "...Expand" : "Hide"}
+          </Link>
+        </Hidden>
       </Card>
     );
   }

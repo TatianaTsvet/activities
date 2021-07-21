@@ -6,6 +6,9 @@ const styles = (theme) => ({
     padding: "1em",
     textTransform: "uppercase",
   },
+  appBar: {
+    marginBottom: "0.5em",
+  },
 });
 
 export default styles;
