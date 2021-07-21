@@ -1,0 +1,12 @@
+@import "../../../../scss/variables.scss";
+.result_window {
+  color: $result_window_color;
+  padding: 1em;
+}
+.result_window.error {
+  background-color: rgb(231, 81, 81);
+  color: $result_window_color;
+}
+invitation {
+  color: $result_window_color;
+}

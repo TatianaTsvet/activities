@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./error-component.scss";
-import styles from "../../../styles";
+import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 
 class ErrorComponent extends Component {
@@ -10,12 +10,17 @@ class ErrorComponent extends Component {
     const { classes } = this.props;
     return (
       <Container
-        justify="center"
+        justifyContent="center"
         component="main"
         maxWidth="md"
         className={classes.error}
       >
-        <Grid container direction="column" justify="center" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Grid item>
             <Typography className={classes.errorMistake} gutterBottom>
               404 error page.

@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import MyListPosts from "../my-list-posts";
 import MyListNoPosts from "../my-list-no-posts";
 import MyListResetButton from "../my-list-reset-button";
+import SkeletonInList from "../../../core/components/skeleton";
 import { BackToTop, StyledProvider } from "components-extra";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
+
+
 import SkeletonInList from "../../../core/components/skeleton";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Chip } from "@material-ui/core";
+
 import InView from "react-intersection-observer";
+import { Grid } from "@material-ui/core";
+
 import "./my-list.scss";
 
 class MyList extends Component {
@@ -133,7 +139,7 @@ class MyList extends Component {
     );
 
     return (
-      <div className="my_list">
+      <Grid className={classes.myList}>
         {posts}
         <MyListResetButton
           resetActivities={this.resetActivities}
@@ -144,7 +150,7 @@ class MyList extends Component {
         <StyledProvider>
           <BackToTop className="back_to_top" />
         </StyledProvider>
-      </div>
+      </Grid>
     );
   }
 }

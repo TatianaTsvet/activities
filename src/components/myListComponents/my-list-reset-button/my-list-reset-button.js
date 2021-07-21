@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Grid } from "@material-ui/core";
-
+import { Grid } from "@material-ui/core";
+import ResetButton from "../../../core/components/reset-button";
 import "./my-list-reset-button.scss";
 
 export default class MyListResetButton extends Component {
@@ -13,14 +13,10 @@ export default class MyListResetButton extends Component {
 
     return loading ? null : (
       <Grid container direction="row" justify="center">
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          onClick={this.props.resetActivities}
-        >
-          Clear all
-        </Button>
+        <ResetButton
+          name="Clear all"
+          resetDetails={this.props.resetActivities}
+        />
       </Grid>
     );
   }

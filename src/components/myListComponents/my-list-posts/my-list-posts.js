@@ -116,7 +116,7 @@ class MyListPosts extends Component {
         <Grid
           container
           direction="row"
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="center"
           className={
             isHidden ? classes.cardContainerClose : classes.cardContainerOpen
@@ -143,7 +143,7 @@ class MyListPosts extends Component {
               sm={8}
               xs={12}
               direction="column"
-              justify="center"
+              justifyContent="center"
               alignItems="center"
             >
               <Typography

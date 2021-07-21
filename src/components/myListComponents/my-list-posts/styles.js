@@ -1,8 +1,17 @@
 const styles = (theme) => ({
   myListCard: {
-    marginBottom: "1em",
     padding: "1em",
     height: "100%",
+adaptivity
+
+    marginBottom: "1em",
+//dev
+//     position: "relative",
+//   },
+//   myListActivity: {
+//     paddingTop: "1em",
+//     pointerEvents: "none",
+
     position: "relative",
   },
   cardContainerClose: {
@@ -19,6 +28,7 @@ const styles = (theme) => ({
   myListActivity: {
     paddingTop: "1em",
     pointerEvents: "none",
+
   },
   myListChip: {
     background: "#2e7d32",
@@ -27,8 +37,19 @@ const styles = (theme) => ({
     width: "6em",
     height: "5em",
   },
-  arrow: {
+
+  slider: {
+    '& .MuiSlider-markLabel[data-index="0"]': {
+      transform: "translateX(0%)",
+    },
+    '& .MuiSlider-markLabel[data-index="4"]': {
+      transform: "translateX(-60%)",
+    },
+    marginBottom: "2em",
+
+   arrow: {
     color: "red",
+
   },
   success: {
     marginTop: "1em",
