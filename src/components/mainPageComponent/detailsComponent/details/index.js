@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
   return {
     details: state.detailReducers,
     loading: state.serviceReducers.loading,
+    error: state.serviceReducers.error,
   };
 };
 

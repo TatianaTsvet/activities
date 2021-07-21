@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ActivitiesResultPaper from "../activities-result-paper";
 import ResetButton from "../../../../core/components/reset-button";
+
 import { Container, Grid, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
@@ -63,6 +64,7 @@ class ActivitiesResultItem extends Component {
               >
                 Save for you later
               </Button>
+            
             </Container>
           </>
         );
