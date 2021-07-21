@@ -148,7 +148,7 @@ class MyList extends Component {
         />
 
         <StyledProvider>
-          <BackToTop className={classes.backToTop} />
+          <BackToTop className="back_to_top" />
         </StyledProvider>
       </Grid>
     );
