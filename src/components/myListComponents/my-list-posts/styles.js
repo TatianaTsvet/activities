@@ -5,6 +5,17 @@ const styles = (theme) => ({
     height: "100%",
     position: "relative",
   },
+  cardContainerClose: {
+    [theme.breakpoints.down("xs")]: {
+      height: "5em",
+      overflow: "hidden",
+    },
+  },
+  cardContainerOpen: {
+    [theme.breakpoints.down("xs")]: {
+      height: "100%",
+    },
+  },
   myListActivity: {
     paddingTop: "1em",
     pointerEvents: "none",
@@ -24,10 +35,21 @@ const styles = (theme) => ({
     textTransform: "capitalize",
     color: "#1976d2",
   },
+
+  expandButton: {
+    position: "absolute",
+    right: "0.5em",
+    bottom: "0",
+    textTransform: "capitalize",
+  },
   slider: {
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
     },
+  },
+  draggableChip: {
+    position: "absolute",
+    right: "2em",
   },
 });
 export default styles;
