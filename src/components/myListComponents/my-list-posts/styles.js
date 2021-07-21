@@ -2,17 +2,12 @@ const styles = (theme) => ({
   myListCard: {
     padding: "1em",
     height: "100%",
-adaptivity
-
     marginBottom: "1em",
-//dev
-//     position: "relative",
-//   },
-//   myListActivity: {
-//     paddingTop: "1em",
-//     pointerEvents: "none",
-
     position: "relative",
+  },
+  myListActivity: {
+    paddingTop: "1em",
+    pointerEvents: "none",
   },
   cardContainerClose: {
     [theme.breakpoints.down("xs")]: {
@@ -25,11 +20,7 @@ adaptivity
       height: "100%",
     },
   },
-  myListActivity: {
-    paddingTop: "1em",
-    pointerEvents: "none",
 
-  },
   myListChip: {
     background: "#2e7d32",
   },
@@ -46,10 +37,9 @@ adaptivity
       transform: "translateX(-60%)",
     },
     marginBottom: "2em",
-
-   arrow: {
+  },
+  arrow: {
     color: "red",
-
   },
   success: {
     marginTop: "1em",
@@ -63,11 +53,7 @@ adaptivity
     bottom: "0",
     textTransform: "capitalize",
   },
-  slider: {
-    [theme.breakpoints.down("sm")]: {
-      marginBottom: "2em",
-    },
-  },
+
   draggableChip: {
     position: "absolute",
     right: "2em",

@@ -7,15 +7,12 @@ const styles = (theme) => ({
     padding: "1em",
     borderRadius: "0.5em",
     width: "100%",
- 
 
-
- 
-//     [theme.breakpoints.down("xs")]: {
-//       height: "7em",
-//       overflow: "hidden",
-//     },
-     },
+    [theme.breakpoints.down("xs")]: {
+      height: "7em",
+      overflow: "hidden",
+    },
+  },
 });
 
 export default styles;

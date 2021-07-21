@@ -6,14 +6,9 @@ import SkeletonInList from "../../../core/components/skeleton";
 import { BackToTop, StyledProvider } from "components-extra";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-
-
-import SkeletonInList from "../../../core/components/skeleton";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Chip } from "@material-ui/core";
-
+import { Chip,  Grid } from "@material-ui/core";
 import InView from "react-intersection-observer";
-import { Grid } from "@material-ui/core";
 
 import "./my-list.scss";
 

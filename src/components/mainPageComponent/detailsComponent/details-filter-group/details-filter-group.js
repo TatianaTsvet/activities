@@ -16,7 +16,7 @@ class DetailsFilterGroup extends Component {
     this.props.resetDetails(details);
   };
   render() {
-    const { loading, classes } = this.props;
+    const { classes } = this.props;
     return (
       <div className="filters">
         <Grid item xs={12}>
