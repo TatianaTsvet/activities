@@ -92,6 +92,12 @@ export const activitiesInList = (key) => {
   };
 };
 
+export const asyncResetDetails = () => {
+  return {
+    type: types.ASYNC_RESET_DETAILS,
+  };
+};
+
 export const activitiesInMyList = (activitiesInMyList) => {
   return {
     type: types.ACTIVITIES_IN_MY_LIST,
@@ -99,7 +105,7 @@ export const activitiesInMyList = (activitiesInMyList) => {
   };
 };
 
-export const resetDetails = (details) => {
+export const resetDetails = () => {
   return {
     type: types.RESET_DETAILS,
   };

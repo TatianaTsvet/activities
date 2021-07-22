@@ -63,7 +63,7 @@ class MyList extends Component {
     const { activitiesInMyList } = this.props;
     const repeatedKey = activitiesInMyList.find((item) => item.key === key);
     if (!repeatedKey) {
-      this.props.activitiesInList(key); 
+      this.props.activitiesInList(key);
     }
   };
   render() {
@@ -134,7 +134,7 @@ class MyList extends Component {
     );
 
     return (
-      <Grid className={classes.myList}>
+      <Grid className="my_list">
         {posts}
         <MyListResetButton
           resetActivities={this.resetActivities}

@@ -56,7 +56,7 @@ const styles = (theme) => ({
 
   draggableChip: {
     position: "absolute",
-    right: "2em",
+    right: "1em",
   },
 });
 export default styles;

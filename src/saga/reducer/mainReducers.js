@@ -23,6 +23,7 @@ const mainReducers = (state = defaultState, action) => {
       if (action.payload.randomActivity.error) {
         return {
           ...state,
+          randomActivity: "",
         };
       }
       return {
@@ -116,6 +117,7 @@ const mainReducers = (state = defaultState, action) => {
         ...state,
         randomActivity: [],
       };
+
     case CHANGE_ACTIVITY_ORDER:
       const { activityOrder } = action.payload;
       activityOrder.sort((a, b) => (a.order > b.order ? 1 : -1));

@@ -22,3 +22,4 @@ export const CHANGE_ACTIVITY_ORDER = "changeActivityOrder";
 export const CHANGE_ACTIVITY_PROGRESS = "changeActivityProgress";
 export const OPEN_DRAWER = "openDrawer";
 export const RESET_ERROR_ACTIVITY = "resetErrorActivity";
+export const ASYNC_RESET_DETAILS = "asyncResetDetails";

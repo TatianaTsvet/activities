@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
     details: state.detailReducers,
     loading: state.serviceReducers.loading,
     randomActivity: state.mainReducers.randomActivity,
+    error: state.serviceReducers.error,
   };
 };
 

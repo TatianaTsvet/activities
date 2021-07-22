@@ -33,6 +33,7 @@ const serviceReducers = (state = defaultState, action) => {
       } else {
         return {
           ...state,
+          error: false,
           loading: false,
         };
       }

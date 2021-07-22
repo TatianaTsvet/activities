@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DetailsFilterGroup from "../details-filter-group";
 import DetailsMobileDrawer from "../details-mobile-drawer";
 import ActivityService from "../../../../services/activityService";
+import MobileResetButton from "../mobile-reset-button";
 import Spinner from "../../../../core/components/spinner";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -15,17 +16,10 @@ class Details extends Component {
 
   ActivityService = new ActivityService();
 
-  sendForm = async (event) => {
-    event.preventDefault();
+  sendForm = async () => {
     this.props.switchSpinner(true);
-
-    const { details, randomActivity } = this.props;
+    const { details } = this.props;
     this.props.getNewActivity(details);
-    // const randomActivity = await this.ActivityService.getActivity(details);
-    // this.props.activityFetched(randomActivity);
-    if (!randomActivity.error) {
-      this.props.changeError(false);
-    }
   };
   resetDetails = () => {
     this.props.resetDetails();
@@ -35,10 +29,11 @@ class Details extends Component {
   };
 
   render() {
-    const { loading, classes } = this.props;
+    const { loading, classes, error } = this.props;
+    const mobileResetButton = error ? <MobileResetButton /> : null;
 
     return (
-      <>
+      <div className="details">
         <Typography variant="h5" gutterBottom>
           Activity details
         </Typography>
@@ -51,30 +46,39 @@ class Details extends Component {
           </Grid>
         ) : (
           <Grid
+            item
+            spacing={3}
             container
-            direction="column"
-            justifyContent="flex-start"
+            direction="row"
+            justifyContent="space-between"
             alignItems="center"
           >
-            <Button
-              onClick={this.sendForm}
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
-              Hit me with the new one
-            </Button>
-            <Button
-              className={classes.buttonSM}
-              onClick={this.openDrawer}
-              variant="contained"
-            >
-              Show filters
-            </Button>
+            <Grid item xs={6} sm={12}>
+              <Button
+                className={classes.getActivityButton}
+                onClick={this.sendForm}
+                variant="contained"
+                color="secondary"
+              >
+                Hit me with the new one
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                className={classes.buttonSM}
+                onClick={this.openDrawer}
+                variant="contained"
+              >
+                Show filters
+              </Button>
+            </Grid>
+
+            {mobileResetButton}
           </Grid>
         )}
+
         <DetailsMobileDrawer />
-      </>
+      </div>
     );
   }
 }

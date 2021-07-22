@@ -1,6 +1,11 @@
 import ActivityService from "../services/activityService";
 import { put, takeEvery, call } from "redux-saga/effects";
-import { activitiesInMyList, activityFetched } from "./actions";
+import {
+  activitiesInMyList,
+  activityFetched,
+  resetDetails,
+  getNewActivity,
+} from "./actions";
 
 export function* fetchActivityById(activitiesInList) {
   const ActivityKeyService = new ActivityService();
@@ -21,13 +26,13 @@ export function* fetchActivityByDetails(details) {
   yield put(activityFetched(res));
 }
 
-export function* asyncResetDetails(details) {
-  const res = yield call(() => getNewActivity);
-  yield put(activityFetched(res));
+export function* resetDetailsForMobile() {
+  yield put(resetDetails());
+  yield put(getNewActivity());
 }
 
 export default function* mySaga() {
   yield takeEvery("activitiesInList", fetchActivityById);
   yield takeEvery("getNewActivity", fetchActivityByDetails);
-  yield takeEvery("getNewActivity", asyncResetDetails);
+  yield takeEvery("asyncResetDetails", resetDetailsForMobile);
 }
