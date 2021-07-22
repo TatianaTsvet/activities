@@ -67,7 +67,7 @@ const detailReducers = (state = defaultState, action) => {
     default:
       newState = state;
   }
- 
+
   try {
     localStorage.setItem(storageKey, JSON.stringify(newState));
   } catch {}

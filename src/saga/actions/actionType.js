@@ -10,6 +10,7 @@ export const CLOSE_TOAST = "closeToast";
 export const CHANGE_ERROR = "changeError";
 export const SWITCH_SPINNER = "switchSpinner";
 export const SWITCH_SKELET = "switchSkelet";
+export const GET_NEW_ACTIVITY = "getNewActivity";
 export const ACTIVITIES_IN_LIST = "activitiesInList";
 export const ACTIVITIES_IN_MY_LIST = "activitiesInMyList";
 export const CLOSE_REPEATED_TOAST = "closeRepeatedToast";
@@ -17,6 +18,8 @@ export const SAVE_AGAIN_ACTIVITY = "saveAgainActivity";
 export const REPEATED_ACTIVITY = "repeatedActivity";
 export const RESET_DETAILS = "resetDetails";
 export const RESET_ACTIVITIES = "resetActivities";
-
+export const CHANGE_ACTIVITY_ORDER = "changeActivityOrder";
 export const CHANGE_ACTIVITY_PROGRESS = "changeActivityProgress";
-
+export const OPEN_DRAWER = "openDrawer";
+export const RESET_ERROR_ACTIVITY = "resetErrorActivity";
+export const ASYNC_RESET_DETAILS = "asyncResetDetails";

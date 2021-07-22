@@ -79,11 +79,22 @@ export const switchSkelet = (loading) => {
     payload: { loading },
   };
 };
-
+export const getNewActivity = (details) => {
+  return {
+    type: types.GET_NEW_ACTIVITY,
+    payload: { details },
+  };
+};
 export const activitiesInList = (key) => {
   return {
     type: types.ACTIVITIES_IN_LIST,
     payload: { key },
+  };
+};
+
+export const asyncResetDetails = () => {
+  return {
+    type: types.ASYNC_RESET_DETAILS,
   };
 };
 
@@ -94,10 +105,9 @@ export const activitiesInMyList = (activitiesInMyList) => {
   };
 };
 
-export const resetDetails = (details) => {
+export const resetDetails = () => {
   return {
     type: types.RESET_DETAILS,
-    payload: { details },
   };
 };
 export const closeRepeatedToast = (repeatedActivity) => {
@@ -117,9 +127,26 @@ export const resetActivities = () => {
     type: types.RESET_ACTIVITIES,
   };
 };
+export const resetErrorActivity = () => {
+  return {
+    type: types.RESET_ERROR_ACTIVITY,
+  };
+};
+export const changeActivityOrder = (activityOrder) => {
+  return {
+    type: types.CHANGE_ACTIVITY_ORDER,
+    payload: { activityOrder },
+  };
+};
 export const changeActivityProgress = (key, progress) => {
   return {
     type: types.CHANGE_ACTIVITY_PROGRESS,
     payload: { key, progress },
+  };
+};
+export const openDrawer = (mobileDrawer) => {
+  return {
+    type: types.OPEN_DRAWER,
+    payload: { mobileDrawer },
   };
 };

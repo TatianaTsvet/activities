@@ -18,31 +18,37 @@ export default class ActivityService {
 
   async getActivity(details) {
     const startTime = new Date().getTime();
+    let newData = "";
     const activityData = { ...details };
+
     const data = new URLSearchParams();
 
-    if (activityData.minaccessability === activityData.maxaccessability) {
-      data.append("accessibility", activityData.minaccessability);
-      activityData.minaccessability = 0;
-      activityData.maxaccessability = 1;
-    }
-    if (activityData.minprice === activityData.maxprice) {
-      data.append("price", activityData.minprice);
-      activityData.minprice = 0;
-      activityData.maxprice = 1;
-    }
-
-    for (let key in activityData) {
-      if (
-        activityData[key] !== "" &&
-        activityData[key] !== 0 &&
-        activityData[key] !== 1
-      ) {
-        data.append(key, activityData[key]);
+    if (!activityData.participants) {
+      newData = await this.getResource(`?`);
+    } else {
+      if (activityData.minaccessability === activityData.maxaccessability) {
+        data.append("accessibility", activityData.minaccessability);
+        activityData.minaccessability = 0;
+        activityData.maxaccessability = 1;
       }
-    }
+      if (activityData.minprice === activityData.maxprice) {
+        data.append("price", activityData.minprice);
+        activityData.minprice = 0;
+        activityData.maxprice = 1;
+      }
 
-    const newData = await this.getResource(`?${data}`);
+      for (let key in activityData) {
+        if (
+          activityData[key] !== "" &&
+          activityData[key] !== 0 &&
+          activityData[key] !== 1
+        ) {
+          data.append(key, activityData[key]);
+        }
+      }
+
+      newData = await this.getResource(`?${data}`);
+    }
     const endTime = new Date().getTime();
     const leftTime = waitingTime - (endTime - startTime);
     await new Promise((resolve) => setTimeout(resolve, leftTime));

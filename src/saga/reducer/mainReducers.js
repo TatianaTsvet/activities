@@ -2,10 +2,11 @@ import {
   ACTIVITIES_IN_MY_LIST,
   ACTIVITY_FETCHED,
   ADD_ITEM_TO_MY_LIST,
+  CHANGE_ACTIVITY_ORDER,
   DELETE_ACTIVITY_ITEM,
   RESET_ACTIVITIES,
-  RESET_DETAILS,
   CHANGE_ACTIVITY_PROGRESS,
+  RESET_ERROR_ACTIVITY,
 } from "../actions/actionType";
 
 const storageKey = "activityKey";
@@ -22,6 +23,7 @@ const mainReducers = (state = defaultState, action) => {
       if (action.payload.randomActivity.error) {
         return {
           ...state,
+          randomActivity: "",
         };
       }
       return {
@@ -36,7 +38,16 @@ const mainReducers = (state = defaultState, action) => {
         (item) => item.key === newItem
       );
 
-      const activityKey = { key: newItem, progress: 0 };
+      const newOrder =
+        state.activity.length !== 0
+          ? Math.max.apply(
+              null,
+              state.activity.map((item) => item.order)
+            )
+          : 0;
+
+      const activityKey = { key: newItem, progress: 0, order: newOrder + 1 };
+
       const newActivity = sameActivity
         ? state.activity
         : [...state.activity, activityKey];
@@ -93,11 +104,6 @@ const mainReducers = (state = defaultState, action) => {
         activitiesInMyList: newActivityInMyList,
       };
 
-    case RESET_DETAILS:
-      return {
-        ...state,
-        randomActivity: "",
-      };
     case RESET_ACTIVITIES:
       const resetActivity = [];
       localStorage.setItem(storageKey, JSON.stringify(resetActivity));
@@ -105,6 +111,20 @@ const mainReducers = (state = defaultState, action) => {
         ...state,
         activity: [],
         activitiesInMyList: [],
+      };
+    case RESET_ERROR_ACTIVITY:
+      return {
+        ...state,
+        randomActivity: [],
+      };
+
+    case CHANGE_ACTIVITY_ORDER:
+      const { activityOrder } = action.payload;
+      activityOrder.sort((a, b) => (a.order > b.order ? 1 : -1));
+      localStorage.setItem(storageKey, JSON.stringify(activityOrder));
+      return {
+        ...state,
+        activity: activityOrder,
       };
 
     default:
