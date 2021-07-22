@@ -19,9 +19,10 @@ class Details extends Component {
     event.preventDefault();
     this.props.switchSpinner(true);
 
-    const { details } = this.props;
-    const randomActivity = await this.ActivityService.getActivity(details);
-    this.props.activityFetched(randomActivity);
+    const { details, randomActivity } = this.props;
+    this.props.getNewActivity(details);
+    // const randomActivity = await this.ActivityService.getActivity(details);
+    // this.props.activityFetched(randomActivity);
     if (!randomActivity.error) {
       this.props.changeError(false);
     }

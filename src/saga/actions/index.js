@@ -79,7 +79,12 @@ export const switchSkelet = (loading) => {
     payload: { loading },
   };
 };
-
+export const getNewActivity = (details) => {
+  return {
+    type: types.GET_NEW_ACTIVITY,
+    payload: { details },
+  };
+};
 export const activitiesInList = (key) => {
   return {
     type: types.ACTIVITIES_IN_LIST,

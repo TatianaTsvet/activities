@@ -10,6 +10,7 @@ export const CLOSE_TOAST = "closeToast";
 export const CHANGE_ERROR = "changeError";
 export const SWITCH_SPINNER = "switchSpinner";
 export const SWITCH_SKELET = "switchSkelet";
+export const GET_NEW_ACTIVITY = "getNewActivity";
 export const ACTIVITIES_IN_LIST = "activitiesInList";
 export const ACTIVITIES_IN_MY_LIST = "activitiesInMyList";
 export const CLOSE_REPEATED_TOAST = "closeRepeatedToast";

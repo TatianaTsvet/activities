@@ -3,24 +3,25 @@ import { connect } from "react-redux";
 
 import "./details.scss";
 import {
-  activityFetched,
   switchSpinner,
   changeError,
   resetDetails,
   openDrawer,
+  getNewActivity,
 } from "../../../../saga/actions";
 
 const mapStateToProps = (state) => {
   return {
     details: state.detailReducers,
     loading: state.serviceReducers.loading,
+    randomActivity: state.mainReducers.randomActivity,
   };
 };
 
 export default connect(mapStateToProps, {
-  activityFetched,
   changeError,
   switchSpinner,
   resetDetails,
   openDrawer,
+  getNewActivity,
 })(Details);
