@@ -2,7 +2,7 @@ const waitingTime = 2000;
 
 export default class ActivityService {
   constructor() {
-    this._apiBase = "http://www.boredapi.com/api/activity";
+    this._apiBase = "https://www.boredapi.com/api/activity";
   }
 
   async getResource(url) {
