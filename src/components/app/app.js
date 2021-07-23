@@ -8,7 +8,7 @@ import "./app.scss";
 export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <>
           <Switch>
             <Route path="/activities" exact component={TabComponent} />
